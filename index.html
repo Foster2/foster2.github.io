@@ -13,6 +13,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 #viewport { flex: 1; position: relative; overflow: hidden; }
 #video { position: absolute; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); z-index: 1; }
+#video.hidden-feed { opacity: 0; }
 #skeleton { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; transform: scaleX(-1); }
 #yt-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; z-index: 2; }
 #yt-player iframe { width: 100%; height: 100%; }
@@ -31,6 +32,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 #indicator { position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none; opacity: 0; transition: opacity 0.2s, transform 0.2s; }
 #indicator.show { opacity: 1; }
 #indicator span { color: #FF6B35; font-size: 28px; font-weight: 900; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+
+#quote { position: absolute; bottom: 50%; left: 16px; right: 16px; z-index: 6; pointer-events: none; text-align: center; transform: translateY(50%); }
+#quote-text { color: #fff; font-size: 64px; font-weight: 900; font-style: normal; opacity: 0.22; letter-spacing: 1px; line-height: 1.2; max-width: 90%; margin: 0 auto; text-shadow: 0 6px 24px rgba(0,0,0,0.9); text-transform: uppercase; }
+
+#celly { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 12; pointer-events: none; opacity: 0; transition: opacity 0.4s; }
+#celly.show { opacity: 1; }
+#celly-text { color: #FFD700; font-size: 48px; font-weight: 900; text-shadow: 0 4px 24px rgba(0,0,0,0.95); transform: scale(0.3); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.4); }
+#celly.show #celly-text { transform: scale(1); }
+#celly.big { background: rgba(0,0,0,0.6); }
+#celly.big #celly-text { font-size: 56px; animation: pulse 1s ease infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
 #permit { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #0A0A0A; z-index: 15; }
 #permit.hidden { display: none; }
@@ -52,6 +64,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
 #progress-bar { height: 4px; background: #1A1A2E; }
 #progress-fill { height: 100%; background: #FF6B35; transition: width 0.3s; }
+#ticker-wrap { height: 40px; background: rgba(10,10,10,0.95); border-top: 1px solid #1A1A2E; overflow: hidden; }
+#news-ticker { height: 22px; background: rgba(5,5,15,0.95); border-top: 1px solid #1A1A2E; overflow: hidden; position: relative; }
+#news-scroll { white-space: nowrap; overflow: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+#news-text { display: inline-block; color: #CBD5E1; font-size: 14px; font-weight: 500; line-height: 22px; padding-left: 100%; animation: marquee 180s linear infinite; letter-spacing: 0.3px; }
+#news-ticker:hover #news-text { animation-play-state: paused; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 </style>
 </head>
 <body>
@@ -72,6 +90,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
       <div class="sub">TF.js WebGL</div>
     </div>
 
+    <div id="quote"><span id="quote-text"></span></div>
+
     <div id="permit" class="hidden">
       <button id="start-cam">ENABLE CAMERA</button>
     </div>
@@ -81,6 +101,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     </div>
 
     <div id="indicator"><span id="indicator-value">+0</span></div>
+    <div id="celly"><span id="celly-text"></span></div>
   </div>
 
   <div id="hud">
@@ -110,6 +131,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   </div>
 
   <div id="progress-bar"><div id="progress-fill"></div></div>
+  <div id="ticker-wrap"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols":[{"description":"US100","proName":"FOREXCOM:NSXUSD"},{"description":"AAPL","proName":"NASDAQ:AAPL"},{"description":"MSFT","proName":"NASDAQ:MSFT"},{"description":"GOOGL","proName":"NASDAQ:GOOGL"},{"description":"AMZN","proName":"NASDAQ:AMZN"},{"description":"NVDA","proName":"NASDAQ:NVDA"},{"description":"META","proName":"NASDAQ:META"},{"description":"TSLA","proName":"NASDAQ:TSLA"},{"description":"PLTR","proName":"NASDAQ:PLTR"},{"description":"MU","proName":"NASDAQ:MU"},{"description":"WDC","proName":"NASDAQ:WDC"},{"description":"TSM","proName":"NYSE:TSM"},{"description":"SPCX","proName":"NASDAQ:SPCX"},{"description":"SOXL","proName":"AMEX:SOXL"},{"description":"QBTS","proName":"NYSE:QBTS"},{"description":"AVGO","proName":"NASDAQ:AVGO"}],"showSymbolLogo":true,"colorTheme":"dark","isTransparent":true,"displayMode":"adaptive","locale":"en"}</script></div></div>
+  <div id="news-ticker"><div id="news-scroll"><span id="news-text">Loading news...</span></div></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.22.0/dist/tf-core.min.js"></script>
@@ -122,8 +145,30 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   const TARGET_CALORIES = 500;
   const VIDEO_LENGTH = 3255;
   const WEIGHT_KG = 75;
+  async function loadDailyQuote() {
+    const today = new Date().toDateString();
+    const cached = localStorage.getItem('daily-quote');
+    const cachedDate = localStorage.getItem('daily-quote-date');
+    if (cached && cachedDate === today) {
+      document.getElementById('quote-text').textContent = cached;
+      return;
+    }
+    try {
+      const r = await fetch('https://api.quotable.io/random?maxLength=120');
+      const data = await r.json();
+      const quote = data.content + ' — ' + data.author;
+      document.getElementById('quote-text').textContent = quote;
+      localStorage.setItem('daily-quote', quote);
+      localStorage.setItem('daily-quote-date', today);
+    } catch (_) {
+      document.getElementById('quote-text').textContent = 'The only way out is through. — Frost';
+    }
+  }
+  loadDailyQuote();
 
   const video = document.getElementById('video');
+  const viewport = document.getElementById('viewport');
+  viewport.addEventListener('click', () => video.classList.toggle('hidden-feed'));
   const canvas = document.getElementById('skeleton');
   const ctx = canvas.getContext('2d');
   const loading = document.getElementById('loading');
@@ -140,6 +185,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   const hudProgressPct = document.getElementById('hud-progress-pct');
   const hudProgressBar = document.getElementById('hud-progress-bar');
   const progressFill = document.getElementById('progress-fill');
+  const cellyEl = document.getElementById('celly');
+  const cellyText = document.getElementById('celly-text');
 
   let detector = null;
   let cameraStream = null;
@@ -153,6 +200,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   let indicatorTimer = null;
   let prevTime = 0;
   let hipHistory = [];
+  let milestonesHit = new Set();
   const FRAME_INTERVAL = 80;
 
   hudCalTarget.textContent = TARGET_CALORIES;
@@ -162,6 +210,14 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     if (el && el.contentWindow) {
       el.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || '' }), '*');
     }
+  }
+
+  function triggerCelly(pct) {
+    const labels = { 25: '25%', 50: 'HALFWAY', 75: '75%', 100: 'COMPLETE!' };
+    cellyText.textContent = labels[pct] || pct + '%';
+    cellyEl.className = pct === 100 ? 'big show' : 'show';
+    clearTimeout(indicatorTimer);
+    indicatorTimer = setTimeout(() => { cellyEl.className = ''; cellyEl.classList.remove('show', 'big'); }, pct === 100 ? 5000 : 2000);
   }
 
   function syncVideo(calories, isActive) {
@@ -354,6 +410,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
         const s = totalDuration % 60;
         hudTime.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
         const pct = Math.min((energy.cumulativeCalories / TARGET_CALORIES) * 100, 100);
+        for (const m of [25, 50, 75, 100]) { if (!milestonesHit.has(m) && pct >= m) { milestonesHit.add(m); triggerCelly(m); } }
         hudProgressPct.innerHTML = pct.toFixed(0) + '<span class="muted">%</span>';
         hudProgressBar.style.width = pct + '%';
         progressFill.style.width = pct + '%';
@@ -368,6 +425,22 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     error.classList.add('show');
     loading.classList.add('hidden');
   }
+
+  async function fetchNews() {
+    try {
+      const r = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.content.dowjones.io/public/rss/mw_topstories');
+      const data = await r.json();
+      if (data.items && data.items.length) {
+        const items = data.items.slice(0, 10).map(i => ({ title: i.title, url: i.link }));
+        const html = items.map(({title, url}) => `<a href="${url}" target="_blank" rel="noopener" style="color:#CBD5E1;text-decoration:none;">${title}</a>`).join(' <span style="color:#475569;">◆</span> ');
+        document.getElementById('news-text').innerHTML = html + ' <span style="color:#475569;">◆</span> ' + html;
+      }
+    } catch (_) {
+      document.getElementById('news-text').textContent = ' ◆ Financial news unavailable ◆ ';
+    }
+  }
+  fetchNews();
+  setInterval(fetchNews, 120000);
 
   startCamera();
 })();
