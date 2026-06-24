@@ -1,11 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foster2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Grouse Grind</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font-family: -apple-system, 'Helvetica Neue', sans-serif; }
+
+#app { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+#viewport { flex: 1; position: relative; overflow: hidden; }
+#video { position: absolute; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); z-index: 1; }
+#skeleton { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; transform: scaleX(-1); }
+#yt-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; z-index: 2; }
+#yt-player iframe { width: 100%; height: 100%; }
+
+#top-bar { position: absolute; top: 16px; left: 16px; z-index: 10; }
+#top-bar h1 { font-size: 14px; font-weight: 900; color: #fff; letter-spacing: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+#top-bar .tagline { font-size: 9px; color: #FF6B35; font-weight: 800; letter-spacing: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+
+#loading { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.92); z-index: 20; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.spinner { width: 36px; height: 36px; border: 3px solid #1A1A2E; border-top-color: #FF6B35; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading p { color: #FF6B35; font-weight: 900; font-size: 13px; letter-spacing: 1.5px; margin-top: 16px; }
+#loading .sub { color: #64748B; font-size: 11px; margin-top: 6px; }
+
+#indicator { position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none; opacity: 0; transition: opacity 0.2s, transform 0.2s; }
+#indicator.show { opacity: 1; }
+#indicator span { color: #FF6B35; font-size: 28px; font-weight: 900; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+
+#permit { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #0A0A0A; z-index: 15; }
+#permit.hidden { display: none; }
+#permit button { background: #FF6B35; border: none; color: #fff; font-weight: 900; font-size: 13px; letter-spacing: 2px; padding: 14px 32px; border-radius: 12px; cursor: pointer; }
+
+#error { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.92); z-index: 25; }
+#error.show { display: flex; }
+#error p { color: #EF4444; font-weight: 700; font-size: 14px; text-align: center; margin: 0 32px; }
+
+#hud { display: flex; background: rgba(10,10,10,0.95); border-top: 1px solid #1A1A2E; padding: 12px 8px; z-index: 10; }
+.hud-item { flex: 1; text-align: center; }
+.hud-label { color: #64748B; font-size: 9px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 2px; }
+.hud-value { color: #fff; font-size: 24px; font-weight: 900; }
+.hud-value .muted { color: #475569; font-size: 16px; }
+.hud-sub { color: #475569; font-size: 9px; font-weight: 700; letter-spacing: 1px; margin-top: 1px; }
+.hud-divider { width: 1px; background: #1A1A2E; margin: 4px 0; }
+.hud-progress { width: 40px; height: 3px; background: #1A1A2E; border-radius: 2px; margin: 4px auto 0; overflow: hidden; }
+.hud-progress-fill { height: 100%; background: #FF6B35; transition: width 0.3s; }
+
+#progress-bar { height: 4px; background: #1A1A2E; }
+#progress-fill { height: 100%; background: #FF6B35; transition: width 0.3s; }
+</style>
 </head>
 <body>
-  <h1>Hello, GitHub Pages!</h1>
+<div id="app">
+  <div id="viewport">
+    <iframe id="yt-player" src="https://www.youtube.com/embed/ft1pE3J7cZU?mute=1&controls=0&loop=1&playsinline=1&rel=0&iv_load_policy=3&fs=0&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="skeleton"></canvas>
+
+    <div id="top-bar">
+      <h1>GROUSE GRIND</h1>
+      <div class="tagline">METABOLIC</div>
+    </div>
+
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p id="load-text">LOADING POSE MODEL</p>
+      <div class="sub">TF.js WebGL</div>
+    </div>
+
+    <div id="permit" class="hidden">
+      <button id="start-cam">ENABLE CAMERA</button>
+    </div>
+
+    <div id="error">
+      <p id="error-text"></p>
+    </div>
+
+    <div id="indicator"><span id="indicator-value">+0</span></div>
+  </div>
+
+  <div id="hud">
+    <div class="hud-item">
+      <div class="hud-label">CALORIES</div>
+      <div class="hud-value" id="hud-cal">0</div>
+      <div class="hud-sub">/ <span id="hud-cal-target">500</span></div>
+    </div>
+    <div class="hud-divider"></div>
+    <div class="hud-item">
+      <div class="hud-label">INTENSITY</div>
+      <div class="hud-value" id="hud-met">1.0</div>
+      <div class="hud-sub">MET</div>
+    </div>
+    <div class="hud-divider"></div>
+    <div class="hud-item">
+      <div class="hud-label">ELAPSED</div>
+      <div class="hud-value" id="hud-time">00:00</div>
+      <div class="hud-sub">MIN</div>
+    </div>
+    <div class="hud-divider"></div>
+    <div class="hud-item">
+      <div class="hud-label">TRAIL</div>
+      <div class="hud-value" id="hud-progress-pct">0<span class="muted">%</span></div>
+      <div class="hud-progress"><div class="hud-progress-fill" id="hud-progress-bar"></div></div>
+    </div>
+  </div>
+
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.22.0/dist/tf-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@4.22.0/dist/tf-converter.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@4.22.0/dist/tf-backend-webgl.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3/dist/pose-detection.min.js"></script>
+<script>
+(async function() {
+  const YT_VIDEO_ID = 'ft1pE3J7cZU';
+  const TARGET_CALORIES = 500;
+  const VIDEO_LENGTH = 3255;
+  const WEIGHT_KG = 75;
+
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('skeleton');
+  const ctx = canvas.getContext('2d');
+  const loading = document.getElementById('loading');
+  const permit = document.getElementById('permit');
+  const startBtn = document.getElementById('start-cam');
+  const error = document.getElementById('error');
+  const errorText = document.getElementById('error-text');
+  const indicator = document.getElementById('indicator');
+  const indicatorValue = document.getElementById('indicator-value');
+  const hudCal = document.getElementById('hud-cal');
+  const hudCalTarget = document.getElementById('hud-cal-target');
+  const hudMet = document.getElementById('hud-met');
+  const hudTime = document.getElementById('hud-time');
+  const hudProgressPct = document.getElementById('hud-progress-pct');
+  const hudProgressBar = document.getElementById('hud-progress-bar');
+  const progressFill = document.getElementById('progress-fill');
+
+  let detector = null;
+  let cameraStream = null;
+  let animFrameId = null;
+  let cumulativeCalories = 0;
+  let prevCalories = 0;
+  let lastHip = null;
+  let lastTimestamp = null;
+  let totalDuration = 0;
+  let maxSeekSecond = 0;
+  let indicatorTimer = null;
+  let prevTime = 0;
+  let hipHistory = [];
+  const FRAME_INTERVAL = 80;
+
+  hudCalTarget.textContent = TARGET_CALORIES;
+
+  function ytCommand(func, args) {
+    const el = document.getElementById('yt-player');
+    if (el && el.contentWindow) {
+      el.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || '' }), '*');
+    }
+  }
+
+  function syncVideo(calories, isActive) {
+    const ratio = Math.min(Math.max(calories / TARGET_CALORIES, 0), 1);
+    const targetSecond = ratio * VIDEO_LENGTH;
+    if (!isActive || ratio >= 1) {
+      ytCommand('pauseVideo');
+    } else {
+      if (targetSecond > maxSeekSecond + 3) {
+        ytCommand('seekTo', [targetSecond, true]);
+        maxSeekSecond = targetSecond;
+      }
+      ytCommand('playVideo');
+    }
+  }
+
+  function updateCalories(hip) {
+    const now = performance.now();
+    let velocity = 0;
+    let metValue = 1.0;
+    if (hip.score !== undefined && hip.score < 0.5) {
+      hipHistory = [];
+      return { metValue: 1.0, velocity: 0, cumulativeCalories };
+    }
+    hipHistory.push({ x: hip.x, y: hip.y, z: hip.z || 0, t: now });
+    if (hipHistory.length > 5) hipHistory.shift();
+    if (hipHistory.length < 2) { lastTimestamp = now; return { metValue: 1.0, velocity: 0, cumulativeCalories }; }
+    const first = hipHistory[0];
+    const dt = (now - first.t) / 1000;
+    if (dt > 0.1) {
+      const dx = hip.x - first.x;
+      const dy = hip.y - first.y;
+      const dz = (hip.z || 0) - first.z;
+      const displacement = Math.sqrt(dx*dx + dy*dy + dz*dz);
+      velocity = displacement / dt;
+      if (velocity > 40) metValue = 7.0;
+      else if (velocity > 15) metValue = 4.0;
+      else metValue = 1.0;
+      if (metValue > 1.0) {
+        const calPerSec = ((metValue * 3.5 * WEIGHT_KG) / 200) / 60;
+        cumulativeCalories += calPerSec * dt;
+      }
+    }
+    lastTimestamp = now;
+    return { metValue, velocity, cumulativeCalories };
+  }
+
+  async function loadModel() {
+    loading.classList.remove('hidden');
+    document.getElementById('load-text').textContent = 'LOADING POSE MODEL';
+    try {
+      await tf.setBackend('webgl');
+      detector = await poseDetection.createDetector(
+        poseDetection.SupportedModels.MoveNet,
+        { modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER }
+      );
+      loading.classList.add('hidden');
+      if (cameraStream) startLoop();
+    } catch (err) {
+      showError('Failed to load pose model: ' + err.message);
+    }
+  }
+
+  async function startCamera() {
+    permit.classList.add('hidden');
+    try {
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
+        audio: false,
+      });
+      video.srcObject = cameraStream;
+      await video.play();
+
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+
+      if (detector) startLoop();
+      else loadModel();
+    } catch (err) {
+      if (err.name === 'NotAllowedError') permit.classList.remove('hidden');
+      else showError('Camera error: ' + err.message);
+    }
+  }
+
+  startBtn.addEventListener('click', startCamera);
+
+  const CONNECTIONS = [
+    ['nose', 'left_eye'], ['nose', 'right_eye'],
+    ['left_eye', 'left_ear'], ['right_eye', 'right_ear'],
+    ['nose', 'left_shoulder'], ['nose', 'right_shoulder'],
+    ['left_shoulder', 'right_shoulder'],
+    ['left_shoulder', 'left_elbow'], ['right_shoulder', 'right_elbow'],
+    ['left_elbow', 'left_wrist'], ['right_elbow', 'right_wrist'],
+    ['left_shoulder', 'left_hip'], ['right_shoulder', 'right_hip'],
+    ['left_hip', 'right_hip'],
+    ['left_hip', 'left_knee'], ['right_hip', 'right_knee'],
+    ['left_knee', 'left_ankle'], ['right_knee', 'right_ankle'],
+  ];
+
+  const JOINT_COLORS = {
+    nose: '#FFFFFF', left_eye: '#FFFFFF', right_eye: '#FFFFFF',
+    left_ear: '#FFFFFF', right_ear: '#FFFFFF',
+    left_shoulder: '#FF6B35', right_shoulder: '#FF6B35',
+    left_elbow: '#FFB800', right_elbow: '#FFB800',
+    left_wrist: '#FFB800', right_wrist: '#FFB800',
+    left_hip: '#FF6B35', right_hip: '#FF6B35',
+    left_knee: '#10B981', right_knee: '#10B981',
+    left_ankle: '#10B981', right_ankle: '#10B981',
+  };
+
+  function drawSkeleton(keypoints) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (!keypoints) return;
+
+    const kp = {};
+    for (const p of keypoints) {
+      kp[p.name] = p;
+    }
+
+    // Draw connections
+    ctx.strokeStyle = 'rgba(255, 107, 53, 0.7)';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    for (const [a, b] of CONNECTIONS) {
+      const p1 = kp[a], p2 = kp[b];
+      if (p1 && p2 && p1.score > 0.3 && p2.score > 0.3) {
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    }
+
+    // Draw joints
+    for (const p of keypoints) {
+      if (p.score < 0.3) continue;
+      ctx.fillStyle = JOINT_COLORS[p.name] || '#FFFFFF';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.name === 'nose' ? 3 : 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function getAvgHip(keypoints) {
+    const l = keypoints.find(p => p.name === 'left_hip');
+    const r = keypoints.find(p => p.name === 'right_hip');
+    if (!l || !r) return null;
+    return {
+      x: (l.x + r.x) / 2,
+      y: (l.y + r.y) / 2,
+      z: ((l.z || 0) + (r.z || 0)) / 2,
+      score: (l.score + r.score) / 2,
+    };
+  }
+
+  function startLoop() {
+    async function frame(time) {
+      animFrameId = requestAnimationFrame(frame);
+      if (time - prevTime < FRAME_INTERVAL) return;
+      prevTime = time;
+      if (!detector || !video.videoWidth) return;
+
+      try {
+        const poses = await detector.estimatePoses(video);
+        if (!poses || poses.length === 0) { drawSkeleton(null); return; }
+
+        const kp = poses[0].keypoints;
+        drawSkeleton(kp);
+
+        const hip = getAvgHip(kp);
+        if (!hip) return;
+
+        const energy = updateCalories(hip);
+        const delta = energy.cumulativeCalories - prevCalories;
+        prevCalories = energy.cumulativeCalories;
+
+        if (delta > 0.2) {
+          indicatorValue.textContent = '+' + Math.round(delta);
+          indicator.classList.add('show');
+          clearTimeout(indicatorTimer);
+          indicatorTimer = setTimeout(() => indicator.classList.remove('show'), 1500);
+        }
+
+        const isActive = energy.metValue > 1.0;
+        if (isActive) totalDuration++;
+
+        hudCal.textContent = energy.cumulativeCalories.toFixed(0);
+        hudMet.textContent = energy.metValue.toFixed(1);
+        const m = Math.floor(totalDuration / 60);
+        const s = totalDuration % 60;
+        hudTime.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        const pct = Math.min((energy.cumulativeCalories / TARGET_CALORIES) * 100, 100);
+        hudProgressPct.innerHTML = pct.toFixed(0) + '<span class="muted">%</span>';
+        hudProgressBar.style.width = pct + '%';
+        progressFill.style.width = pct + '%';
+        syncVideo(energy.cumulativeCalories, isActive);
+      } catch (e) {}
+    }
+    animFrameId = requestAnimationFrame(frame);
+  }
+
+  function showError(msg) {
+    errorText.textContent = msg;
+    error.classList.add('show');
+    loading.classList.add('hidden');
+  }
+
+  startCamera();
+})();
+</script>
 </body>
 </html>
