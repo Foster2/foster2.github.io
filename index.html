@@ -604,12 +604,31 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
   async function fetchNews() {
     try {
-      const r = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.content.dowjones.io/public/rss/mw_topstories');
-      const data = await r.json();
-      if (data.items && data.items.length) {
-        const items = data.items.slice(0, 10).map(i => ({ title: i.title, url: i.link }));
+      const [mwRes, yfRes, bbRes] = await Promise.all([
+        fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.content.dowjones.io/public/rss/mw_topstories').catch(() => null),
+        fetch('https://api.rss2json.com/v1/api.json?rss_url=https://finance.yahoo.com/news/rssindex').catch(() => null),
+        fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.bloomberg.com/feeds/markets').catch(() => null),
+      ]);
+      let items = [];
+      if (mwRes && mwRes.ok) {
+        const d = await mwRes.json();
+        if (d.items) items.push(...d.items.slice(0, 6).map(i => ({ title: i.title, url: i.link })));
+      }
+      if (yfRes && yfRes.ok) {
+        const d = await yfRes.json();
+        if (d.items) items.push(...d.items.slice(0, 6).map(i => ({ title: i.title, url: i.link })));
+      }
+      if (bbRes && bbRes.ok) {
+        const d = await bbRes.json();
+        if (d.items) items.push(...d.items.slice(0, 6).map(i => ({ title: i.title, url: i.link })));
+      }
+      if (items.length) {
+        // Interleave for variety
+        items.sort(() => Math.random() - 0.5);
         const html = items.map(({title, url}) => `<a href="${url}" target="_blank" rel="noopener" style="color:#CBD5E1;text-decoration:none;">${title}</a>`).join(' <span style="color:#475569;">◆</span> ');
         document.getElementById('news-text').innerHTML = html + ' <span style="color:#475569;">◆</span> ' + html;
+      } else {
+        document.getElementById('news-text').textContent = ' ◆ Financial news unavailable ◆ ';
       }
     } catch (_) {
       document.getElementById('news-text').textContent = ' ◆ Financial news unavailable ◆ ';
