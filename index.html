@@ -92,6 +92,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 #news-text { display: inline-block; color: #CBD5E1; font-size: 14px; font-weight: 500; line-height: 22px; padding-left: 100%; animation: marquee 180s linear infinite; letter-spacing: 0.3px; }
 #news-ticker:hover #news-text { animation-play-state: paused; }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+#elevation { position: absolute; bottom: 12px; left: 12px; z-index: 5; pointer-events: none; }
+#elevation svg { display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); }
 </style>
 </head>
 <body>
@@ -172,6 +175,21 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 
     <div id="indicator"><span id="indicator-value">+0</span></div>
     <div id="celly"><span id="celly-text"></span></div>
+    <div id="elevation">
+      <svg id="elevation-chart" width="160" height="100" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="elev-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.05"/>
+          </linearGradient>
+        </defs>
+        <polyline id="elev-path" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="elev-area" fill="url(#elev-fill)"/>
+        <circle id="elev-dot" r="3" fill="#FF6B35" stroke="#fff" stroke-width="1.5"/>
+        <text id="elev-label" x="4" y="12" fill="#64748B" font-size="7" font-weight="700" font-family="monospace">1130m</text>
+        <text id="elev-label-base" x="4" y="98" fill="#64748B" font-size="7" font-weight="700" font-family="monospace">280m</text>
+      </svg>
+    </div>
   </div>
 
   <div id="settings-overlay"></div>
@@ -200,6 +218,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
       <div class="hud-value" id="hud-progress-pct">0<span class="muted">%</span></div>
       <div class="hud-progress"><div class="hud-progress-fill" id="hud-progress-bar"></div></div>
     </div>
+    <div class="hud-divider"></div>
+    <div class="hud-item">
+      <div class="hud-label">ELEVATION</div>
+      <div class="hud-value"><span id="hud-elev">0</span><span class="muted">m</span></div>
+      <div class="hud-sub">/ 853m</div>
+    </div>
   </div>
 
   <div id="progress-bar"><div id="progress-fill"></div></div>
@@ -215,6 +239,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 (async function() {
   const YT_VIDEO_ID = 'ft1pE3J7cZU';
   const VIDEO_LENGTH = 3255;
+  const ELEVATION_GAIN = 853;
   let TARGET_CALORIES = parseInt(localStorage.getItem('setting-calories')) || 500;
   let WEIGHT_KG = parseFloat(localStorage.getItem('setting-weight')) || 75;
   async function loadDailyQuote() {
@@ -256,6 +281,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   const hudTime = document.getElementById('hud-time');
   const hudProgressPct = document.getElementById('hud-progress-pct');
   const hudProgressBar = document.getElementById('hud-progress-bar');
+  const hudElev = document.getElementById('hud-elev');
   const progressFill = document.getElementById('progress-fill');
   const cellyEl = document.getElementById('celly');
   const cellyText = document.getElementById('celly-text');
@@ -576,6 +602,48 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     };
   }
 
+  // Elevation profile
+  const ELEV_WAYPOINTS = [
+    [0.00, 280], [0.10, 310], [0.25, 380], [0.35, 480],
+    [0.50, 610], [0.65, 770], [0.75, 880], [0.85, 990], [1.00, 1130],
+  ];
+  const ELEV_MIN = 280, ELEV_MAX = 1130, ELEV_RANGE = ELEV_MAX - ELEV_MIN;
+  const W = 160, H = 100;
+
+  function toSvgY(elev) { return H - ((elev - ELEV_MIN) / ELEV_RANGE) * H; }
+  function toSvgX(frac) { return frac * W; }
+
+  function getElevationAt(fraction) {
+    for (let i = 0; i < ELEV_WAYPOINTS.length - 1; i++) {
+      const [f1, e1] = ELEV_WAYPOINTS[i];
+      const [f2, e2] = ELEV_WAYPOINTS[i + 1];
+      if (fraction >= f1 && fraction <= f2) {
+        const t = (fraction - f1) / (f2 - f1);
+        return e1 + t * (e2 - e1);
+      }
+    }
+    return ELEV_WAYPOINTS[ELEV_WAYPOINTS.length - 1][1];
+  }
+
+  function initElevationProfile() {
+    const pts = ELEV_WAYPOINTS.map(([f, e]) => `${toSvgX(f)},${toSvgY(e)}`).join(' ');
+    document.getElementById('elev-path').setAttribute('points', pts);
+    const areaPts = '0,' + H + ' ' + pts + ' ' + W + ',' + H;
+    document.getElementById('elev-area').setAttribute('d', 'M' + areaPts.replace(/ /g, ' L') + ' Z');
+  }
+
+  function updateElevation(progress) {
+    const frac = Math.min(Math.max(progress / 100, 0), 1);
+    const x = toSvgX(frac);
+    const y = toSvgY(getElevationAt(frac));
+    document.getElementById('elev-dot').setAttribute('cx', x);
+    document.getElementById('elev-dot').setAttribute('cy', y);
+  }
+  initElevationProfile();
+  const initialPct = Math.min((cumulativeCalories / TARGET_CALORIES) * 100, 100);
+  updateElevation(initialPct);
+  hudElev.textContent = Math.round(initialPct / 100 * ELEVATION_GAIN);
+
   function startLoop() {
     async function frame(time) {
       animFrameId = requestAnimationFrame(frame);
@@ -613,10 +681,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
         const s = totalDuration % 60;
         hudTime.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
         const pct = Math.min((energy.cumulativeCalories / TARGET_CALORIES) * 100, 100);
+        updateElevation(pct);
         for (const m of [25, 50, 75, 100]) { if (!milestonesHit.has(m) && pct >= m) { milestonesHit.add(m); triggerCelly(m); } }
         hudProgressPct.innerHTML = pct.toFixed(0) + '<span class="muted">%</span>';
         hudProgressBar.style.width = pct + '%';
         progressFill.style.width = pct + '%';
+        hudElev.textContent = Math.round(pct / 100 * ELEVATION_GAIN);
         syncVideo(energy.cumulativeCalories, isActive);
       } catch (e) {}
     }
