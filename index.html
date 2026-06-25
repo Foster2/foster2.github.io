@@ -261,16 +261,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   let detector = null;
   let cameraStream = null;
   let animFrameId = null;
-  let cumulativeCalories = 0;
-  let prevCalories = 0;
+  let cumulativeCalories = parseFloat(localStorage.getItem('grind-calories')) || 0;
+  let prevCalories = cumulativeCalories;
   let lastHip = null;
   let lastTimestamp = null;
-  let totalDuration = 0;
-  let maxSeekSecond = 0;
+  let totalDuration = parseInt(localStorage.getItem('grind-duration')) || 0;
+  let maxSeekSecond = parseFloat(localStorage.getItem('grind-seek')) || 0;
   let indicatorTimer = null;
   let prevTime = 0;
   let hipHistory = [];
-  let milestonesHit = new Set();
+  let milestonesHit = new Set(localStorage.getItem('grind-milestones') ? JSON.parse(localStorage.getItem('grind-milestones')) : []);
+  let musicStartTime = parseInt(localStorage.getItem('grind-music-start')) || null;
   const FRAME_INTERVAL = 80;
 
   hudCalTarget.textContent = TARGET_CALORIES;
@@ -364,6 +365,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   settingMusicUrl.addEventListener('change', () => {
     const val = settingMusicUrl.value.trim();
     saveSetting('setting-music-url', val);
+    musicStartTime = null;
     if (val) applyMusicUrl(val);
     else musicFrame.src = '';
   });
@@ -371,15 +373,38 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   function applyMusicUrl(url) {
     const id = extractVideoId(url);
     if (id) {
-      musicFrame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&loop=1&playlist=' + id + '&controls=0&showinfo=0&iv_load_policy=3&rel=0&enablejsapi=1';
+      const offset = musicStartTime ? Math.floor((Date.now() - musicStartTime) / 1000) : 0;
+      musicFrame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&loop=1&playlist=' + id + '&controls=0&showinfo=0&iv_load_policy=3&rel=0&enablejsapi=1' + (offset > 0 ? '&start=' + offset : '');
     }
   }
 
   function startMusic() {
     if (musicFrame.src && musicFrame.src.includes('youtube.com/embed/')) {
+      if (!musicStartTime) musicStartTime = Date.now();
       musicFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: '' }), '*');
     }
   }
+
+  function saveState() {
+    localStorage.setItem('grind-calories', cumulativeCalories.toFixed(2));
+    localStorage.setItem('grind-duration', totalDuration);
+    localStorage.setItem('grind-seek', maxSeekSecond);
+    localStorage.setItem('grind-milestones', JSON.stringify([...milestonesHit]));
+    if (musicStartTime) localStorage.setItem('grind-music-start', musicStartTime);
+  }
+  setInterval(saveState, 5000);
+
+  function restoreState() {
+    const trailEl = document.getElementById('yt-player');
+    const trySeekTrail = () => {
+      if (trailEl && trailEl.contentWindow && maxSeekSecond > 5) {
+        trailEl.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo', args: [maxSeekSecond, true] }), '*');
+        trailEl.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }), '*');
+      }
+    };
+    for (let i = 0; i < 10; i++) setTimeout(trySeekTrail, (i + 1) * 1000);
+  }
+  restoreState();
 
   function ytCommand(func, args) {
     const el = document.getElementById('yt-player');
