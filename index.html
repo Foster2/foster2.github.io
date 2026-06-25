@@ -18,9 +18,29 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 #yt-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; z-index: 2; }
 #yt-player iframe { width: 100%; height: 100%; }
 
-#top-bar { position: absolute; top: 16px; left: 16px; z-index: 10; }
-#top-bar h1 { font-size: 14px; font-weight: 900; color: #fff; letter-spacing: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
-#top-bar .tagline { font-size: 9px; color: #FF6B35; font-weight: 800; letter-spacing: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+#menu-trigger { position: absolute; top: 16px; left: 16px; z-index: 10; cursor: pointer; user-select: none; }
+#menu-trigger h1 { font-size: 14px; font-weight: 900; color: #fff; letter-spacing: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+#menu-trigger .tagline { font-size: 9px; color: #FF6B35; font-weight: 800; letter-spacing: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+
+#settings-panel { position: fixed; top: 0; left: 0; width: 280px; height: 100%; background: rgba(10,10,10,0.92); backdrop-filter: blur(8px); z-index: 100; padding: 60px 20px 20px; display: none; overflow-y: auto; pointer-events: auto; }
+#settings-panel.open { display: block; }
+#settings-panel .close-btn { position: absolute; top: 16px; right: 16px; color: #64748B; font-size: 20px; cursor: pointer; background: none; border: none; padding: 4px 8px; }
+#settings-panel .close-btn:hover { color: #fff; }
+#settings-overlay { position: fixed; inset: 0; z-index: 99; background: rgba(0,0,0,0.4); display: none; }
+#settings-overlay.open { display: block; }
+.setting-group { margin-bottom: 16px; }
+.setting-label { color: #64748B; font-size: 9px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.setting-row label { color: #CBD5E1; font-size: 13px; }
+.setting-row input[type="number"] { width: 64px; background: #1A1A2E; border: 1px solid #2A2A3E; color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 13px; font-weight: 700; text-align: center; }
+.setting-row input[type="range"] { width: 100%; accent-color: #FF6B35; }
+.setting-toggle { position: relative; width: 36px; height: 20px; flex-shrink: 0; }
+.setting-toggle input { opacity: 0; width: 0; height: 0; }
+.setting-toggle .slider { position: absolute; inset: 0; background: #1A1A2E; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+.setting-toggle .slider::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #475569; border-radius: 50%; transition: transform 0.2s, background 0.2s; }
+.setting-toggle input:checked + .slider { background: #FF6B35; }
+.setting-toggle input:checked + .slider::after { transform: translateX(16px); background: #fff; }
+.setting-hint { color: #475569; font-size: 10px; margin-top: 2px; }
 
 #loading { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.92); z-index: 20; transition: opacity 0.5s; }
 #loading.hidden { opacity: 0; pointer-events: none; }
@@ -79,9 +99,57 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     <video id="video" autoplay playsinline muted></video>
     <canvas id="skeleton"></canvas>
 
-    <div id="top-bar">
+    <div id="menu-trigger">
       <h1>GROUSE GRIND</h1>
       <div class="tagline">METABOLIC</div>
+    </div>
+    <div id="settings-panel">
+      <button class="close-btn" id="settings-close">✕</button>
+      <div class="setting-group">
+        <div class="setting-label">Target</div>
+        <div class="setting-row">
+          <label>Calories</label>
+          <input type="number" id="setting-calories" value="500" min="100" max="2000">
+        </div>
+        <div class="setting-row">
+          <label>Weight (kg)</label>
+          <input type="number" id="setting-weight" value="75" min="30" max="300">
+        </div>
+      </div>
+      <div class="setting-group">
+        <div class="setting-label">Display</div>
+        <div class="setting-row">
+          <label>YouTube Opacity</label>
+          <span style="color:#475569;font-size:11px;font-weight:700;" id="setting-yt-opacity-val">50%</span>
+        </div>
+        <div class="setting-row">
+          <input type="range" id="setting-yt-opacity" min="0" max="100" value="50">
+        </div>
+        <div class="setting-row">
+          <label>Show Skeleton</label>
+          <label class="setting-toggle"><input type="checkbox" id="setting-skeleton" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <label>Show News</label>
+          <label class="setting-toggle"><input type="checkbox" id="setting-news" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <label>Stock Ticker</label>
+          <label class="setting-toggle"><input type="checkbox" id="setting-ticker" checked><span class="slider"></span></label>
+        </div>
+      </div>
+      <div class="setting-group">
+        <div class="setting-label">Music</div>
+        <div class="setting-row" style="flex-wrap:wrap;">
+          <label>YouTube URL</label>
+          <input type="text" id="setting-music-url" placeholder="https://youtube.com/watch?v=..." style="width:100%;margin-top:6px;background:#1A1A2E;border:1px solid #2A2A3E;color:#CBD5E1;padding:6px 8px;border-radius:6px;font-size:12px;">
+          <div class="setting-hint" style="width:100%;">Plays in background, trail video stays muted</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="music-player" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;z-index:-1;">
+      <iframe id="music-frame" src="" allow="autoplay; encrypted-media" style="width:1px;height:1px;"></iframe>
     </div>
 
     <div id="loading" class="hidden">
@@ -103,6 +171,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     <div id="indicator"><span id="indicator-value">+0</span></div>
     <div id="celly"><span id="celly-text"></span></div>
   </div>
+
+  <div id="settings-overlay"></div>
 
   <div id="hud">
     <div class="hud-item">
@@ -142,9 +212,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
 <script>
 (async function() {
   const YT_VIDEO_ID = 'ft1pE3J7cZU';
-  const TARGET_CALORIES = 500;
   const VIDEO_LENGTH = 3255;
-  const WEIGHT_KG = 75;
+  let TARGET_CALORIES = parseInt(localStorage.getItem('setting-calories')) || 500;
+  let WEIGHT_KG = parseFloat(localStorage.getItem('setting-weight')) || 75;
   async function loadDailyQuote() {
     const today = new Date().toDateString();
     const cached = localStorage.getItem('daily-quote');
@@ -204,6 +274,106 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   const FRAME_INTERVAL = 80;
 
   hudCalTarget.textContent = TARGET_CALORIES;
+
+  // Settings menu
+  const menuTrigger = document.getElementById('menu-trigger');
+  const settingsPanel = document.getElementById('settings-panel');
+  const settingsClose = document.getElementById('settings-close');
+  const settingsOverlay = document.getElementById('settings-overlay');
+
+  function saveSetting(key, value) {
+    localStorage.setItem(key, String(value));
+  }
+
+  function toggleSettings(show) {
+    settingsPanel.classList.toggle('open', show);
+    settingsOverlay.classList.toggle('open', show);
+  }
+
+  menuTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleSettings(!settingsPanel.classList.contains('open'));
+  });
+  settingsClose.addEventListener('click', () => toggleSettings(false));
+  settingsOverlay.addEventListener('click', () => toggleSettings(false));
+
+  const settingCalories = document.getElementById('setting-calories');
+  const settingWeight = document.getElementById('setting-weight');
+  const settingYtOpacity = document.getElementById('setting-yt-opacity');
+  const settingYtOpacityVal = document.getElementById('setting-yt-opacity-val');
+  const settingSkeleton = document.getElementById('setting-skeleton');
+  const settingNews = document.getElementById('setting-news');
+  const settingTicker = document.getElementById('setting-ticker');
+  const settingMusicUrl = document.getElementById('setting-music-url');
+  const musicFrame = document.getElementById('music-frame');
+  const ytPlayer = document.getElementById('yt-player');
+  const skeletonCanvas = document.getElementById('skeleton');
+  const tickerWrap = document.getElementById('ticker-wrap');
+  const newsTicker = document.getElementById('news-ticker');
+
+  settingCalories.value = TARGET_CALORIES;
+  settingWeight.value = WEIGHT_KG;
+
+  settingCalories.addEventListener('change', () => {
+    TARGET_CALORIES = parseInt(settingCalories.value) || 500;
+    hudCalTarget.textContent = TARGET_CALORIES;
+    saveSetting('setting-calories', TARGET_CALORIES);
+  });
+  settingWeight.addEventListener('change', () => {
+    WEIGHT_KG = parseFloat(settingWeight.value) || 75;
+    saveSetting('setting-weight', WEIGHT_KG);
+  });
+  settingYtOpacity.addEventListener('input', () => {
+    const v = settingYtOpacity.value;
+    settingYtOpacityVal.textContent = v + '%';
+    ytPlayer.style.opacity = v / 100;
+    saveSetting('setting-yt-opacity', v);
+  });
+  settingYtOpacity.value = localStorage.getItem('setting-yt-opacity') || '50';
+  settingYtOpacityVal.textContent = settingYtOpacity.value + '%';
+  ytPlayer.style.opacity = settingYtOpacity.value / 100;
+
+  settingSkeleton.checked = localStorage.getItem('setting-skeleton') !== 'false';
+  skeletonCanvas.style.display = settingSkeleton.checked ? '' : 'none';
+  settingSkeleton.addEventListener('change', () => {
+    skeletonCanvas.style.display = settingSkeleton.checked ? '' : 'none';
+    saveSetting('setting-skeleton', settingSkeleton.checked);
+  });
+
+  settingNews.checked = localStorage.getItem('setting-news') !== 'false';
+  newsTicker.style.display = settingNews.checked ? '' : 'none';
+  settingNews.addEventListener('change', () => {
+    newsTicker.style.display = settingNews.checked ? '' : 'none';
+    saveSetting('setting-news', settingNews.checked);
+  });
+
+  settingTicker.checked = localStorage.getItem('setting-ticker') !== 'false';
+  tickerWrap.style.display = settingTicker.checked ? '' : 'none';
+  settingTicker.addEventListener('change', () => {
+    tickerWrap.style.display = settingTicker.checked ? '' : 'none';
+    saveSetting('setting-ticker', settingTicker.checked);
+  });
+
+  function extractVideoId(url) {
+    const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  settingMusicUrl.value = localStorage.getItem('setting-music-url') || '';
+  if (settingMusicUrl.value) applyMusicUrl(settingMusicUrl.value);
+  settingMusicUrl.addEventListener('change', () => {
+    const val = settingMusicUrl.value.trim();
+    saveSetting('setting-music-url', val);
+    if (val) applyMusicUrl(val);
+    else musicFrame.src = '';
+  });
+
+  function applyMusicUrl(url) {
+    const id = extractVideoId(url);
+    if (id) {
+      musicFrame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&loop=1&playlist=' + id + '&controls=0&showinfo=0&iv_load_policy=3&rel=0';
+    }
+  }
 
   function ytCommand(func, args) {
     const el = document.getElementById('yt-player');
