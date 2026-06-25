@@ -371,7 +371,13 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
   function applyMusicUrl(url) {
     const id = extractVideoId(url);
     if (id) {
-      musicFrame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&loop=1&playlist=' + id + '&controls=0&showinfo=0&iv_load_policy=3&rel=0';
+      musicFrame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&loop=1&playlist=' + id + '&controls=0&showinfo=0&iv_load_policy=3&rel=0&enablejsapi=1';
+    }
+  }
+
+  function startMusic() {
+    if (musicFrame.src && musicFrame.src.includes('youtube.com/embed/')) {
+      musicFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: '' }), '*');
     }
   }
 
@@ -472,7 +478,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font
     }
   }
 
-  startBtn.addEventListener('click', startCamera);
+  startBtn.addEventListener('click', () => { startMusic(); startCamera(); });
 
   const CONNECTIONS = [
     ['nose', 'left_eye'], ['nose', 'right_eye'],
