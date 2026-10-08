@@ -72,6 +72,7 @@ td.num { font-weight: 800; color: var(--accent2); white-space: nowrap; }
 .search { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
 .search input { flex: 1; min-width: 220px; background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 11px 14px; border-radius: 10px; font-size: 14px; }
 .search input:focus { outline: none; border-color: var(--accent); }
+.searchhint { flex: 1 0 100%; font-size: 12.5px; color: var(--muted); }
 .search select { background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 11px 12px; border-radius: 10px; font-size: 14px; }
 
 .mini { columns: 2; column-gap: 18px; font-size: 13.5px; }
@@ -80,7 +81,7 @@ td.num { font-weight: 800; color: var(--accent2); white-space: nowrap; }
 .mini span { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
 
 .tablescroll { overflow-x: auto; }
-table.cmp { min-width: 1120px; font-size: 13px; }
+table.cmp { min-width: 1560px; font-size: 13px; }
 table.cmp th, table.cmp td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 12px; }
 table.cmp td.name { min-width: 130px; }
 table.cmp td.name b { font-size: 15px; display: block; }
@@ -125,13 +126,22 @@ footer a { color: var(--muted); text-decoration: underline; }
 
 <div class="wrap">
 
+<div class="search" id="searchbar">
+    <input type="search" id="q" placeholder="Search a candidate name — mayor, council or trustee — e.g. Loo, Heed, Starrett" autocomplete="off">
+    <span id="searchcount" class="searchhint">Showing all 90 candidates: 7 mayor · 55 council · 28 trustee</span>
+  </div>
+
 <section id="mayor">
 
   <h2><span class="n">01</span> — Candidates for Mayor: side by side</h2>
-  <p class="sub">1 to be elected. 7 candidates on the final ballot. Same ten fields for every candidate — both mayoral tables are alphabetical by surname, never sorted by poll result, with no ranking implied — drawn only from campaign websites, City-filed candidate statements, the Richmond News mayoral questionnaires and other sourced public records. Long-time Mayor Malcolm Brodie (in office since 2001) is not seeking re-election. Scroll horizontally on small screens.</p>
+  <p class="sub">1 to be elected. 7 candidates on the final ballot. Same twelve fields for every candidate — both mayoral tables are alphabetical by surname, never sorted by poll result, with no ranking implied — drawn only from campaign websites, City-filed candidate statements, the Richmond News mayoral questionnaires, VoteMate responses and other sourced public records. Long-time Mayor Malcolm Brodie (in office since 2001) is not seeking re-election. Scroll horizontally on small screens.</p>
 
   <div class="callout">
     <b>How the background columns work.</b> Both the <b>self-stated background</b> and <b>race / ethnicity</b> columns show only what candidates <b>themselves</b> publish — a campaign-published Chinese name, a stated birthplace, an own-words biography, an own-words description of their community background. Nothing here is inferred from a surname, a photo or a third party's description, and no cell is filled in from how a candidate looks or what their name suggests. Where a candidate has not publicly stated a background, the cell says <span class="notstated">"not publicly stated"</span> rather than guessing — most cells in the race column are exactly that, because most candidates have not said anything on the subject.
+  </div>
+
+  <div class="callout">
+    <b>How the family and business columns work.</b> The <b>family &amp; major life events</b> column reports only what candidates <b>publish about themselves</b> — family situation, where they raised a family, an upbringing or migration story they describe, and events they or reputable media report. Events and political positions are shown side by side with <b>no claim that any event explains a position</b>. The <b>local business, tech &amp; AI</b> column reports stated positions on local and small business, technology and artificial intelligence, quoting the candidate's own wording with a source tag in every cell. Nothing here is inferred from a name, a photo or a third party's description. Where a candidate has published nothing on a subject, the cell says <span class="notstated">"not publicly stated"</span> or <span class="notstated">"none found"</span> rather than guessing — for example, Rob Howard and Dennet Lee have published no tech or AI stance, and Kash Heed has published no stance on supporting local businesses, so those cells say <span class="notstated">"none found"</span>.
   </div>
 
   <div class="tablescroll">
@@ -142,97 +152,111 @@ footer a { color: var(--muted); text-decoration: underline; }
         <th>Age</th>
         <th>Political spectrum</th>
         <th>Self-stated background</th>
-        <th>Race / ethnicity (self-stated)</th>
+        <th>Race / ethnicity (self-stated)</th><th>Family &amp; major life events (self-stated)</th>
         <th>Residency</th>
         <th>Background summary</th>
         <th>Education / professional</th>
-        <th>Stated values</th>
+        <th>Stated values</th><th>Local business, tech &amp; AI (stated positions)</th>
         <th>Website / platform highlights</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="name"><b>Dickens Cheung</b><span>We Are Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=65">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Dickens Cheung</b><span>We Are Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=65">City profile</a><a href="https://votemate.org/c/13355">VoteMate</a></span></td>
         <td>About 42 — wrote "I am a 40-year-old" in his 2024 provincial campaign bio (VoteMate).</td>
         <td><span class="notstated">Not publicly stated.</span> Ran as an independent in the 2024 provincial election; anti-incumbent reform platform, no party this time.</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes its full platform in English and Chinese (traditional).</td>
         <td>Chinese Canadian — self-described "A second-generation Canadian-born Chinese raised by immigrant parents from Hong Kong" (<b>campaign</b>); Chinese version: "土生土長的第二代加拿大華裔…父母為香港移民".</td>
+        <td>Second-generation Canadian-born Chinese, raised in Richmond by parents who immigrated from Hong Kong (<b>campaign</b>). On VoteMate: 'my most important role is father to four school-aged children, all born and raised right here in Richmond'; says he is running 'to give them a Richmond that is safer, more prosperous and more beautiful than the one I found' (<b>RN</b>). Hobbies: board games and walks with his children (<b>RN</b>).</td>
         <td><span class="notstated">Not publicly stated.</span> Ran as an independent in the 2024 provincial election in Richmond Centre.</td>
         <td>UBC Sauder School of Business graduate in Finance; 15 years leading and growing a local herbal-tea manufacturing operation (food safety, labelling); community advocate who entered politics after the supervised-consumption-site debate; founded the We Are Richmond slate; brands himself "Servant Dickens" since 2024.</td>
         <td>UBC Sauder School of Business — Finance specialization; manufacturing executive.</td>
         <td>"The people are the masters, and government officials are their servants." Humility, accountability, integrity and service; transparency and meaningful consultation before major decisions.</td>
+        <td>15 years leading a local herbal-tea manufacturing operation; co-founded UNBUTTON Health (<b>campaign</b>/<b>VoteMate</b>). Platform: guaranteed 90-day building-permit and business-licence approvals, 15–20% small-business property/utility tax cuts and two years without business-licence fees for new small businesses (<b>campaign</b>); yes to city low-cost commercial space for startups (<b>RN</b> Q20). On tech/AI: 'attract AI, technology, and advanced industries to a dedicated Richmond Innovation Zone' (<b>campaign</b>).</td>
         <td><a href="https://wearerichmond.ca">wearerichmond.ca</a> — "OUR HOME. OUR FAMILIES. OUR FUTURE." A safer, stronger, healthier and affordable city where seniors, families, young adults and the middle class thrive. Bilingual EN/中文.</td>
       </tr>
-      <tr>
-        <td class="name"><b>Kash Heed</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=78">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Kash Heed</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=78">City profile</a><a href="https://votemate.org/c/13750">VoteMate</a></span></td>
         <td>70 (born November 1955).</td>
         <td>Centre-right — BC Liberal MLA for Vancouver-Fraserview 2009–13 and Solicitor General; now running with no elector organization.</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes the Chinese name <b>希德</b>.</td>
         <td>Indo-Canadian — his own campaign biography says that in 2007 he "became Canada's first Indo-Canadian chief constable" (<b>campaign</b>).</td>
+        <td>His family took up residence in Richmond in 1965 and he cites 'over 60 years of residency' here (<b>campaign</b>). Spouse and children: <span class="notstated">not publicly stated.</span> Career milestones he publishes himself: Canada's first Indo-Canadian chief constable (2007), BC Liberal MLA 2009–13, Richmond city councillor since 2022 (<b>campaign</b>).</td>
         <td><span class="notstated">Not publicly stated.</span> Elected to Richmond City Council in 2022 (10,563 votes, 30.1%).</td>
         <td>40+ years in policing, government and local leadership. Vancouver Police (1979 onward, rose to Superintendent, ran the drug unit); West Vancouver Police Chief 2007–Feb 2009; BC Liberal MLA for Vancouver-Fraserview 2009–13; drug-policy consulting after 2013; Richmond councillor since 2022.</td>
         <td>Police leadership track record (Superintendent, police chief); former provincial cabinet minister and consultant. Degree not publicly stated.</td>
         <td>"If a decision does not benefit seniors, students, or working families, it won't be made." Public safety, community policing, transparent and accountable government.</td>
+        <td>On tech/AI: permitting to be streamlined 'through digitization and AI integration… with a goal of a 3-3-3-1 timeline,' plus an open-data policy and 'leveraging technology for enhanced safety measures' (<b>campaign</b>). Stance on supporting local business (taxes, licences, grants): <span class="notstated">none found.</span> Did not answer the RN questionnaire (<b>RN</b>).</td>
         <td><a href="https://kashheed2026.com">kashheed2026.com</a> — slogan "Sensible Change, &amp; Hope." Site features a council-motion disclosure tracker, opinion pieces and media releases.</td>
       </tr>
-      <tr>
-        <td class="name"><b>Rob Howard</b><span>Richmond Forward</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=54">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Rob Howard</b><span>Richmond Forward</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=54">City profile</a><a href="https://votemate.org/c/13279">VoteMate</a></span></td>
         <td>71 or 72 (Wikipedia gives born 1954 or 1955).</td>
         <td>Centre-right — BC Liberal MLA for Richmond Centre 2009–13; earlier served on council as an NPA and then Richmond First councillor.</td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> Nothing on his campaign site or in his public biography addresses it.</td>
+        <td>Born and raised in Richmond, where he 'built his career and family'; he says he was 'inspired by his own mother's time on Richmond council' (<b>campaign</b>). His site's endorsement text describes him as 'a dad, neighbour, hockey coach.' Number and ages of children: <span class="notstated">not publicly stated.</span></td>
         <td>Born and raised in Richmond; built his career, businesses and family here.</td>
         <td>Seven years on Richmond council (chaired Finance and Public Transportation; driving force behind the Canada Line); MLA for Richmond Centre (Parliamentary Secretary for Transportation; chaired the Select Standing Committee on Finance); ~20 years at Richmond Savings Credit Union; 25+ years self-employed building seniors' housing; former President of Tourism Richmond and co-chair of the Richmond Christmas Fund. Endorsed by outgoing Mayor Malcolm Brodie.</td>
         <td>Finance-sector career; professional development courses at UBC and AMI (per endorsement). Degree not publicly stated.</td>
         <td>"If it doesn't strengthen families, support seniors, grow local jobs, or respect taxpayers, we won't do it." Fiscal discipline, safer streets, and encampments addressed "with certainty and compassion."</td>
+        <td>19 years in finance and 25 years building seniors' homes (<b>VoteMate</b>). Backs 'supporting local small businesses and strengthening our economy' (<b>campaign</b>); no to subsidized commercial space — 'the best way for the city to encourage new businesses in Richmond is to reduce the burden of red tape' (<b>RN</b> Q20). Stance on tech/AI: <span class="notstated">none found.</span></td>
         <td><a href="https://robhowardformayor.ca">robhowardformayor.ca</a> — five pillars spelled <b>S.H.A.P.E.</b>: stronger economy, safer streets &amp; public spaces, support families &amp; seniors, fiscal accountability, future waterfronts; plus community advisory panels.</td>
       </tr>
-      <tr>
-        <td class="name"><b>Mei Kang</b><span>Action Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=66">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Mei Kang</b><span>Action Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=66">City profile</a><a href="https://votemate.org/c/14091">VoteMate</a></span></td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> No political party; runs the local slate Action Richmond.</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes extensive Chinese-language and Chinese-media coverage.</td>
         <td><span class="notstated">Not publicly stated.</span> The campaign publishes Chinese-language material, which is a language choice, not a stated racial or ethnic identity.</td>
+        <td>'Richmond has been my home since 1998… the community where my family and businesses have grown' (<b>RN</b>). Describes herself as 'a mother, educator, entrepreneur and community volunteer' and says she built her businesses and raised her family here (<b>campaign</b>); founder of Happy May Education Centre, says she has helped educate 2,000+ local children (<b>campaign</b>). Reports a home break-in, smashed vehicle windows and the theft of an electric bicycle (<b>RN</b>).</td>
         <td>Richmond resident for nearly 30 years; built her businesses and raised her family here.</td>
         <td>Educator, entrepreneur and community worker. Entrepreneur since 1991; founder of three businesses; founder and owner of the Happy May Education Centre; 20+ years serving Richmond families, supporting 2,000+ local children and families; member of the Richmond Child Development Advisory Committee.</td>
         <td>Professional background in education and small business. Degree not publicly stated.</td>
         <td>"Practical leadership, strong community engagement, and a clear vision for the future." A city that is safer, greener, more connected and economically stronger for the next generation.</td>
+        <td>'Build an accountable, responsive City Hall and use technology and AI to improve efficiency and public services' (<b>VoteMate</b>); 'support local businesses, attract investment and technology industries' (<b>VoteMate</b>); cut red tape and empower small businesses (<b>campaign</b>); yes to low-cost commercial space (<b>RN</b> Q20).</td>
         <td><a href="https://happymayor.ca">happymayor.ca</a> — priorities: Safety First, Family &amp; Community, Transparent Government, Economic Growth, Unity &amp; Action, Every Generation, Food &amp; Tourism.</td>
       </tr>
-      <tr>
-        <td class="name"><b>Goldentiger King</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Goldentiger King</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City profile</a><a href="https://votemate.org/c/14092">VoteMate</a></span></td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> No party and no elector organization.</td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> Neither his City-filed statement nor the Richmond News questionnaire says anything on the subject.</td>
+        <td>Family and migration details: <span class="notstated">not publicly stated.</span> Publishes his own career history — CEO of Western Canada International Commercial Association; previously a TV series director, comedy-show host, model, actor, writer and entrepreneur (<b>VoteMate</b>). Home neighbourhood Seafair; hobby basketball (<b>RN</b>).</td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td>Former TV series director, comedy-show host, model, actor, writer and entrepreneur. Filed after the June poll, so he does not appear in any published polling.</td>
         <td>Media and entertainment career. Education not publicly stated.</td>
         <td>Per his City-filed statement: brings "creativity, business experience, and fresh ideas to Richmond."</td>
+        <td>'I will support responsible AI and data-centre development in Richmond that creates local jobs, attracts investment'; 'AI data-centre development and digital economy are the key of Richmond' (<b>VoteMate</b>). Promises to 'streamline 99% small business permitting time less than a month' (<b>VoteMate</b>); affordable commercial space 'removes a major barrier for small local businesses and new startups' (<b>RN</b> Q20).</td>
         <td>No campaign website listed by the City — <a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City candidate profile</a> only.</td>
       </tr>
-      <tr>
-        <td class="name"><b>Dennet "The Cat Guy" Lee</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=87">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Dennet "The Cat Guy" Lee</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=87">City profile</a><a href="https://votemate.org/c/14093">VoteMate</a></span></td>
         <td><span class="notstated">Not publicly stated.</span> Biography says only that he was 23 at his fitness turning point.</td>
         <td><span class="notstated">Not publicly stated.</span> Self-described independent — "Independent because that is what freedom requires."</td>
         <td>Born in the U.S.A.; moved to Canada in early childhood (self-stated).</td>
         <td><span class="notstated">Not publicly stated.</span> His own biography gives a birthplace and a childhood move only — neither is a racial or ethnic statement.</td>
+        <td>'Born in the U.S.A, he moved up to Canada in his early childhood years' (<b>campaign</b>). SFU BSc in Kinesiology; describes a turning point 'at the age of 23' that changed 'how he lived the rest of his life' (<b>campaign</b>); 23 years running a local incorporated business (<b>RN</b>). Spouse and children: <span class="notstated">not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> Business registered at a Richmond address (Jacombs Rd).</td>
         <td>Independent, declared September 11, 2026. Worked in delivery, food service and roofing; discovered a passion for fitness after his own body transformation at 23; now a personal trainer and fitness-business owner known locally as "The Cat Guy."</td>
         <td>Bachelor of Science in Kinesiology, Simon Fraser University; personal trainer and small-business owner.</td>
         <td>"Richmond needs for Richmond to win, not a candidate. Richmond needs to actively listen to others first and speak half as much second. Debates decide divisions. Conversations create connections."</td>
+        <td>'Richmond needs to treat the city as a business where every single resident is a valued customer' (<b>RN</b>). Yes to low-cost commercial space and to lower property taxes; no to lowering developer fees (<b>RN</b>); many questionnaire answers left blank (<b>RN</b>). Stance on tech/AI: <span class="notstated">none found.</span></td>
         <td><a href="https://dennetlee.com">dennetlee.com</a> — minimal campaign platform; the site focuses on his personal story, training programs and a "Wisdom" section rather than policy planks.</td>
       </tr>
-      <tr>
-        <td class="name"><b>Alexa Loo</b><span>Richmond Strong</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=69">City profile</a></span></td>
+            <tr>
+        <td class="name"><b>Alexa Loo</b><span>Richmond Strong</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=69">City profile</a><a href="https://votemate.org/c/13275">VoteMate</a></span></td>
         <td>54 (born October 6, 1972).</td>
         <td>Self-described centre — ran for the BC Liberals provincially; says Richmond Strong is "a big tent, we don't need to go a hard left or hard right."</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes the Chinese name <b>盧仙泳</b>.</td>
         <td><span class="notstated">Not publicly stated.</span> The campaign publishes a Chinese name and Chinese-language material, which is a name and a language choice, not a stated racial or ethnic identity.</td>
+        <td>Grew up in Richmond and is raising her family here; describes herself as 'a two-time Olympian, a CPA, a mom and a City Councillor' (<b>VoteMate</b>). Three-term councillor and accountant; ran provincially for the BC Liberals (<b>RN</b>). Details about her children or parents: <span class="notstated">not publicly stated.</span></td>
         <td>"Born here. Raised here. Leading here." Grew up in Richmond, raising her family there; on Council since 2014 (12 years).</td>
         <td>Two-time Canadian Olympic snowboarder (2006, 2010); chartered accountant; sitting city councillor for 12 years; leads the Richmond Strong slate (Basanti, Jiang, Novorr-Pezzuto).</td>
         <td>CPA, CA, CFA; Olympic athlete (OLY). Degree not publicly stated.</td>
         <td>"I love Richmond… it is the city that I grew up in, where I am raising my family." Continuity, experience, and a city "where every voice is heard and every neighbourhood feels supported."</td>
+        <td>'There's some tweaks we need to make, some opportunities, and certainly bringing in more high-tech' (<b>RN</b>). Platform pillar 'New Tech and Neighbourhoods': 'secure, AI-supported translation and communication tools meeting BC privacy standards,' AI-supported adaptive traffic signals and AI-assisted development-filing reviews; plus 24-hour provisional business licences (<b>campaign</b>). Did not answer the RN questionnaire (<b>RN</b>).</td>
         <td><a href="https://richmondstrong.ca">richmondstrong.ca</a> — the S-T-R-O-N-G platform: <b>S</b>afety, <b>T</b>ransparency &amp; Trust, <b>R</b>esponsible development, <b>O</b>versight &amp; fiscal opportunities, <b>N</b>ew tech &amp; neighbourhoods, <b>G</b>rowth for generations.</td>
       </tr>
     </tbody>
@@ -240,7 +264,7 @@ footer a { color: var(--muted); text-decoration: underline; }
   </div>
 
   <h3 style="font-size:15px;margin:26px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Where they stand on four issues</h3>
-  <p class="sub">Four questions the campaign has been fought over: protecting fee-simple private property from the Cowichan Tribes title ruling, dealings with First Nations, drugs, and supportive ("safety") housing. Sources: <b>RN</b> = the Richmond News "Richmond Votes" mayoral questionnaire (21 questions, published Sept 28–Oct 8, 2026; only 5 of the 7 candidates completed it — Heed and Loo did not participate); <b>debate</b> = Richmond News mayoral debate, Aug 12, 2026; <b>VoteMate</b> = votemate.ca platform responses; <b>platform</b> = the candidate's own campaign site or announcement.</p>
+  <p class="sub">Four questions the campaign has been fought over: protecting fee-simple private property from the Cowichan Tribes title ruling, dealings with First Nations, drugs, and supportive ("safety") housing. Sources: <b>RN</b> = the Richmond News "Richmond Votes" mayoral questionnaire (21 questions, published Sept 28–Oct 8, 2026; only 5 of the 7 candidates completed it — Heed and Loo did not participate); <b>debate</b> = Richmond News mayoral debate, Aug 12, 2026; <b>VoteMate</b> = votemate.org platform responses; <b>platform</b> = the candidate's own campaign site or announcement.</p>
 
   <div class="tablescroll">
   <table class="cmp">
@@ -315,7 +339,6 @@ footer a { color: var(--muted); text-decoration: underline; }
   <p class="sub"><b>8 to be elected, at large</b> (city-wide, no wards). You may mark up to 8 names on one ballot — a slate is not a single "vote for all." 55 candidates. Grouped by elector organization in alphabetical order: no grouping or ordering on this page is meant to rank slates or candidates. Where the June poll asked about a slate, its published support figure is shown beside the group name — that poll asked about slates, not individuals.</p>
 
   <div class="search">
-    <input type="text" id="q" placeholder="Search 55 council candidates by name or slate…">
     <select id="f">
       <option value="">All slates</option>
       <option>Action Richmond</option>
@@ -463,7 +486,7 @@ footer a { color: var(--muted); text-decoration: underline; }
     </div>
 
   </div>
-  <p id="noresults" class="hide" style="color:var(--accent2);font-weight:700;padding:12px 0">No candidates match that search.</p>
+  <p id="noresults" class="hide" style="color:var(--accent2);font-weight:700;padding:12px 0">No council candidates match that search.</p>
 </section>
 
 <section id="trustee">
@@ -674,7 +697,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 </section>
 
 <footer>
-  <p><b>Sources:</b> <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">City of Richmond final candidate list</a> (post–Sep 18 withdrawals) · <a href="https://www.richmond.ca/__shared/assets/Declaration_of_Candidates_-_2026_Election79709.pdf">Declaration of Candidates</a> · voting locations: <a href="https://richmond.ca/electionservices/votingOpportunities/AdvanceList.aspx">City advance voting places</a> and <a href="https://richmond.ca/electionservices/votingOpportunities/SearchVotingPlace.aspx">Where do I vote?</a> lookup (retrieved Oct 8, 2026) · <a href="https://pallas-data.ca/2026/07/15/pallas-richmond-poll-heed-20-starrett-11-loo-9-and-half-the-city-still-undecided/">Pallas Data poll, July 15 2026</a> · <a href="https://polymarket.com/event/richmond-mayoral-election-2026">Polymarket</a> · <a href="https://smartrichmond.ca/richmond-election-candidates-2026">Smart Richmond candidate guide</a> · <a href="https://www.richmond-news.com/2026-civic-election">Richmond News</a> — mayoral questionnaires: <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dickens-cheung-12828689">Cheung</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-rob-howard-12833364">Howard</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-mei-kang-12833460">Kang</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-goldentiger-king-12835120">King</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dennet-lee-12836265">Lee</a> · <a href="https://www.richmond-news.com/2026-civic-election/agree-or-disagree-four-richmond-bc-mayoral-candidates-spark-debate-on-wednesday-2026-12664609">Aug. 12 mayoral debate</a> · candidate bios: <a href="https://kashheed2026.com/about/">kashheed2026.com/about</a>, <a href="https://wearerichmond.ca/meet-dickens-cheung">wearerichmond.ca/meet-dickens-cheung</a>.</p>
+  <p><b>Sources:</b> <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">City of Richmond final candidate list</a> (post–Sep 18 withdrawals) · <a href="https://www.richmond.ca/__shared/assets/Declaration_of_Candidates_-_2026_Election79709.pdf">Declaration of Candidates</a> · voting locations: <a href="https://richmond.ca/electionservices/votingOpportunities/AdvanceList.aspx">City advance voting places</a> and <a href="https://richmond.ca/electionservices/votingOpportunities/SearchVotingPlace.aspx">Where do I vote?</a> lookup (retrieved Oct 8, 2026) · <a href="https://pallas-data.ca/2026/07/15/pallas-richmond-poll-heed-20-starrett-11-loo-9-and-half-the-city-still-undecided/">Pallas Data poll, July 15 2026</a> · <a href="https://polymarket.com/event/richmond-mayoral-election-2026">Polymarket</a> · <a href="https://smartrichmond.ca/richmond-election-candidates-2026">Smart Richmond candidate guide</a> · <a href="https://www.richmond-news.com/2026-civic-election">Richmond News</a> — mayoral questionnaires: <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dickens-cheung-12828689">Cheung</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-rob-howard-12833364">Howard</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-mei-kang-12833460">Kang</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-goldentiger-king-12835120">King</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dennet-lee-12836265">Lee</a> · <a href="https://www.richmond-news.com/2026-civic-election/agree-or-disagree-four-richmond-bc-mayoral-candidates-spark-debate-on-wednesday-2026-12664609">Aug. 12 mayoral debate</a> · <a href="https://votemate.org/bc2026/candidates">VoteMate 2026 candidate answers</a> · candidate bios: <a href="https://kashheed2026.com/about/">kashheed2026.com/about</a>, <a href="https://wearerichmond.ca/meet-dickens-cheung">wearerichmond.ca/meet-dickens-cheung</a>.</p>
   <p style="margin-top:8px">Independent voter information page. Not affiliated with the City of Richmond, any candidate, slate or elector organization. Candidate statements are quoted from filings, not verified or endorsed. No candidate or slate is ranked or ordered by merit on this page — alphabetical or declaration order throughout. Poll figures are shown with their published methodological limitations — no poll on this page is a prediction. Last updated October 8, 2026.</p>
 </footer>
 
@@ -684,32 +707,66 @@ footer a { color: var(--muted); text-decoration: underline; }
 (function () {
   var q = document.getElementById('q');
   var f = document.getElementById('f');
-  var groups = Array.prototype.slice.call(document.querySelectorAll('#council-list .group'));
+  var count = document.getElementById('searchcount');
+  var councilGroups = Array.prototype.slice.call(document.querySelectorAll('#council-list .group'));
   var none = document.getElementById('noresults');
+  var mayorRows = Array.prototype.slice.call(document.querySelectorAll('#mayor tbody tr'));
+  var pollRows = Array.prototype.slice.call(document.querySelectorAll('#polling tbody tr'));
+  var trusteeGroups = Array.prototype.slice.call(document.querySelectorAll('#trustee .group'));
+
+  function haystack(el) {
+    return (el.getAttribute('data-name') || el.textContent || '').toLowerCase();
+  }
 
   function apply() {
     var term = (q.value || '').toLowerCase().trim();
-    var slate = f.value;
-    var visible = 0;
+    var slate = f ? f.value : '';
+    var m = 0, c = 0, t = 0;
 
-    groups.forEach(function (g) {
+    mayorRows.forEach(function (r) {
+      var ok = !term || haystack(r).indexOf(term) !== -1;
+      r.classList.toggle('hide', !ok);
+      if (ok) m++;
+    });
+    pollRows.forEach(function (r) {
+      var ok = !term || haystack(r).indexOf(term) !== -1;
+      r.classList.toggle('hide', !ok);
+    });
+
+    councilGroups.forEach(function (g) {
       var slateOk = !slate || g.getAttribute('data-slate') === slate;
-      var chips = g.querySelectorAll('.chip');
       var shown = 0;
-      chips.forEach(function (c) {
-        var hay = (c.getAttribute('data-name') || c.textContent).toLowerCase();
-        var ok = slateOk && (!term || hay.indexOf(term) !== -1);
-        c.classList.toggle('hide', !ok);
+      g.querySelectorAll('.chip').forEach(function (chip) {
+        var ok = slateOk && (!term || haystack(chip).indexOf(term) !== -1);
+        chip.classList.toggle('hide', !ok);
         if (ok) shown++;
       });
       g.classList.toggle('hide', !slateOk || shown === 0);
-      visible += shown;
+      c += shown;
     });
-    none.classList.toggle('hide', visible > 0);
+    none.classList.toggle('hide', c > 0);
+
+    trusteeGroups.forEach(function (g) {
+      var shown = 0;
+      g.querySelectorAll('.chip, .mini > div').forEach(function (chip) {
+        var ok = !term || haystack(chip).indexOf(term) !== -1;
+        chip.classList.toggle('hide', !ok);
+        if (ok) shown++;
+      });
+      g.classList.toggle('hide', shown === 0);
+      t += shown;
+    });
+
+    if (count) {
+      count.textContent = (term || slate)
+        ? 'Matches this filter: ' + m + ' mayor · ' + c + ' council · ' + t + ' trustee'
+        : 'Showing all 90 candidates: 7 mayor · 55 council · 28 trustee';
+    }
   }
 
   q.addEventListener('input', apply);
-  f.addEventListener('change', apply);
+  if (f) f.addEventListener('change', apply);
+  apply();
 })();
 </script>
 
