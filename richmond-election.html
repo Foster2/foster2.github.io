@@ -8,6 +8,7 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
+  color-scheme: dark;
   --bg: #0B0F14;
   --panel: #121923;
   --panel2: #18212E;
@@ -18,19 +19,54 @@
   --accent2: #FFD166;
   --blue: #4DA3FF;
   --green: #34D399;
+  --stripe: rgba(24,33,46,.5);
+  --tabtext: #C3D0DE;
+  --undecided: #334155;
+  --oki: #94A3B8;
+  --hdrbg: rgba(11,15,20,.94);
+  --callbg: #1A1508;
+  --callline: #3D3211;
+  --calltxt: #E8DCC0;
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F5F7FA;
+  --panel: #FFFFFF;
+  --panel2: #E7EDF4;
+  --line: #D6DFEA;
+  --text: #1B2330;
+  --muted: #5B6B7D;
+  --accent: #D8491D;
+  --accent2: #A96E00;
+  --blue: #1E66C8;
+  --green: #0E9F6E;
+  --stripe: rgba(24,33,46,.045);
+  --tabtext: #34404F;
+  --undecided: #CBD5E1;
+  --oki: #64748B;
+  --hdrbg: rgba(245,247,250,.92);
+  --callbg: #FFF7E0;
+  --callline: #E7D192;
+  --calltxt: #54401A;
 }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; transition: background .2s, color .2s; }
 a { color: var(--blue); text-decoration: none; }
 a:hover { text-decoration: underline; }
+button { font-family: inherit; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-header { position: sticky; top: 0; z-index: 50; background: rgba(11,15,20,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header { position: sticky; top: 0; z-index: 50; background: var(--hdrbg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .nav { display: flex; align-items: center; gap: 18px; padding: 12px 0; flex-wrap: wrap; }
-.brand { font-weight: 900; letter-spacing: 1.5px; font-size: 14px; color: #fff; }
+.brand { font-weight: 900; letter-spacing: 1.5px; font-size: 14px; color: var(--text); }
 .brand span { color: var(--accent); }
 .nav a { color: var(--muted); font-size: 13px; font-weight: 600; }
 .nav a:hover { color: var(--text); text-decoration: none; }
+.themetoggle { margin-left: auto; background: var(--panel); border: 1px solid var(--line); color: var(--text); border-radius: 10px; padding: 7px 10px; cursor: pointer; line-height: 0; }
+.themetoggle svg { display: block; }
+.themetoggle .sun { display: none; }
+[data-theme="light"] .themetoggle .sun { display: block; }
+[data-theme="light"] .themetoggle .moon { display: none; }
 
 .hero { padding: 44px 0 28px; border-bottom: 1px solid var(--line); }
 .hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 900; letter-spacing: -0.5px; }
@@ -46,7 +82,7 @@ h2 { font-size: 22px; font-weight: 900; letter-spacing: .3px; margin-bottom: 6px
 h2 .n { color: var(--accent); }
 .sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; max-width: 820px; }
 
-.callout { background: #1A1508; border: 1px solid #3D3211; border-left: 3px solid var(--accent2); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: #E8DCC0; margin: 16px 0; }
+.callout { background: var(--callbg); border: 1px solid var(--callline); border-left: 3px solid var(--accent2); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: var(--calltxt); margin: 16px 0; }
 .callout b { color: var(--accent2); }
 
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -80,20 +116,88 @@ td.num { font-weight: 800; color: var(--accent2); white-space: nowrap; }
 .mini div { break-inside: avoid; padding: 5px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
 .mini span { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
 
-.tablescroll { overflow-x: auto; }
+.tablescroll { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--accent) var(--panel2); }
 table.cmp { min-width: 1560px; font-size: 13px; }
 table.cmp th, table.cmp td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 12px; }
 table.cmp td.name { min-width: 130px; }
+.mugrow { display: flex; gap: 10px; align-items: flex-start; }
+.mug { flex: 0 0 auto; width: 58px; height: 58px; margin-top: 2px; border-radius: 50%; overflow: hidden; border: 2px solid var(--line); background: var(--panel2); }
+.mug img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mug.nophoto { display: none; }
 table.cmp td.name b { font-size: 15px; display: block; }
-table.cmp td.name span { font-size: 11px; color: var(--muted); }
-table.cmp td { color: #C3D0DE; line-height: 1.5; }
-table.cmp tr:nth-child(even) td { background: rgba(24,33,46,.5); }
+table.cmp td.name .nametext span { font-size: 11px; color: var(--muted); }
+table.cmp td { color: var(--tabtext); line-height: 1.5; }
+table.cmp tr:nth-child(even) td { background: var(--stripe); }
 .notstated { color: var(--muted); font-style: italic; }
+
+.clip { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; font-size: 13.5px; }
+.clip b { min-width: 170px; }
+.clip span.what { color: var(--muted); font-size: 12.5px; }
+.clip span.why { flex: 1 0 100%; color: var(--muted); font-size: 12.5px; }
+.clip a { white-space: nowrap; }
+
+.hscrollbar { position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 90; width: min(620px, 94vw); display: none; user-select: none; -webkit-user-select: none; touch-action: none; }
+.hscrollbar.active { display: block; }
+.hscrollbar-track { position: relative; height: 32px; margin: 0 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+[data-theme="light"] .hscrollbar-track { box-shadow: 0 8px 24px rgba(15,30,50,.2); }
+.hscrollbar-thumb { position: absolute; top: 3px; bottom: 3px; left: 0; width: 64px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 13px; cursor: grab; touch-action: none; }
+.hscrollbar-thumb:active { cursor: grabbing; }
+
+.mapwrap { margin: 18px 0; }
+#votemap { height: 420px; border: 1px solid var(--line); border-radius: 12px; position: relative; z-index: 0; }
+.mapbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.mapbar button { background: var(--accent); border: none; color: #fff; font-weight: 800; font-size: 13px; padding: 10px 14px; border-radius: 10px; cursor: pointer; }
+.mapbar button:disabled { opacity: .55; cursor: default; }
+.mapbar .status { font-size: 12.5px; color: var(--muted); }
+.maplegend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.maplegend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.maplegend .gen i { background: #4DA3FF; }
+.maplegend .adv i { background: #FFD166; }
+#nearlist { margin-top: 10px; font-size: 13px; }
+.nearrow { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; padding: 7px 2px; border-bottom: 1px solid var(--line); }
+.nearrow b { min-width: 200px; }
+.nearrow .km { color: var(--accent2); font-weight: 800; white-space: nowrap; }
+.nearrow a { white-space: nowrap; }
+.maptiles { margin-top: 8px; font-size: 11px; color: var(--muted); }
 
 footer { padding: 30px 0 50px; color: var(--muted); font-size: 12.5px; }
 footer a { color: var(--muted); text-decoration: underline; }
 .hide { display: none !important; }
+
+@media (max-width: 760px) {
+  .nav { gap: 10px; }
+  .mug { width: 48px; height: 48px; }
+  .tablescroll { overflow-x: visible; }
+  #polling table { display: block; overflow-x: auto; max-width: 100%; }
+  table.cmp { min-width: 0; width: 100%; }
+  table.cmp thead { display: none; }
+  table.cmp, table.cmp tbody, table.cmp tr, table.cmp td { display: block; }
+  table.cmp tr { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; background: var(--panel); padding: 4px 0; }
+  table.cmp td { border: none; padding: 8px 12px; }
+  table.cmp td.name { padding-top: 12px; }
+  table.cmp td::before { content: attr(data-label); display: block; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); font-weight: 800; margin-bottom: 3px; }
+  table.cmp td.name::before { display: none; }
+  table.cmp tr:nth-child(even) td { background: none; }
+  #votemap { height: 340px; }
+  .clip b { min-width: 0; }
+}
+
+@media (max-width: 640px) {
+  .brand { width: 100%; }
+}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('richmondTheme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 
@@ -107,6 +211,10 @@ footer a { color: var(--muted); text-decoration: underline; }
     <a href="#voting">Where to vote</a>
     <a href="#polling">Polling</a>
     <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">Official list</a>
+    <button id="themetoggle" class="themetoggle" type="button" aria-label="Toggle light and dark theme" title="Light / dark theme">
+      <svg class="sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4"/></svg>
+      <svg class="moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9.5A6 6 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z"/></svg>
+    </button>
   </div>
 </header>
 
@@ -134,7 +242,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 <section id="mayor">
 
   <h2><span class="n">01</span> — Candidates for Mayor: side by side</h2>
-  <p class="sub">1 to be elected. 7 candidates on the final ballot. Same twelve fields for every candidate — both mayoral tables are alphabetical by surname, never sorted by poll result, with no ranking implied — drawn only from campaign websites, City-filed candidate statements, the Richmond News mayoral questionnaires, VoteMate responses and other sourced public records. Long-time Mayor Malcolm Brodie (in office since 2001) is not seeking re-election. Scroll horizontally on small screens.</p>
+  <p class="sub">1 to be elected. 7 candidates on the final ballot. Same twelve fields for every candidate — both mayoral tables are alphabetical by surname, never sorted by poll result, with no ranking implied — drawn only from campaign websites, City-filed candidate statements, the Richmond News mayoral questionnaires, VoteMate responses and other sourced public records. Long-time Mayor Malcolm Brodie (in office since 2001) is not seeking re-election. On wide tables a floating scroll bar follows you down the page on any screen; on phones the tables reflow to stacked cards. Below the tables, each candidate links to the most useful clip of them in their own words.</p>
 
   <div class="callout">
     <b>How the background columns work.</b> Both the <b>self-stated background</b> and <b>race / ethnicity</b> columns show only what candidates <b>themselves</b> publish — a campaign-published Chinese name, a stated birthplace, an own-words biography, an own-words description of their community background. Nothing here is inferred from a surname, a photo or a third party's description, and no cell is filled in from how a candidate looks or what their name suggests. Where a candidate has not publicly stated a background, the cell says <span class="notstated">"not publicly stated"</span> rather than guessing — most cells in the race column are exactly that, because most candidates have not said anything on the subject.
@@ -162,7 +270,7 @@ footer a { color: var(--muted); text-decoration: underline; }
     </thead>
     <tbody>
             <tr>
-        <td class="name"><b>Dickens Cheung</b><span>We Are Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=65">City profile</a><a href="https://votemate.org/c/13355">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/cheung.jpg" alt="Dickens Cheung" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Dickens Cheung</b><span>We Are Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=65">City profile</a><a href="https://votemate.org/c/13355">VoteMate</a></span></span></span></td>
         <td>About 42 — wrote "I am a 40-year-old" in his 2024 provincial campaign bio (VoteMate).</td>
         <td><span class="notstated">Not publicly stated.</span> Ran as an independent in the 2024 provincial election; anti-incumbent reform platform, no party this time.</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes its full platform in English and Chinese (traditional).</td>
@@ -176,7 +284,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <td><a href="https://wearerichmond.ca">wearerichmond.ca</a> — "OUR HOME. OUR FAMILIES. OUR FUTURE." A safer, stronger, healthier and affordable city where seniors, families, young adults and the middle class thrive. Bilingual EN/中文.</td>
       </tr>
             <tr>
-        <td class="name"><b>Kash Heed</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=78">City profile</a><a href="https://votemate.org/c/13750">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/heed.jpg" alt="Kash Heed" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Kash Heed</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=78">City profile</a><a href="https://votemate.org/c/13750">VoteMate</a></span></span></span></td>
         <td>70 (born November 1955).</td>
         <td>Centre-right — BC Liberal MLA for Vancouver-Fraserview 2009–13 and Solicitor General; now running with no elector organization.</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes the Chinese name <b>希德</b>.</td>
@@ -190,7 +298,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <td><a href="https://kashheed2026.com">kashheed2026.com</a> — slogan "Sensible Change, &amp; Hope." Site features a council-motion disclosure tracker, opinion pieces and media releases.</td>
       </tr>
             <tr>
-        <td class="name"><b>Rob Howard</b><span>Richmond Forward</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=54">City profile</a><a href="https://votemate.org/c/13279">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/howard.jpg" alt="Rob Howard" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Rob Howard</b><span>Richmond Forward</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=54">City profile</a><a href="https://votemate.org/c/13279">VoteMate</a></span></span></span></td>
         <td>71 or 72 (Wikipedia gives born 1954 or 1955).</td>
         <td>Centre-right — BC Liberal MLA for Richmond Centre 2009–13; earlier served on council as an NPA and then Richmond First councillor.</td>
         <td><span class="notstated">Not publicly stated.</span></td>
@@ -204,7 +312,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <td><a href="https://robhowardformayor.ca">robhowardformayor.ca</a> — five pillars spelled <b>S.H.A.P.E.</b>: stronger economy, safer streets &amp; public spaces, support families &amp; seniors, fiscal accountability, future waterfronts; plus community advisory panels.</td>
       </tr>
             <tr>
-        <td class="name"><b>Mei Kang</b><span>Action Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=66">City profile</a><a href="https://votemate.org/c/14091">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/kang.jpg" alt="Mei Kang" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Mei Kang</b><span>Action Richmond</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=66">City profile</a><a href="https://votemate.org/c/14091">VoteMate</a></span></span></span></td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> No political party; runs the local slate Action Richmond.</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes extensive Chinese-language and Chinese-media coverage.</td>
@@ -218,7 +326,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <td><a href="https://happymayor.ca">happymayor.ca</a> — priorities: Safety First, Family &amp; Community, Transparent Government, Economic Growth, Unity &amp; Action, Every Generation, Food &amp; Tourism.</td>
       </tr>
             <tr>
-        <td class="name"><b>Goldentiger King</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City profile</a><a href="https://votemate.org/c/14092">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/king.jpg" alt="Goldentiger King" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Goldentiger King</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City profile</a><a href="https://votemate.org/c/14092">VoteMate</a></span></span></span></td>
         <td><span class="notstated">Not publicly stated.</span></td>
         <td><span class="notstated">Not publicly stated.</span> No party and no elector organization.</td>
         <td><span class="notstated">Not publicly stated.</span></td>
@@ -232,7 +340,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <td>No campaign website listed by the City — <a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City candidate profile</a> only.</td>
       </tr>
             <tr>
-        <td class="name"><b>Dennet "The Cat Guy" Lee</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=87">City profile</a><a href="https://votemate.org/c/14093">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/lee.jpg" alt="Dennet &quot;The Cat Guy&quot; Lee" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Dennet "The Cat Guy" Lee</b><span>No elector organization</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=87">City profile</a><a href="https://votemate.org/c/14093">VoteMate</a></span></span></span></td>
         <td><span class="notstated">Not publicly stated.</span> Biography says only that he was 23 at his fitness turning point.</td>
         <td><span class="notstated">Not publicly stated.</span> Self-described independent — "Independent because that is what freedom requires."</td>
         <td>Born in the U.S.A.; moved to Canada in early childhood (self-stated).</td>
@@ -246,7 +354,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <td><a href="https://dennetlee.com">dennetlee.com</a> — minimal campaign platform; the site focuses on his personal story, training programs and a "Wisdom" section rather than policy planks.</td>
       </tr>
             <tr>
-        <td class="name"><b>Alexa Loo</b><span>Richmond Strong</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=69">City profile</a><a href="https://votemate.org/c/13275">VoteMate</a></span></td>
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/loo.jpg" alt="Alexa Loo" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Alexa Loo</b><span>Richmond Strong</span><span class="candlinks"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=69">City profile</a><a href="https://votemate.org/c/13275">VoteMate</a></span></span></span></td>
         <td>54 (born October 6, 1972).</td>
         <td>Self-described centre — ran for the BC Liberals provincially; says Richmond Strong is "a big tent, we don't need to go a hard left or hard right."</td>
         <td><span class="notstated">Not publicly stated.</span> Campaign publishes the Chinese name <b>盧仙泳</b>.</td>
@@ -332,6 +440,17 @@ footer a { color: var(--muted); text-decoration: underline; }
   </div>
 
   <p class="sub" style="margin-top:14px;font-size:12.5px">Every cell is sourced from the candidate's own campaign site, their statement filed with the City of Richmond, the Richmond News mayoral questionnaire, or a linked public record (see footer). Blank biography details and absent answers are marked "not publicly stated" / "no public position found" rather than filled in by inference.</p>
+
+  <div class="group-head" style="margin-top:26px"><h3>In their own words — where to watch the campaign</h3></div>
+  <p class="sub" style="font-size:12.5px">One video per candidate: a campaign video, or neutral, full-length debate coverage in which they appear. Where no usable campaign or debate clip exists, the City profile and VoteMate page are linked instead.</p>
+
+  <div class="clip" data-name="Dickens Cheung"><b>Dickens Cheung</b><span class="what"><a href="https://www.youtube.com/watch?v=avqIki1cZ5I">CBC BC — Richmond mayoral debate</a> (second half, with Mei Kang)</span><span class="why">A full, unedited half of the Oct 1 2026 CBC debate covering his platform in his own words.</span></div>
+  <div class="clip" data-name="Kash Heed"><b>Kash Heed</b><span class="what"><a href="https://www.youtube.com/watch?v=wvu0W5S5U4I">Cool News — 2026 mayoral debate</a> (four-candidate debate)</span><span class="why">Full general-debate coverage (with Sheldon Starrett, Alexa Loo and Henry Yao) in which he defends his record, including the supervised-consumption-site history.</span></div>
+  <div class="clip" data-name="Rob Howard"><b>Rob Howard</b><span class="what"><a href="https://www.youtube.com/watch?v=avqIki1cZ5I">CBC BC — Richmond mayoral debate</a> (first half, with Alexa Loo and Kash Heed)</span><span class="why">Full, unedited debate half where he argues his "affordability first" platform.</span></div>
+  <div class="clip" data-name="Mei Kang"><b>Mei Kang</b><span class="what"><a href="https://www.youtube.com/watch?v=T0IthJmcgKY">Mei Kang — campaign video</a></span><span class="why">Her own 2026 campaign video — her platform stated directly.</span></div>
+  <div class="clip" data-name="Goldentiger King"><b>Goldentiger King</b><span class="what">No usable campaign or debate video found</span><span class="why">See the <a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City candidate profile</a> and <a href="https://votemate.org/c/14092">VoteMate page</a> for his stated platform.</span></div>
+  <div class="clip" data-name="Dennet Lee"><b>Dennet "The Cat Guy" Lee</b><span class="what">No usable campaign or debate video found</span><span class="why">See the <a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=87">City candidate profile</a> and <a href="https://votemate.org/c/14093">VoteMate page</a> for his stated platform.</span></div>
+  <div class="clip" data-name="Alexa Loo"><b>Alexa Loo</b><span class="what"><a href="https://www.youtube.com/watch?v=avqIki1cZ5I">CBC BC — Richmond mayoral debate</a> (first half, with Rob Howard and Kash Heed)</span><span class="why">Full, unedited debate half where she defends her record — also appears with three opponents in the Cool News debate.</span></div>
 </section>
 
 <section id="council">
@@ -578,10 +697,23 @@ footer a { color: var(--muted); text-decoration: underline; }
 
 <section id="voting">
   <h2><span class="n">05</span> — Voting locations</h2>
-  <p class="sub">Every voting place is open <b>8:00 a.m. to 8:00 p.m.</b> On General Voting Day you must vote at <b>your designated place</b>; during advance voting you may vote at <b>any</b> advance location, on its date. Every address below is a live Google Maps link. Source: City of Richmond election-services voting-location list, retrieved October 8, 2026.</p>
+  <p class="sub">Every voting place is open <b>8:00 a.m. to 8:00 p.m.</b> On General Voting Day you must vote at <b>your designated place</b>; during advance voting you may vote at <b>any</b> advance location, on its date. Every address below is a live Google Maps link. The map shows every location — blue pins are General Voting Day places, gold pins also serve advance voting. Source: City of Richmond election-services voting-location list, retrieved October 8, 2026.</p>
 
   <div class="callout">
     <b>Find your designated place first.</b> On Saturday, October 17 your address decides which of the 38 locations below is yours — check it in the City's <a href="https://richmond.ca/electionservices/votingOpportunities/SearchVotingPlace.aspx">"Where do I vote?" lookup</a>, or call the Elections Office at 604-276-4100. Advance voters can use any location listed further down. An accessible ballot-marking device, curb-side voting and translated voting instructions (French, Simplified and Traditional Chinese, Punjabi) are available; ballots themselves are in English only.
+  </div>
+
+  <div class="mapwrap">
+    <div id="votemap" class="maptiles"></div>
+    <div class="mapbar">
+      <button type="button" id="nearbtn">Find my nearest location</button>
+      <span id="nearstatus"></span>
+    </div>
+    <div class="maplegend">
+      <span><i class="gen"></i>General Voting Day</span>
+      <span><i class="adv"></i>Advance voting</span>
+    </div>
+    <div id="nearlist"></div>
   </div>
 
   <h3 style="font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">General Voting Day — Saturday, October 17, 2026 · 38 locations (alphabetical)</h3>
@@ -671,7 +803,7 @@ footer a { color: var(--muted); text-decoration: underline; }
       <tr><td>Dennet "The Cat Guy" Lee</td><td class="num" style="color:var(--muted)">not polled</td><td></td><td>Filed after the poll</td></tr>
       <tr><td><b>Alexa Loo</b></td><td class="num">8.5%</td><td><div class="bar"><i style="width:42.5%"></i></div></td><td>Mayor candidate</td></tr>
       <tr><td>Sheldon Starrett</td><td class="num">11.3%</td><td><div class="bar"><i style="width:56.5%"></i></div></td><td style="color:var(--accent2)">⚠ Running for <b>Council</b>, not mayor</td></tr>
-      <tr><td>Undecided</td><td class="num" style="color:#94A3B8">48.4%</td><td><div class="bar"><i style="width:100%;background:#334155"></i></div></td><td style="color:var(--muted)">Largest single group</td></tr>
+      <tr><td>Undecided</td><td class="num" style="color:var(--oki)">48.4%</td><td><div class="bar"><i style="width:100%;background:var(--undecided)"></i></div></td><td style="color:var(--muted)">Largest single group</td></tr>
     </tbody>
   </table>
 
@@ -690,17 +822,26 @@ footer a { color: var(--muted); text-decoration: underline; }
       <tr><td><b>Richmond Strong</b></td><td class="num">1.6%</td><td><div class="bar"><i style="width:9.5%"></i></div></td><td>3</td></tr>
       <tr><td><b>RITE Richmond</b></td><td class="num">6.5%</td><td><div class="bar"><i style="width:38.7%"></i></div></td><td>4</td></tr>
       <tr><td><b>We Are Richmond</b></td><td class="num">1.7%</td><td><div class="bar"><i style="width:10.1%"></i></div></td><td>5</td></tr>
-      <tr><td>Undecided / no preference</td><td class="num" style="color:#94A3B8">63.1%</td><td><div class="bar"><i style="width:100%;background:#334155"></i></div></td><td>—</td></tr>
+      <tr><td>Undecided / no preference</td><td class="num" style="color:var(--oki)">63.1%</td><td><div class="bar"><i style="width:100%;background:var(--undecided)"></i></div></td><td>—</td></tr>
       <tr><td style="color:var(--muted)">Not asked (Action Richmond, Common Sense, ONE, Richmond United, 14 independents)</td><td class="num" style="color:var(--muted)">—</td><td></td><td style="color:var(--muted)">21</td></tr>
     </tbody>
   </table>
 </section>
 
 <footer>
-  <p><b>Sources:</b> <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">City of Richmond final candidate list</a> (post–Sep 18 withdrawals) · <a href="https://www.richmond.ca/__shared/assets/Declaration_of_Candidates_-_2026_Election79709.pdf">Declaration of Candidates</a> · voting locations: <a href="https://richmond.ca/electionservices/votingOpportunities/AdvanceList.aspx">City advance voting places</a> and <a href="https://richmond.ca/electionservices/votingOpportunities/SearchVotingPlace.aspx">Where do I vote?</a> lookup (retrieved Oct 8, 2026) · <a href="https://pallas-data.ca/2026/07/15/pallas-richmond-poll-heed-20-starrett-11-loo-9-and-half-the-city-still-undecided/">Pallas Data poll, July 15 2026</a> · <a href="https://polymarket.com/event/richmond-mayoral-election-2026">Polymarket</a> · <a href="https://smartrichmond.ca/richmond-election-candidates-2026">Smart Richmond candidate guide</a> · <a href="https://www.richmond-news.com/2026-civic-election">Richmond News</a> — mayoral questionnaires: <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dickens-cheung-12828689">Cheung</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-rob-howard-12833364">Howard</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-mei-kang-12833460">Kang</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-goldentiger-king-12835120">King</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dennet-lee-12836265">Lee</a> · <a href="https://www.richmond-news.com/2026-civic-election/agree-or-disagree-four-richmond-bc-mayoral-candidates-spark-debate-on-wednesday-2026-12664609">Aug. 12 mayoral debate</a> · <a href="https://votemate.org/bc2026/candidates">VoteMate 2026 candidate answers</a> · candidate bios: <a href="https://kashheed2026.com/about/">kashheed2026.com/about</a>, <a href="https://wearerichmond.ca/meet-dickens-cheung">wearerichmond.ca/meet-dickens-cheung</a>.</p>
+  <p><b>Sources:</b> <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">City of Richmond final candidate list</a> (post–Sep 18 withdrawals) · <a href="https://www.richmond.ca/__shared/assets/Declaration_of_Candidates_-_2026_Election79709.pdf">Declaration of Candidates</a> · voting locations: <a href="https://richmond.ca/electionservices/votingOpportunities/AdvanceList.aspx">City advance voting places</a> and <a href="https://richmond.ca/electionservices/votingOpportunities/SearchVotingPlace.aspx">Where do I vote?</a> lookup (retrieved Oct 8, 2026) · <a href="https://pallas-data.ca/2026/07/15/pallas-richmond-poll-heed-20-starrett-11-loo-9-and-half-the-city-still-undecided/">Pallas Data poll, July 15 2026</a> · <a href="https://polymarket.com/event/richmond-mayoral-election-2026">Polymarket</a> · <a href="https://smartrichmond.ca/richmond-election-candidates-2026">Smart Richmond candidate guide</a> · <a href="https://www.richmond-news.com/2026-civic-election">Richmond News</a> — mayoral questionnaires: <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dickens-cheung-12828689">Cheung</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-rob-howard-12833364">Howard</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-mei-kang-12833460">Kang</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-goldentiger-king-12835120">King</a>, <a href="https://www.richmond-news.com/2026-civic-election/richmond-bc-votes-mayoral-candidate-dennet-lee-12836265">Lee</a> · <a href="https://www.richmond-news.com/2026-civic-election/agree-or-disagree-four-richmond-bc-mayoral-candidates-spark-debate-on-wednesday-2026-12664609">Aug. 12 mayoral debate</a> · <a href="https://votemate.org/bc2026/candidates">VoteMate 2026 candidate answers</a> · videos: <a href="https://www.youtube.com/watch?v=avqIki1cZ5I">CBC BC — Richmond mayoral debate, Oct 1 2026</a>, <a href="https://www.youtube.com/watch?v=wvu0W5S5U4I">Cool News — 2026 mayoral debate, Aug 12 2026</a>, <a href="https://www.youtube.com/watch?v=T0IthJmcgKY">Mei Kang campaign video</a> · candidate bios: <a href="https://kashheed2026.com/about/">kashheed2026.com/about</a>, <a href="https://wearerichmond.ca/meet-dickens-cheung">wearerichmond.ca/meet-dickens-cheung</a>.</p>
   <p style="margin-top:8px">Independent voter information page. Not affiliated with the City of Richmond, any candidate, slate or elector organization. Candidate statements are quoted from filings, not verified or endorsed. No candidate or slate is ranked or ordered by merit on this page — alphabetical or declaration order throughout. Poll figures are shown with their published methodological limitations — no poll on this page is a prediction. Last updated October 8, 2026.</p>
 </footer>
 
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="voter-map-data.js"></script>
+
+<div id="hscrollgrip" class="hscrollbar" aria-hidden="true">
+  <div class="hscrollbar-track">
+    <div class="hscrollbar-thumb"></div>
+  </div>
 </div>
 
 <script>
@@ -713,6 +854,7 @@ footer a { color: var(--muted); text-decoration: underline; }
   var mayorRows = Array.prototype.slice.call(document.querySelectorAll('#mayor tbody tr'));
   var pollRows = Array.prototype.slice.call(document.querySelectorAll('#polling tbody tr'));
   var trusteeGroups = Array.prototype.slice.call(document.querySelectorAll('#trustee .group'));
+  var clips = Array.prototype.slice.call(document.querySelectorAll('.clip'));
 
   function haystack(el) {
     return (el.getAttribute('data-name') || el.textContent || '').toLowerCase();
@@ -729,6 +871,10 @@ footer a { color: var(--muted); text-decoration: underline; }
       if (ok) m++;
     });
     pollRows.forEach(function (r) {
+      var ok = !term || haystack(r).indexOf(term) !== -1;
+      r.classList.toggle('hide', !ok);
+    });
+    clips.forEach(function (r) {
       var ok = !term || haystack(r).indexOf(term) !== -1;
       r.classList.toggle('hide', !ok);
     });
@@ -767,6 +913,163 @@ footer a { color: var(--muted); text-decoration: underline; }
   q.addEventListener('input', apply);
   if (f) f.addEventListener('change', apply);
   apply();
+})();
+
+(function () {
+  var btn = document.getElementById('themetoggle');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var html = document.documentElement;
+      var cur = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', cur);
+      try { localStorage.setItem('richmondTheme', cur); } catch (e) {}
+    });
+  }
+
+  var tables = document.querySelectorAll('table.cmp');
+  Array.prototype.forEach.call(tables, function (t) {
+    var head = t.querySelector('thead');
+    if (!head) return;
+    var labels = Array.prototype.map.call(head.querySelectorAll('th'), function (th) {
+      return th.textContent.replace(/\s+/g, ' ').trim();
+    });
+    Array.prototype.forEach.call(t.querySelectorAll('tbody tr'), function (r) {
+      Array.prototype.forEach.call(r.children, function (td, i) {
+        if (labels[i]) td.setAttribute('data-label', labels[i]);
+      });
+    });
+  });
+
+  var scrollers = Array.prototype.filter.call(document.querySelectorAll('.tablescroll'), function (el) {
+    return el.scrollWidth > el.clientWidth;
+  });
+
+  var grip = document.getElementById('hscrollgrip');
+  if (scrollers.length && grip) {
+    (function () {
+      var track = grip.querySelector('.hscrollbar-track');
+      var thumb = grip.querySelector('.hscrollbar-thumb');
+      var active = null, drag = null;
+
+      function lastTrack() {
+        return track.clientWidth - thumb.offsetWidth;
+      }
+      function sync() {
+        if (!active) return;
+        var max = active.scrollWidth - active.clientWidth;
+        var w = Math.max(64, Math.round(active.clientWidth / active.scrollWidth * lastTrack()));
+        thumb.style.width = w + 'px';
+        thumb.style.left = (max > 0 ? active.scrollLeft / max : 0) * lastTrack() + 'px';
+      }
+      function pick() {
+        var best = null;
+        for (var i = 0; i < scrollers.length; i++) {
+          var r = scrollers[i].getBoundingClientRect();
+          if (r.right > 0 && r.left < window.innerWidth && r.bottom > 0 && r.top < window.innerHeight) {
+            if (!best || r.top > best.r.top) best = { el: scrollers[i], r: r };
+          }
+        }
+        active = best ? best.el : null;
+        grip.classList.toggle('active', !!active);
+        if (active) sync();
+      }
+      function jumpTo(clientX) {
+        if (!active) return;
+        var tr = track.getBoundingClientRect();
+        var x = Math.max(0, Math.min(lastTrack(), clientX - tr.left - thumb.offsetWidth / 2));
+        var max = active.scrollWidth - active.clientWidth;
+        active.scrollLeft = max * (x / lastTrack());
+        sync();
+      }
+      track.addEventListener('pointerdown', function (e) {
+        if (e.target !== thumb) { jumpTo(e.clientX); return; }
+        drag = { startX: e.clientX, startL: active ? active.scrollLeft : 0 };
+        thumb.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      thumb.addEventListener('pointermove', function (e) {
+        if (!drag || !active) return;
+        var max = active.scrollWidth - active.clientWidth;
+        active.scrollLeft = drag.startL + (e.clientX - drag.startX) * (max / lastTrack());
+        sync();
+      });
+      thumb.addEventListener('pointerup', function () { drag = null; });
+      thumb.addEventListener('pointercancel', function () { drag = null; });
+      window.addEventListener('scroll', pick, { passive: true });
+      window.addEventListener('resize', function () { if (active) sync(); });
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) pick(); });
+      document.addEventListener('input', function () { if (active) sync(); });
+      pick();
+    })();
+  }
+
+  var mapEl = document.getElementById('votemap');
+  if (mapEl && typeof L !== 'undefined' && typeof VOTING_PLACES !== 'undefined') {
+    var map = L.map('votemap', { scrollWheelZoom: false }).setView([49.16, -123.14], 12);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var pinGeneral = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png';
+    var pinAdv = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
+    var pinShadow = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png';
+    var iconGeneral = L.icon({ iconUrl: pinGeneral, iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowUrl: pinShadow, shadowSize: [41, 41] });
+    var iconAdv = L.icon({ iconUrl: pinAdv, iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowUrl: pinShadow, shadowSize: [41, 41] });
+    var bounds = [];
+    VOTING_PLACES.forEach(function (p) {
+      var isAdv = !!(p.adv && p.adv.length);
+      var mk = L.marker([p.lat, p.lng], { icon: isAdv ? iconAdv : iconGeneral, title: p.name }).addTo(map);
+      var advNote = isAdv ? '<br>Advance voting: ' + p.adv : '<br><em>General Voting Day only</em>';
+      mk.bindPopup('<b>' + p.name + '</b><br>' + p.addr + advNote +
+        '<br><a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.addr) + '" target="_blank" rel="noopener">Open in Google Maps</a>' +
+        ' &middot; <a href="https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(p.addr) + '" target="_blank" rel="noopener">Directions</a>');
+      bounds.push([p.lat, p.lng]);
+    });
+    if (bounds.length) map.fitBounds(bounds, { padding: [30, 30] });
+
+    var nearBtn = document.getElementById('nearbtn');
+    var nearStatus = document.getElementById('nearstatus');
+    var nearList = document.getElementById('nearlist');
+    if (nearBtn) nearBtn.addEventListener('click', function () {
+      if (!navigator.geolocation) { nearStatus.textContent = 'Location not supported by this browser.'; return; }
+      nearStatus.textContent = 'Locating\u2026';
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        function hav(a, b) {
+          var R = 6371, dLat = (b[0] - a[0]) * Math.PI / 180, dLng = (b[1] - a[1]) * Math.PI / 180;
+          var s = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(a[0] * Math.PI / 180) * Math.cos(b[0] * Math.PI / 180) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          return 2 * R * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+        }
+        var here = [pos.coords.latitude, pos.coords.longitude];
+        var places = VOTING_PLACES.map(function (p) {
+          p._d = hav(here, [p.lat, p.lng]);
+          return p;
+        }).sort(function (a, b) { return a._d - b._d; }).slice(0, 5);
+        places.forEach(function (p) { L.popup({ closeButton: false }).setLatLng([p.lat, p.lng]).setContent('<b>' + p.name + '</b>').openOn(map); });
+        nearStatus.textContent = '';
+        nearList.innerHTML = '';
+        places.forEach(function (p) {
+          var row = document.createElement('div');
+          row.className = 'nearrow';
+          var b = document.createElement('b');
+          b.textContent = p.name;
+          var km = document.createElement('span');
+          km.className = 'km';
+          km.textContent = (Math.round(p._d * 10) / 10) + ' km';
+          var a = document.createElement('a');
+          a.href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(p.addr);
+          a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = 'Directions';
+          row.appendChild(b);
+          row.appendChild(km);
+          row.appendChild(a);
+          nearList.appendChild(row);
+        });
+      }, function () {
+        nearStatus.textContent = 'Could not get your location — check browser permissions.';
+      }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 });
+    });
+  }
 })();
 </script>
 
