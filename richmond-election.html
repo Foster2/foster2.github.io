@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richmond BC Election 2026 — Candidate Rankings &amp; Details</title>
+<meta name="description" content="Non-partisan guide to all 90 candidates in the 2026 Richmond BC municipal election: mayor, council and school trustee, with available polling and slate details.">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0B0F14;
+  --panel: #121923;
+  --panel2: #18212E;
+  --line: #22303F;
+  --text: #E6EDF5;
+  --muted: #8CA0B5;
+  --accent: #FF6B35;
+  --accent2: #FFD166;
+  --blue: #4DA3FF;
+  --green: #34D399;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+header { position: sticky; top: 0; z-index: 50; background: rgba(11,15,20,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav { display: flex; align-items: center; gap: 18px; padding: 12px 0; flex-wrap: wrap; }
+.brand { font-weight: 900; letter-spacing: 1.5px; font-size: 14px; color: #fff; }
+.brand span { color: var(--accent); }
+.nav a { color: var(--muted); font-size: 13px; font-weight: 600; }
+.nav a:hover { color: var(--text); text-decoration: none; }
+
+.hero { padding: 44px 0 28px; border-bottom: 1px solid var(--line); }
+.hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 900; letter-spacing: -0.5px; }
+.hero h1 em { color: var(--accent); font-style: normal; }
+.hero p { color: var(--muted); margin-top: 10px; max-width: 760px; font-size: 15px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 24px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.stat b { display: block; font-size: 26px; font-weight: 900; color: var(--accent2); }
+.stat span { font-size: 11px; letter-spacing: 1.2px; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+
+section { padding: 34px 0; border-bottom: 1px solid var(--line); }
+h2 { font-size: 22px; font-weight: 900; letter-spacing: .3px; margin-bottom: 6px; }
+h2 .n { color: var(--accent); }
+.sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; max-width: 820px; }
+
+.callout { background: #1A1508; border: 1px solid #3D3211; border-left: 3px solid var(--accent2); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: #E8DCC0; margin: 16px 0; }
+.callout b { color: var(--accent2); }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; }
+td.num { font-weight: 800; color: var(--accent2); white-space: nowrap; }
+.bar { height: 8px; background: var(--panel2); border-radius: 4px; overflow: hidden; min-width: 90px; }
+.bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; position: relative; }
+.card.rank::before { content: attr(data-rank); position: absolute; top: -10px; left: 16px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: 1px; padding: 3px 9px; border-radius: 20px; }
+.card h3 { font-size: 18px; font-weight: 900; margin-bottom: 2px; }
+.slate { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; background: var(--panel2); color: var(--accent2); border: 1px solid var(--line); margin: 6px 0 10px; }
+.slate.none { color: var(--muted); }
+.desc { font-size: 13.5px; color: #C3D0DE; }
+.poll { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 12.5px; color: var(--muted); }
+.poll b { color: var(--accent2); font-size: 15px; }
+.links { margin-top: 10px; font-size: 12.5px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.group { margin-bottom: 26px; }
+.group-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.group-head h3 { font-size: 17px; font-weight: 900; }
+.group-head .pct { font-size: 13px; color: var(--accent2); font-weight: 800; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 13.5px; }
+.chip b { display: block; font-weight: 800; }
+.chip span { font-size: 11.5px; color: var(--muted); }
+
+.search { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.search input { flex: 1; min-width: 220px; background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 11px 14px; border-radius: 10px; font-size: 14px; }
+.search input:focus { outline: none; border-color: var(--accent); }
+.search select { background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 11px 12px; border-radius: 10px; font-size: 14px; }
+
+.mini { columns: 2; column-gap: 18px; font-size: 13.5px; }
+@media (max-width: 640px) { .mini { columns: 1; } }
+.mini div { break-inside: avoid; padding: 5px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+.mini span { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+
+footer { padding: 30px 0 50px; color: var(--muted); font-size: 12.5px; }
+footer a { color: var(--muted); text-decoration: underline; }
+.hide { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">RICHMOND <span>2026</span></div>
+    <a href="#polling">Polling</a>
+    <a href="#mayor">Mayor</a>
+    <a href="#council">Council</a>
+    <a href="#trustee">Trustee</a>
+    <a href="#dates">Key dates</a>
+    <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">Official list</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Richmond, BC — <em>2026 Election</em> Guide</h1>
+    <p>A non-partisan, source-linked ranking of all 90 candidates running in the municipal election on Saturday, October 17, 2026. Ranked by available public polling where it exists; grouped by elector organization (slate) everywhere else. Candidates are not endorsed or opposed here.</p>
+    <div class="stats">
+      <div class="stat"><b>Oct 17</b><span>General voting day</span></div>
+      <div class="stat"><b>90</b><span>Total candidates</span></div>
+      <div class="stat"><b>7 / 55 / 28</b><span>Mayor / Council / Trustee</span></div>
+      <div class="stat"><b>1 / 8 / 7</b><span>Seats elected</span></div>
+      <div class="stat"><b>25+</b><span>First open mayoral race</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section id="polling">
+  <h2><span class="n">01</span> — Polling &amp; rankings</h2>
+  <p class="sub">There is exactly <b>one published scientific poll</b> for this race, and it comes with major caveats. It is shown below because it is the only polling data that exists — not because it is a forecast.</p>
+
+  <div class="callout">
+    <b>Read this first.</b> The Pallas Data poll (fielded June 24–28, 2026; published July 15) was <b>commissioned by the Conservative Electors Association</b>, a participant in this election, and ran <b>before nominations closed on September 11</b>. It therefore does not describe the final ballot. Almost half the sample (48.4%) was undecided — a larger share than any candidate received. Margin of error ±5.6 pts (95% CI), n=304.
+  </div>
+
+  <h3 style="font-size:15px;margin-bottom:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Mayoral voting intention — Pallas Data, June 2026</h3>
+  <table>
+    <thead><tr><th>#</th><th>Candidate</th><th>Support</th><th style="width:34%"></th><th>Status on final ballot</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>Kash Heed</b></td><td class="num">20.0%</td><td><div class="bar"><i style="width:100%"></i></div></td><td>Mayor candidate</td></tr>
+      <tr><td>2</td><td>Sheldon Starrett</td><td class="num">11.3%</td><td><div class="bar"><i style="width:56.5%"></i></div></td><td style="color:var(--accent2)">⚠ Running for <b>Council</b>, not mayor</td></tr>
+      <tr><td>3</td><td><b>Alexa Loo</b></td><td class="num">8.5%</td><td><div class="bar"><i style="width:42.5%"></i></div></td><td>Mayor candidate</td></tr>
+      <tr><td>4</td><td><b>Rob Howard</b></td><td class="num">5.9%</td><td><div class="bar"><i style="width:29.5%"></i></div></td><td>Mayor candidate</td></tr>
+      <tr><td>5</td><td><b>Mei Kang</b></td><td class="num">4.3%</td><td><div class="bar"><i style="width:21.5%"></i></div></td><td>Mayor candidate</td></tr>
+      <tr><td>6</td><td><b>Dickens Cheung</b></td><td class="num">1.6%</td><td><div class="bar"><i style="width:8%"></i></div></td><td>Mayor candidate</td></tr>
+      <tr><td>—</td><td>Undecided</td><td class="num" style="color:#94A3B8">48.4%</td><td><div class="bar"><i style="width:100%;background:#334155"></i></div></td><td style="color:var(--muted)">Largest single group</td></tr>
+      <tr><td>—</td><td>Dennet "The Cat Guy" Lee</td><td class="num" style="color:var(--muted)">not polled</td><td></td><td>Filed after the poll</td></tr>
+      <tr><td>—</td><td>Goldentiger King</td><td class="num" style="color:var(--muted)">not polled</td><td></td><td>Filed after the poll</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:22px">
+    <b>Second data point:</b> the prediction market <a href="https://polymarket.com/event/richmond-mayoral-election-2026">Polymarket</a> had <b>Rob Howard at 56%</b> to win — the inverse ordering of the Pallas poll. Two sources, opposite leaders, both with limited samples. Treat every number here as context, not prediction.
+  </div>
+
+  <h3 style="font-size:15px;margin:26px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Council slate support — same poll</h3>
+  <table>
+    <thead><tr><th>Elector organization</th><th>Support</th><th style="width:40%"></th><th>Candidates running</th></tr></thead>
+    <tbody>
+      <tr><td><b>Conservative</b></td><td class="num">16.8%</td><td><div class="bar"><i style="width:100%"></i></div></td><td>5</td></tr>
+      <tr><td><b>RITE Richmond</b></td><td class="num">6.5%</td><td><div class="bar"><i style="width:38.7%"></i></div></td><td>4</td></tr>
+      <tr><td><b>Richmond Citizens (RCA)</b></td><td class="num">3.9%</td><td><div class="bar"><i style="width:23.2%"></i></div></td><td>5</td></tr>
+      <tr><td><b>Richmond Forward</b></td><td class="num">3.1%</td><td><div class="bar"><i style="width:18.5%"></i></div></td><td>5</td></tr>
+      <tr><td><b>Advance Richmond</b></td><td class="num">2.8%</td><td><div class="bar"><i style="width:16.7%"></i></div></td><td>7</td></tr>
+      <tr><td><b>We Are Richmond</b></td><td class="num">1.7%</td><td><div class="bar"><i style="width:10.1%"></i></div></td><td>5</td></tr>
+      <tr><td><b>Richmond Strong</b></td><td class="num">1.6%</td><td><div class="bar"><i style="width:9.5%"></i></div></td><td>3</td></tr>
+      <tr><td>Undecided / no preference</td><td class="num" style="color:#94A3B8">63.1%</td><td><div class="bar"><i style="width:100%;background:#334155"></i></div></td><td>—</td></tr>
+      <tr><td style="color:var(--muted)">Not asked (Common Sense, Richmond United, ONE, Action Richmond, 14 independents)</td><td class="num" style="color:var(--muted)">—</td><td></td><td style="color:var(--muted)">21</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="mayor">
+  <h2><span class="n">02</span> — Candidates for Mayor</h2>
+  <p class="sub">1 to be elected. 7 candidates on the final ballot. Ranked by the only published poll; unpolled candidates listed last in declaration order. Long-time Mayor Malcolm Brodie (in office since 2001) is not seeking re-election.</p>
+
+  <div class="cards" id="mayor-cards">
+    <div class="card rank" data-rank="POLL #1" data-name="kash heed 希德" data-slate="independent">
+      <h3>Kash Heed</h3>
+      <div class="slate none">No elector organization</div>
+      <p class="desc">City councillor and former BC Solicitor General. Campaign centres on public safety, community policing and "accountable leadership." Chinese campaign name: 希德.</p>
+      <div class="poll">Pallas (June): <b>20%</b> — highest of any candidate</div>
+      <div class="links"><a href="https://kashheed2026.com">Campaign</a><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=78">City profile</a></div>
+    </div>
+
+    <div class="card rank" data-rank="POLL #2" data-name="alexa loo 盧仙泳" data-slate="richmond strong">
+      <h3>Alexa Loo</h3>
+      <div class="slate">Richmond Strong</div>
+      <p class="desc">Sitting councillor (12 years), two-time Olympian. Raised in Richmond, running on continuity and experience. Chinese campaign name: 盧仙泳. Leads the Richmond Strong slate.</p>
+      <div class="poll">Pallas (June): <b>8.5%</b></div>
+      <div class="links"><a href="https://richmondstrong.ca">Campaign</a><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=69">City profile</a></div>
+    </div>
+
+    <div class="card rank" data-rank="POLL #3" data-name="rob howard" data-slate="richmond forward">
+      <h3>Rob Howard</h3>
+      <div class="slate">Richmond Forward</div>
+      <p class="desc">Former Richmond councillor and MLA. Born and raised in Richmond; 19 years in finance, 25 years building seniors' homes. Leads the Richmond Forward slate.</p>
+      <div class="poll">Pallas (June): <b>5.9%</b> · Polymarket: <b>56% to win</b></div>
+      <div class="links"><a href="https://robhowardformayor.ca">Campaign</a><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=54">City profile</a></div>
+    </div>
+
+    <div class="card rank" data-rank="POLL #4" data-name="mei kang" data-slate="action richmond">
+      <h3>Mei Kang</h3>
+      <div class="slate">Action Richmond</div>
+      <p class="desc">Local child-care business owner. Campaign focused on affordability for young families and seniors, safety, and giving every resident a voice.</p>
+      <div class="poll">Pallas (June): <b>4.3%</b></div>
+      <div class="links"><a href="https://happymayor.ca">Campaign</a><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=66">City profile</a></div>
+    </div>
+
+    <div class="card rank" data-rank="POLL #5" data-name="dickens cheung" data-slate="we are richmond">
+      <h3>Dickens Cheung</h3>
+      <div class="slate">We Are Richmond</div>
+      <p class="desc">UBC Sauder School of Business (Finance); 15 years leading a local herbal-tea manufacturing operation. Business leader and community advocate; ran as an independent in the 2024 provincial election.</p>
+      <div class="poll">Pallas (June): <b>1.6%</b></div>
+      <div class="links"><a href="https://wearerichmond.ca">Campaign</a><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=65">City profile</a></div>
+    </div>
+
+    <div class="card" data-name="dennet the cat guy lee" data-slate="independent">
+      <h3>Dennet "The Cat Guy" Lee</h3>
+      <div class="slate none">No elector organization</div>
+      <p class="desc">Independent, declared September 11, 2026. Runs on listening over debating: "Richmond needs for Richmond to win, not a candidate… Debates decide divisions. Conversations create connections."</p>
+      <div class="poll">Not included in the June poll (filed later)</div>
+      <div class="links"><a href="https://dennetlee.com">Campaign</a><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=87">City profile</a></div>
+    </div>
+
+    <div class="card" data-name="goldentiger king" data-slate="independent">
+      <h3>Goldentiger King</h3>
+      <div class="slate none">No elector organization</div>
+      <p class="desc">Former TV series director, comedy-show host, model, actor, writer and entrepreneur. Positions himself as bringing creativity, business experience and fresh ideas.</p>
+      <div class="poll">Not included in the June poll (filed later)</div>
+      <div class="links"><a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City profile</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="council">
+  <h2><span class="n">03</span> — Candidates for City Council</h2>
+  <p class="sub"><b>8 to be elected, at large</b> (city-wide, no wards). You may mark up to 8 names on one ballot — a slate is not a single "vote for all." 55 candidates. Grouped by elector organization, ordered by that slate's poll result where one exists; note the poll asked about slates, not individuals.</p>
+
+  <div class="search">
+    <input type="text" id="q" placeholder="Search 55 council candidates by name or slate…">
+    <select id="f">
+      <option value="">All slates</option>
+      <option>Conservative</option>
+      <option>RITE Richmond</option>
+      <option>Richmond Citizens (RCA)</option>
+      <option>Richmond Forward</option>
+      <option>Advance Richmond</option>
+      <option>We Are Richmond</option>
+      <option>Richmond Strong</option>
+      <option>Common Sense</option>
+      <option>Richmond United</option>
+      <option>Action Richmond</option>
+      <option>ONE Richmond</option>
+      <option>No elector organization</option>
+    </select>
+  </div>
+
+  <div id="council-list">
+
+    <div class="group" data-slate="Conservative">
+      <div class="group-head"><h3>Conservative</h3><span class="pct">16.8% slate support (poll)</span></div>
+      <div class="chips">
+        <div class="chip" data-name="dale bains"><b>Dale Bains</b><span>Richmond since 1986; ex-trucking owner, heavy-duty mechanic</span></div>
+        <div class="chip" data-name="oday brahem"><b>Oday Brahem</b><span>Tech founder, former CAF reservist</span></div>
+        <div class="chip" data-name="adam dobrer"><b>Adam Dobrer</b><span>Community organizer / comms; UBC Poli Sci</span></div>
+        <div class="chip" data-name="lisa phillips"><b>Lisa Phillips</b><span>Finance professional, business owner; BSc Math UBC</span></div>
+        <div class="chip" data-name="alex sagert"><b>Alex Sagert</b><span>Born and raised in Steveston, 30+ years</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="RITE Richmond">
+      <div class="group-head"><h3>RITE Richmond</h3><span class="pct">6.5% slate support (poll)</span></div>
+      <div class="chips">
+        <div class="chip" data-name="carol day 戴嘉露"><b>Carol Day</b><span>Councillor 12 yrs + 3 yrs trustee (incumbent)</span></div>
+        <div class="chip" data-name="jerome dickey 狄志傑"><b>Jerome Dickey</b><span>"Steady leadership"; ran in 2022 (8,797 votes)</span></div>
+        <div class="chip" data-name="laura gillanders 羅吉蘭"><b>Laura Gillanders</b><span>Incumbent councillor since 2022</span></div>
+        <div class="chip" data-name="michael wolfe 沃爾夫"><b>Michael Wolfe</b><span>Incumbent councillor, lifelong Richmond resident</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Richmond Citizens (RCA)">
+      <div class="group-head"><h3>Richmond Citizens' Association (RCA)</h3><span class="pct">3.9% slate support (poll)</span><span style="font-size:12px;color:var(--muted)">Centre-left; the slate founded by the late Harold Steves</span></div>
+      <div class="chips">
+        <div class="chip" data-name="alton cheung"><b>Alton Cheung</b><span>City fitness instructor, CUPE 718 union rep</span></div>
+        <div class="chip" data-name="vincent li"><b>Vincent Li</b><span>Chinese-speaking business lawyer</span></div>
+        <div class="chip" data-name="keefer pelech"><b>Keefer Pelech</b><span>Housing affordability focus; ran 2022 (5,993)</span></div>
+        <div class="chip" data-name="tamas revóczi revoczi"><b>Tamás Revóczi</b><span>Resilience / sustainability; former BC Green candidate</span></div>
+        <div class="chip" data-name="milly yee"><b>Milly Yee</b><span>Lifelong Richmond resident, parent, public worker</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Richmond Forward">
+      <div class="group-head"><h3>Richmond Forward</h3><span class="pct">3.1% slate support (poll)</span></div>
+      <div class="chips">
+        <div class="chip" data-name="romeo bicego"><b>Romeo Bicego</b><span>Lifelong Richmond resident, grandfather of three</span></div>
+        <div class="chip" data-name="howard jampolsky"><b>Howard Jampolsky</b><span>YVR Airport Authority board, 9 years; business builder</span></div>
+        <div class="chip" data-name="shelley leonhardt"><b>Shelley Leonhardt</b><span>25+ yrs in private and not-for-profit sectors</span></div>
+        <div class="chip" data-name="eric yung"><b>Eric Yung</b><span>Ex-school trustee &amp; Board chair; Insurance Council of BC chair</span></div>
+        <div class="chip" data-name="melissa zhang"><b>Melissa Zhang</b><span>20+ years in Richmond; ran in 2022</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Advance Richmond">
+      <div class="group-head"><h3>Advance Richmond</h3><span class="pct">2.8% slate support (poll)</span></div>
+      <div class="chips">
+        <div class="chip" data-name="kevin lai 賴彥宏"><b>Kevin Lai</b><span>General contractor; founded Advance Richmond</span></div>
+        <div class="chip" data-name="gary law"><b>Gary Law</b><span>Long-serving RCMP officer; public safety platform</span></div>
+        <div class="chip" data-name="wallace pong"><b>Wallace Pong</b><span>International businessman, UT Austin grad</span></div>
+        <div class="chip" data-name="sheldon starrett 謝言信"><b>Sheldon Starrett</b><span>Born at Richmond Hospital; polled 11.3% for <i>mayor</i> in June, filed for council</span></div>
+        <div class="chip" data-name="grace tsang"><b>Grace Tsang</b><span>Certified Financial Planner, former school trustee</span></div>
+        <div class="chip" data-name="jizhou william wang"><b>Jizhou (William) Wang</b><span>Richmond family since 2012</span></div>
+        <div class="chip" data-name="sam wang"><b>Sam Wang</b><span>CPA, corporate financial executive</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="We Are Richmond">
+      <div class="group-head"><h3>We Are Richmond</h3><span class="pct">1.7% slate support (poll)</span></div>
+      <div class="chips">
+        <div class="chip" data-name="jack chen"><b>Jack Chen</b><span>Fellow of Engineers Canada, P.Eng, Professional Quantity Surveyor</span></div>
+        <div class="chip" data-name="michael lok"><b>Michael Lok</b><span>Community advocate; accredited martial arts instructor, 30+ yrs</span></div>
+        <div class="chip" data-name="jenny gonzales mata"><b>Jenny Gonzales Mata</b><span>Raised in Richmond; community commitment</span></div>
+        <div class="chip" data-name="antonio tony ortega"><b>Antonio "Tony" Ortega</b><span>Diversity and unity platform</span></div>
+        <div class="chip" data-name="adnan sarwar"><b>Adnan Sarwar</b><span>Opportunity, affordability, safety</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Richmond Strong">
+      <div class="group-head"><h3>Richmond Strong</h3><span class="pct">1.6% slate support (poll)</span><span style="font-size:12px;color:var(--muted)">Alexa Loo's slate</span></div>
+      <div class="chips">
+        <div class="chip" data-name="bob basanti"><b>Bob Basanti</b><span>Richmond since 2001; raised three children here</span></div>
+        <div class="chip" data-name="jeff jiang"><b>Jeff Jiang</b><span>Mechanical engineer; 20+ years building a Richmond business</span></div>
+        <div class="chip" data-name="karen novorr pezzuto"><b>Karen Novorr-Pezzuto</b><span>Practising lawyer; treasurer, Minoru Seniors Society</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Common Sense">
+      <div class="group-head"><h3>Common Sense</h3><span style="font-size:12px;color:var(--muted)">Not included in the June poll's slate question</span></div>
+      <div class="chips">
+        <div class="chip" data-name="kenny chiu"><b>Kenny Chiu</b><span>Software engineer, management experience</span></div>
+        <div class="chip" data-name="thomas leung"><b>Thomas Leung</b><span>30+ years in Richmond; Master of Social Work (HK immigrant)</span></div>
+        <div class="chip" data-name="glenda strang"><b>Glenda Strang</b><span>20 years serving Richmond</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Richmond United">
+      <div class="group-head"><h3>Richmond United</h3></div>
+      <div class="chips">
+        <div class="chip" data-name="mike gill"><b>Dr. Mike Gill</b><span>Optometrist, 13 years serving Richmond</span></div>
+        <div class="chip" data-name="andy hobbs"><b>Andy Hobbs</b><span>Retired VPD Superintendent, 35+ yrs; ex-Transit Police Chief (incumbent)</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="Action Richmond">
+      <div class="group-head"><h3>Action Richmond</h3><span style="font-size:12px;color:var(--muted)">Mei Kang's slate</span></div>
+      <div class="chips">
+        <div class="chip" data-name="edward he"><b>Edward He</b><span>Richmond resident over 30 years</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="ONE Richmond">
+      <div class="group-head"><h3>ONE Richmond</h3></div>
+      <div class="chips">
+        <div class="chip" data-name="kevin lainchbury"><b>Kevin Lainchbury</b><span>Accountability and community safety focus</span></div>
+      </div>
+    </div>
+
+    <div class="group" data-slate="No elector organization">
+      <div class="group-head"><h3>Independents (14)</h3><span style="font-size:12px;color:var(--muted)">No elector organization</span></div>
+      <div class="chips">
+        <div class="chip" data-name="adil awan"><b>Adil Awan</b><span>Air transport pilot at YVR; in Richmond since 1974</span></div>
+        <div class="chip" data-name="mario cruz"><b>Mario Cruz</b><span>Realtor, community advocate</span></div>
+        <div class="chip" data-name="jessy dhillon"><b>Jessy Dhillon</b><span>Lifelong resident, youth advocate</span></div>
+        <div class="chip" data-name="tim fan"><b>Tim Fan</b><span>From Hong Kong in the 1990s; volunteering focus</span></div>
+        <div class="chip" data-name="donald flintoff"><b>Donald Flintoff</b><span>Former professional engineer and regulator</span></div>
+        <div class="chip" data-name="louis huang"><b>Louis Huang</b><span>Independent; integrity and practical leadership</span></div>
+        <div class="chip" data-name="milan kljajic"><b>Milan Kljajic</b><span>Non-profit housing manager</span></div>
+        <div class="chip" data-name="alan lackstein"><b>Alan Lackstein</b><span>25+ years in Richmond</span></div>
+        <div class="chip" data-name="pak hing ben lee"><b>Pak Hing (Ben) Lee</b><span>Chemical engineer, MSc &amp; PhD (HK / Taiwan)</span></div>
+        <div class="chip" data-name="andrew mrozowski"><b>Andrew Mrozowski</b><span>Parent, volunteer, business professional</span></div>
+        <div class="chip" data-name="dennis page"><b>Dennis Page</b><span>Anti far-left / anti identity-politics platform</span></div>
+        <div class="chip" data-name="hong yan melody pan"><b>Hong Yan Melody Pan</b><span>Registered Nurse, 26+ years working in Richmond</span></div>
+        <div class="chip" data-name="daniel tsang"><b>Daniel Tsang</b><span>In Richmond since age one</span></div>
+        <div class="chip" data-name="andy z wang"><b>Andy Z. Wang</b><span>From Taiwan; cultural diversity platform</span></div>
+      </div>
+    </div>
+
+  </div>
+  <p id="noresults" class="hide" style="color:var(--accent2);font-weight:700;padding:12px 0">No candidates match that search.</p>
+</section>
+
+<section id="trustee">
+  <h2><span class="n">04</span> — Candidates for School Trustee</h2>
+  <p class="sub">7 to be elected to the School District 38 board. 28 candidates. Four organized slates plus 14 independents.</p>
+
+  <div class="group">
+    <div class="group-head"><h3>Advance Richmond</h3><span style="font-size:12px;color:var(--muted)">6 candidates</span></div>
+    <div class="chips">
+      <div class="chip"><b>Rod Belleza</b><span>Third-term trustee; practised law in the Philippines</span></div>
+      <div class="chip"><b>Dean Billings</b><span>BBA/MBA; 19 yrs leading public-sector change</span></div>
+      <div class="chip"><b>Danny Chang</b><span>Richmond parent, import/wholesale business director</span></div>
+      <div class="chip"><b>Willy Sinconegue</b><span>Finance professional, 47 years; CPA (PH)</span></div>
+      <div class="chip"><b>Phyllis Tang</b><span>Grad studies in Ethnomusicology; non-profit finance</span></div>
+      <div class="chip"><b>Sophia Woo</b><span>MSW, mental-health clinician, former VSB trustee</span></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><h3>Richmond Education Party</h3><span style="font-size:12px;color:var(--muted)">4 candidates</span></div>
+    <div class="chips">
+      <div class="chip"><b>Ken Hamaguchi</b><span>Seeking a 4th term; career educator</span></div>
+      <div class="chip"><b>Heather Larson</b><span>Trustee since 2018, re-elected 2022</span></div>
+      <div class="chip"><b>Martin Li</b><span>Longtime Richmond resident, grew up here</span></div>
+      <div class="chip"><b>Bill Mok</b><span>Anglican priest, parent, former engineer (莫雨晴)</span></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><h3>Empower Education Richmond</h3><span style="font-size:12px;color:var(--muted)">3 candidates</span></div>
+    <div class="chips">
+      <div class="chip"><b>Sandra Nixon</b><span>United Church minister; former trustee (冼妮信)</span></div>
+      <div class="chip"><b>Debbie Tablotney</b><span>Trustee since 2002, 35+ yrs volunteering (戴寶妮)</span></div>
+      <div class="chip"><b>David Yang</b><span>Incumbent, 4 years' service (楊兆博)</span></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><h3>Common Sense</h3></div>
+    <div class="chips"><div class="chip"><b>Alice Wong</b><span>Community volunteer, parent advocate, education leader</span></div></div>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><h3>Independents</h3><span style="font-size:12px;color:var(--muted)">14 candidates</span></div>
+    <div class="mini">
+      <div>Hongyun Chen <span>20+ yrs in education &amp; publishing</span></div>
+      <div>Lawrence Chen <span>MBA, Univ. of Technology Sydney</span></div>
+      <div>Calvin Dang <span>25 yrs in Canada; U of Manitoba grad</span></div>
+      <div>Kiana Dashtbazi <span>Single parent of a neurodivergent child</span></div>
+      <div>Kay Hale <span>In Richmond since 1984; MBA (UK)</span></div>
+      <div>Aithan Kang <span>BBA Accounting student</span></div>
+      <div>Ausha Kang <span>Lifelong Richmond resident &amp; grad</span></div>
+      <div>Vivien Lee <span>Mother of three, K–12 navigation</span></div>
+      <div>Stefan Mladenovic <span>Lifelong Richmond resident</span></div>
+      <div>Jordan Oye <span>K–12 Richmond schools product</span></div>
+      <div>Helen Quan <span>33 years in Richmond</span></div>
+      <div>Donna Sargent <span>Long-serving trustee, results-driven</span></div>
+      <div>Nancy Williams <span>34 yrs; parent, CO-OP board, union VP</span></div>
+      <div>John Zhang <span>Entrepreneur, educator, founded language school</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="dates">
+  <h2><span class="n">05</span> — Key dates &amp; how to vote</h2>
+  <p class="sub">Richmond elects at large: every voter city-wide picks the same candidates. The ballot is double-sided — review and complete <b>both sides</b>.</p>
+  <table>
+    <tbody>
+      <tr><td class="num">Sep 1–11</td><td>Nomination period</td></tr>
+      <tr><td class="num">Sep 18</td><td>Candidate withdrawal deadline</td></tr>
+      <tr><td class="num">Oct 3</td><td>Advance voting</td></tr>
+      <tr><td class="num">Oct 7</td><td>Advance voting</td></tr>
+      <tr><td class="num">Oct 8</td><td>Advance voting</td></tr>
+      <tr><td class="num">Oct 9</td><td>Advance voting</td></tr>
+      <tr><td class="num">Oct 10</td><td>Advance voting</td></tr>
+      <tr><td class="num" style="color:var(--accent)">Oct 17</td><td><b>General voting day</b> — 1 mayor, 8 councillors, 7 trustees</td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:18px">
+    <b>Also on the ballot this fall:</b> a separate <b>BC provincial election</b> was called September 22, 2026, with voting day <b>October 24, 2026</b>, electing Richmond's four MLAs (Richmond Centre, Richmond-Bridgeport, Richmond-Queensborough, Richmond-Steveston).
+  </div>
+  <div class="links" style="margin-top:16px">
+    <a href="https://richmond.ca/city-hall/elections.htm">Official City elections page</a>
+    <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">Full candidate list &amp; profiles</a>
+    <a href="https://richmond.ca/electionservices/candidates/">Voter's Guide (PDF, 5 languages)</a>
+    <a href="https://smartrichmond.ca/richmond-where-to-vote-2026">Where to vote</a>
+  </div>
+</section>
+
+<footer>
+  <p><b>Sources:</b> <a href="https://richmond.ca/city-hall/elections/candidateslist.htm">City of Richmond final candidate list</a> (post–Sep 18 withdrawals) · <a href="https://www.richmond.ca/__shared/assets/Declaration_of_Candidates_-_2026_Election79709.pdf">Declaration of Candidates</a> · <a href="https://pallas-data.ca/2026/07/15/pallas-richmond-poll-heed-20-starrett-11-loo-9-and-half-the-city-still-undecided/">Pallas Data poll, July 15 2026</a> · <a href="https://polymarket.com/event/richmond-mayoral-election-2026">Polymarket</a> · <a href="https://smartrichmond.ca/richmond-election-candidates-2026">Smart Richmond candidate guide</a> · <a href="https://www.richmond-news.com/2026-civic-election">Richmond News</a>.</p>
+  <p style="margin-top:8px">Independent voter information page. Not affiliated with the City of Richmond, any candidate, slate or elector organization. Candidate statements are quoted from filings, not verified or endorsed. Poll figures are shown with their published methodological limitations — no poll on this page is a prediction. Last updated October 8, 2026.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('q');
+  var f = document.getElementById('f');
+  var groups = Array.prototype.slice.call(document.querySelectorAll('#council-list .group'));
+  var none = document.getElementById('noresults');
+
+  function apply() {
+    var term = (q.value || '').toLowerCase().trim();
+    var slate = f.value;
+    var visible = 0;
+
+    groups.forEach(function (g) {
+      var slateOk = !slate || g.getAttribute('data-slate') === slate;
+      var chips = g.querySelectorAll('.chip');
+      var shown = 0;
+      chips.forEach(function (c) {
+        var hay = (c.getAttribute('data-name') || c.textContent).toLowerCase();
+        var ok = slateOk && (!term || hay.indexOf(term) !== -1);
+        c.classList.toggle('hide', !ok);
+        if (ok) shown++;
+      });
+      g.classList.toggle('hide', !slateOk || shown === 0);
+      visible += shown;
+    });
+    none.classList.toggle('hide', visible > 0);
+  }
+
+  q.addEventListener('input', apply);
+  f.addEventListener('change', apply);
+})();
+</script>
+
+</body>
+</html>
