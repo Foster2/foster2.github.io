@@ -86,6 +86,16 @@ td.num { font-weight: 800; color: var(--accent2); white-space: nowrap; }
 .mini div { break-inside: avoid; padding: 5px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
 .mini span { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
 
+.tablescroll { overflow-x: auto; }
+table.cmp { min-width: 980px; font-size: 13px; }
+table.cmp th, table.cmp td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 12px; }
+table.cmp td.name { min-width: 130px; }
+table.cmp td.name b { font-size: 15px; display: block; }
+table.cmp td.name span { font-size: 11px; color: var(--muted); }
+table.cmp td { color: #C3D0DE; line-height: 1.5; }
+table.cmp tr:nth-child(even) td { background: rgba(24,33,46,.5); }
+.notstated { color: var(--muted); font-style: italic; }
+
 footer { padding: 30px 0 50px; color: var(--muted); font-size: 12.5px; }
 footer a { color: var(--muted); text-decoration: underline; }
 .hide { display: none !important; }
@@ -98,6 +108,7 @@ footer a { color: var(--muted); text-decoration: underline; }
     <div class="brand">RICHMOND <span>2026</span></div>
     <a href="#polling">Polling</a>
     <a href="#mayor">Mayor</a>
+    <a href="#compare">Compare</a>
     <a href="#council">Council</a>
     <a href="#trustee">Trustee</a>
     <a href="#dates">Key dates</a>
@@ -229,8 +240,100 @@ footer a { color: var(--muted); text-decoration: underline; }
   </div>
 </section>
 
+<section id="compare">
+  <h2><span class="n">03</span> — Side-by-side: the 7 mayoral candidates</h2>
+  <p class="sub">Same six fields for every candidate, drawn only from campaign websites, City-filed candidate statements and sourced public records. Scroll horizontally on small screens.</p>
+
+  <div class="callout">
+    <b>How the "self-stated background" column works.</b> It shows only what candidates <b>themselves</b> publish — a campaign-published Chinese name, a stated birthplace, an own-words biography. Nothing here is inferred from a surname, a photo or a third party's description. Where a candidate has not publicly stated a background, the cell says <span class="notstated">"not publicly stated"</span> rather than guessing.
+  </div>
+
+  <div class="tablescroll">
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Self-stated background</th>
+        <th>Residency</th>
+        <th>Background summary</th>
+        <th>Education / professional</th>
+        <th>Stated values</th>
+        <th>Website / platform highlights</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name"><b>Kash Heed</b><span>No elector organization</span></td>
+        <td><span class="notstated">Not publicly stated.</span> Campaign publishes the Chinese name <b>希德</b>.</td>
+        <td><span class="notstated">Not publicly stated.</span> Elected to Richmond City Council in 2022 (10,563 votes, 30.1%).</td>
+        <td>40+ years in policing, government and local leadership. Vancouver Police (1979 onward, rose to Superintendent, ran the drug unit); West Vancouver Police Chief 2007–Feb 2009; BC Liberal MLA for Vancouver-Fraserview 2009–13; drug-policy consulting after 2013; Richmond councillor since 2022.</td>
+        <td>Police leadership track record (Superintendent, police chief); former provincial cabinet minister and consultant. Degree not publicly stated.</td>
+        <td>"If a decision does not benefit seniors, students, or working families, it won't be made." Public safety, community policing, transparent and accountable government.</td>
+        <td><a href="https://kashheed2026.com">kashheed2026.com</a> — slogan "Sensible Change, &amp; Hope." Site features a council-motion disclosure tracker, opinion pieces and media releases.</td>
+      </tr>
+      <tr>
+        <td class="name"><b>Alexa Loo</b><span>Richmond Strong</span></td>
+        <td><span class="notstated">Not publicly stated.</span> Campaign publishes the Chinese name <b>盧仙泳</b>.</td>
+        <td>"Born here. Raised here. Leading here." Grew up in Richmond, raising her family there; on Council since 2014 (12 years).</td>
+        <td>Two-time Canadian Olympic snowboarder (2006, 2010); chartered accountant; sitting city councillor for 12 years; leads the Richmond Strong slate (Basanti, Jiang, Novorr-Pezzuto).</td>
+        <td>CPA, CA, CFA; Olympic athlete (OLY). Degree not publicly stated.</td>
+        <td>"I love Richmond… it is the city that I grew up in, where I am raising my family." Continuity, experience, and a city "where every voice is heard and every neighbourhood feels supported."</td>
+        <td><a href="https://richmondstrong.ca">richmondstrong.ca</a> — the S-T-R-O-N-G platform: <b>S</b>afety, <b>T</b>ransparency &amp; Trust, <b>R</b>esponsible development, <b>O</b>versight &amp; fiscal opportunities, <b>N</b>ew tech &amp; neighbourhoods, <b>G</b>rowth for generations.</td>
+      </tr>
+      <tr>
+        <td class="name"><b>Rob Howard</b><span>Richmond Forward</span></td>
+        <td><span class="notstated">Not publicly stated.</span></td>
+        <td>Born and raised in Richmond; built his career, businesses and family here.</td>
+        <td>Seven years on Richmond council (chaired Finance and Public Transportation; driving force behind the Canada Line); MLA for Richmond Centre (Parliamentary Secretary for Transportation; chaired the Select Standing Committee on Finance); ~20 years at Richmond Savings Credit Union; 25+ years self-employed building seniors' housing; former President of Tourism Richmond and co-chair of the Richmond Christmas Fund. Endorsed by outgoing Mayor Malcolm Brodie.</td>
+        <td>Finance-sector career; professional development courses at UBC and AMI (per endorsement). Degree not publicly stated.</td>
+        <td>"If it doesn't strengthen families, support seniors, grow local jobs, or respect taxpayers, we won't do it." Fiscal discipline, safer streets, and encampments addressed "with certainty and compassion."</td>
+        <td><a href="https://robhowardformayor.ca">robhowardformayor.ca</a> — five pillars spelled <b>S.H.A.P.E.</b>: stronger economy, safer streets &amp; public spaces, support families &amp; seniors, fiscal accountability, future waterfronts; plus community advisory panels.</td>
+      </tr>
+      <tr>
+        <td class="name"><b>Mei Kang</b><span>Action Richmond</span></td>
+        <td><span class="notstated">Not publicly stated.</span> Campaign publishes extensive Chinese-language and Chinese-media coverage.</td>
+        <td>Richmond resident for nearly 30 years; built her businesses and raised her family here.</td>
+        <td>Educator, entrepreneur and community worker. Entrepreneur since 1991; founder of three businesses; founder and owner of the Happy May Education Centre; 20+ years serving Richmond families, supporting 2,000+ local children and families; member of the Richmond Child Development Advisory Committee.</td>
+        <td>Professional background in education and small business. Degree not publicly stated.</td>
+        <td>"Practical leadership, strong community engagement, and a clear vision for the future." A city that is safer, greener, more connected and economically stronger for the next generation.</td>
+        <td><a href="https://happymayor.ca">happymayor.ca</a> — priorities: Safety First, Family &amp; Community, Transparent Government, Economic Growth, Unity &amp; Action, Every Generation, Food &amp; Tourism.</td>
+      </tr>
+      <tr>
+        <td class="name"><b>Dickens Cheung</b><span>We Are Richmond</span></td>
+        <td><span class="notstated">Not publicly stated.</span> Campaign publishes its full platform in English and Chinese (traditional).</td>
+        <td><span class="notstated">Not publicly stated.</span> Ran as an independent in the 2024 provincial election in Richmond Centre.</td>
+        <td>UBC Sauder School of Business graduate in Finance; 15 years leading and growing a local herbal-tea manufacturing operation (food safety, labelling); community advocate who entered politics after the supervised-consumption-site debate; founded the We Are Richmond slate; brands himself "Servant Dickens" since 2024.</td>
+        <td>UBC Sauder School of Business — Finance specialization; manufacturing executive.</td>
+        <td>"The people are the masters, and government officials are their servants." Humility, accountability, integrity and service; transparency and meaningful consultation before major decisions.</td>
+        <td><a href="https://wearerichmond.ca">wearerichmond.ca</a> — "OUR HOME. OUR FAMILIES. OUR FUTURE." A safer, stronger, healthier and affordable city where seniors, families, young adults and the middle class thrive. Bilingual EN/中文.</td>
+      </tr>
+      <tr>
+        <td class="name"><b>Dennet "The Cat Guy" Lee</b><span>No elector organization</span></td>
+        <td>Born in the U.S.A.; moved to Canada in early childhood (self-stated).</td>
+        <td><span class="notstated">Not publicly stated.</span> Business registered at a Richmond address (Jacombs Rd).</td>
+        <td>Independent, declared September 11, 2026. Worked in delivery, food service and roofing; discovered a passion for fitness after his own body transformation at 23; now a personal trainer and fitness-business owner known locally as "The Cat Guy."</td>
+        <td>Bachelor of Science in Kinesiology, Simon Fraser University; personal trainer and small-business owner.</td>
+        <td>"Richmond needs for Richmond to win, not a candidate. Richmond needs to actively listen to others first and speak half as much second. Debates decide divisions. Conversations create connections."</td>
+        <td><a href="https://dennetlee.com">dennetlee.com</a> — minimal campaign platform; the site focuses on his personal story, training programs and a "Wisdom" section rather than policy planks.</td>
+      </tr>
+      <tr>
+        <td class="name"><b>Goldentiger King</b><span>No elector organization</span></td>
+        <td><span class="notstated">Not publicly stated.</span></td>
+        <td><span class="notstated">Not publicly stated.</span></td>
+        <td>Former TV series director, comedy-show host, model, actor, writer and entrepreneur. Filed after the June poll, so he does not appear in any published polling.</td>
+        <td>Media and entertainment career. Education not publicly stated.</td>
+        <td>Per his City-filed statement: brings "creativity, business experience, and fresh ideas to Richmond."</td>
+        <td>No campaign website listed by the City — <a href="https://richmond.ca/electionservices/candidates/CandidateProfile.aspx?ID=99">City candidate profile</a> only.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="sub" style="margin-top:14px;font-size:12.5px">Every cell is sourced from the candidate's own campaign site, their statement filed with the City of Richmond, or a linked public record (see footer). Blank biography details are marked "not publicly stated" rather than filled in by inference.</p>
+</section>
+
 <section id="council">
-  <h2><span class="n">03</span> — Candidates for City Council</h2>
+  <h2><span class="n">04</span> — Candidates for City Council</h2>
   <p class="sub"><b>8 to be elected, at large</b> (city-wide, no wards). You may mark up to 8 names on one ballot — a slate is not a single "vote for all." 55 candidates. Grouped by elector organization, ordered by that slate's poll result where one exists; note the poll asked about slates, not individuals.</p>
 
   <div class="search">
@@ -386,7 +489,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 </section>
 
 <section id="trustee">
-  <h2><span class="n">04</span> — Candidates for School Trustee</h2>
+  <h2><span class="n">05</span> — Candidates for School Trustee</h2>
   <p class="sub">7 to be elected to the School District 38 board. 28 candidates. Four organized slates plus 14 independents.</p>
 
   <div class="group">
@@ -447,7 +550,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 </section>
 
 <section id="dates">
-  <h2><span class="n">05</span> — Key dates &amp; how to vote</h2>
+  <h2><span class="n">06</span> — Key dates &amp; how to vote</h2>
   <p class="sub">Richmond elects at large: every voter city-wide picks the same candidates. The ballot is double-sided — review and complete <b>both sides</b>.</p>
   <table>
     <tbody>
