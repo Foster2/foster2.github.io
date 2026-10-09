@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BC Provincial Election 2026 — Richmond Ridings Guide &amp; Details</title>
+<meta name="description" content="Non-partisan guide to the October 24, 2026 BC provincial election in Richmond's four ridings (Richmond Centre, Richmond-Bridgeport, Richmond-Queensborough, Richmond-Steveston): all 14 candidates with sourced backgrounds and links, party platform positions, voting locations and the latest provincial polling.">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  color-scheme: dark;
+  --bg: #0B0F14;
+  --panel: #121923;
+  --panel2: #18212E;
+  --line: #22303F;
+  --text: #E6EDF5;
+  --muted: #8CA0B5;
+  --accent: #FF6B35;
+  --accent2: #FFD166;
+  --blue: #4DA3FF;
+  --green: #34D399;
+  --violet: #B57BFF;
+  --stripe: rgba(24,33,46,.5);
+  --tabtext: #C3D0DE;
+  --undecided: #334155;
+  --oki: #94A3B8;
+  --hdrbg: rgba(11,15,20,.94);
+  --callbg: #1A1508;
+  --callline: #3D3211;
+  --calltxt: #E8DCC0;
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F5F7FA;
+  --panel: #FFFFFF;
+  --panel2: #E7EDF4;
+  --line: #D6DFEA;
+  --text: #1B2330;
+  --muted: #5B6B7D;
+  --accent: #D8491D;
+  --accent2: #A96E00;
+  --blue: #1E66C8;
+  --green: #0E9F6E;
+  --violet: #6B3FC4;
+  --stripe: rgba(24,33,46,.045);
+  --tabtext: #34404F;
+  --undecided: #CBD5E1;
+  --oki: #64748B;
+  --hdrbg: rgba(245,247,250,.92);
+  --callbg: #FFF7E0;
+  --callline: #E7D192;
+  --calltxt: #54401A;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; transition: background .2s, color .2s; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+header { position: sticky; top: 0; z-index: 50; background: var(--hdrbg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav { display: flex; align-items: center; gap: 18px; padding: 12px 0; flex-wrap: wrap; }
+.brand { font-weight: 900; letter-spacing: 1.5px; font-size: 14px; color: var(--text); }
+.brand span { color: var(--accent); }
+.nav a { color: var(--muted); font-size: 13px; font-weight: 600; }
+.nav a:hover { color: var(--text); text-decoration: none; }
+.themetoggle { margin-left: auto; background: var(--panel); border: 1px solid var(--line); color: var(--text); border-radius: 10px; padding: 7px 10px; cursor: pointer; line-height: 0; }
+.themetoggle svg { display: block; }
+.themetoggle .sun { display: none; }
+[data-theme="light"] .themetoggle .sun { display: block; }
+[data-theme="light"] .themetoggle .moon { display: none; }
+
+.hero { padding: 44px 0 28px; border-bottom: 1px solid var(--line); }
+.hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 900; letter-spacing: -0.5px; }
+.hero h1 em { color: var(--accent); font-style: normal; }
+.hero p { color: var(--muted); margin-top: 10px; max-width: 760px; font-size: 15px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 24px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.stat b { display: block; font-size: 26px; font-weight: 900; color: var(--accent2); }
+.stat span { font-size: 11px; letter-spacing: 1.2px; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+
+section { padding: 34px 0; border-bottom: 1px solid var(--line); }
+h2 { font-size: 22px; font-weight: 900; letter-spacing: .3px; margin-bottom: 6px; }
+h2 .n { color: var(--accent); }
+.sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; max-width: 820px; }
+
+.callout { background: var(--callbg); border: 1px solid var(--callline); border-left: 3px solid var(--accent2); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: var(--calltxt); margin: 16px 0; }
+.callout b { color: var(--accent2); }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; }
+td.num { font-weight: 800; color: var(--accent2); white-space: nowrap; }
+.bar { height: 8px; background: var(--panel2); border-radius: 4px; overflow: hidden; min-width: 90px; }
+.bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+.links { margin-top: 10px; font-size: 12.5px; display: flex; gap: 12px; flex-wrap: wrap; }
+.candlinks { display: block; margin-top: 6px; font-size: 11.5px; line-height: 1.7; }
+.candlinks a { margin-right: 10px; }
+
+.group { margin-bottom: 26px; }
+.group-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.group-head h3 { font-size: 17px; font-weight: 900; }
+.group-head .pct { font-size: 13px; color: var(--accent2); font-weight: 800; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 13.5px; }
+.chip b { display: block; font-weight: 800; }
+.chip span { font-size: 11.5px; color: var(--muted); }
+
+.search { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.search input { flex: 1; min-width: 220px; background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 11px 14px; border-radius: 10px; font-size: 14px; }
+.search input:focus { outline: none; border-color: var(--accent); }
+.searchhint { flex: 1 0 100%; font-size: 12.5px; color: var(--muted); }
+.search select { background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 11px 12px; border-radius: 10px; font-size: 14px; }
+
+.mini { columns: 2; column-gap: 18px; font-size: 13.5px; }
+@media (max-width: 640px) { .mini { columns: 1; } }
+.mini div { break-inside: avoid; padding: 5px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+.mini span { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+
+.tablescroll { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--accent) var(--panel2); }
+table.cmp { min-width: 1560px; font-size: 13px; }
+table.cmp th, table.cmp td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 12px; }
+table.cmp td.name { min-width: 130px; }
+.mugrow { display: flex; gap: 10px; align-items: flex-start; }
+.mug { flex: 0 0 auto; width: 58px; height: 58px; margin-top: 2px; border-radius: 50%; overflow: hidden; border: 2px solid var(--line); background: var(--panel2); }
+.mug img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mug.nophoto { display: none; }
+table.cmp td.name b { font-size: 15px; display: block; }
+table.cmp td.name .nametext span { font-size: 11px; color: var(--muted); }
+table.cmp td { color: var(--tabtext); line-height: 1.5; }
+table.cmp tr:nth-child(even) td { background: var(--stripe); }
+.notstated { color: var(--muted); font-style: italic; }
+
+.clip { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; font-size: 13.5px; }
+.clip b { min-width: 170px; }
+.clip span.what { color: var(--muted); font-size: 12.5px; }
+.clip span.why { flex: 1 0 100%; color: var(--muted); font-size: 12.5px; }
+.clip a { white-space: nowrap; }
+
+.hscrollbar { position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 90; width: min(620px, 94vw); display: none; user-select: none; -webkit-user-select: none; touch-action: none; }
+.hscrollbar.active { display: block; }
+.hscrollbar-track { position: relative; height: 32px; margin: 0 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+[data-theme="light"] .hscrollbar-track { box-shadow: 0 8px 24px rgba(15,30,50,.2); }
+.hscrollbar-thumb { position: absolute; top: 3px; bottom: 3px; left: 0; width: 64px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 13px; cursor: grab; touch-action: none; }
+.hscrollbar-thumb:active { cursor: grabbing; }
+
+.mapwrap { margin: 18px 0; }
+#votemap { height: 420px; border: 1px solid var(--line); border-radius: 12px; position: relative; z-index: 0; }
+.mapbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.mapbar button { background: var(--accent); border: none; color: #fff; font-weight: 800; font-size: 13px; padding: 10px 14px; border-radius: 10px; cursor: pointer; }
+.mapbar button:disabled { opacity: .55; cursor: default; }
+.mapbar .status { font-size: 12.5px; color: var(--muted); }
+.maplegend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.maplegend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.maplegend .gen i { background: #4DA3FF; }
+.maplegend .adv i { background: #FFD166; }
+.maplegend .deo i { background: #B57BFF; }
+#nearlist { margin-top: 10px; font-size: 13px; }
+.nearrow { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; padding: 7px 2px; border-bottom: 1px solid var(--line); }
+.nearrow b { min-width: 200px; }
+.nearrow .km { color: var(--accent2); font-weight: 800; white-space: nowrap; }
+.nearrow a { white-space: nowrap; }
+.maptiles { margin-top: 8px; font-size: 11px; color: var(--muted); }
+
+footer { padding: 30px 0 50px; color: var(--muted); font-size: 12.5px; }
+footer a { color: var(--muted); text-decoration: underline; }
+.hide { display: none !important; }
+
+@media (max-width: 760px) {
+  .nav { gap: 10px; }
+  .mug { width: 48px; height: 48px; }
+  .tablescroll { overflow-x: visible; }
+  #polling table { display: block; overflow-x: auto; max-width: 100%; }
+  table.cmp { min-width: 0; width: 100%; }
+  table.cmp thead { display: none; }
+  table.cmp, table.cmp tbody, table.cmp tr, table.cmp td { display: block; }
+  table.cmp tr { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; background: var(--panel); padding: 4px 0; }
+  table.cmp td { border: none; padding: 8px 12px; }
+  table.cmp td.name { padding-top: 12px; }
+  table.cmp td::before { content: attr(data-label); display: block; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); font-weight: 800; margin-bottom: 3px; }
+  table.cmp td.name::before { display: none; }
+  table.cmp tr:nth-child(even) td { background: none; }
+  #votemap { height: 340px; }
+  .clip b { min-width: 0; }
+}
+
+@media (max-width: 640px) {
+  .brand { width: 100%; }
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('richmondTheme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">BC <span>2026</span></div>
+    <a href="#ridings">Ridings</a>
+    <a href="#candidates">Candidates</a>
+    <a href="#parties">Parties</a>
+    <a href="#dates">Key dates</a>
+    <a href="#voting">Where to vote</a>
+    <a href="#polling">Polling</a>
+    <a href="richmond-election.html">Municipal page</a>
+    <a href="https://elections.bc.ca/2026-provincial-election/candidate-list/">Official list</a>
+    <button id="themetoggle" class="themetoggle" type="button" aria-label="Toggle light and dark theme" title="Light / dark theme">
+      <svg class="sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4"/></svg>
+      <svg class="moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9.5A6 6 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Richmond, BC — <em>Provincial Election</em> Guide</h1>
+    <p>A non-partisan, source-linked guide to the <b>British Columbia provincial election on Saturday, October 24, 2026</b>, for Richmond's four electoral districts (Richmond Centre, Richmond-Bridgeport, Richmond-Queensborough, Richmond-Steveston). All 14 candidates on the final ballot, party platform positions, every voting place, and the latest provincial polling — with no ordering intended to suggest a ranking or an endorsement. Candidates are not endorsed or opposed here.</p>
+    <div class="stats">
+      <div class="stat"><b>Oct 24</b><span>Final voting day</span></div>
+      <div class="stat"><b>4</b><span>Richmond ridings</span></div>
+      <div class="stat"><b>14</b><span>Candidates on ballot</span></div>
+      <div class="stat"><b>93</b><span>Seats in the legislature</span></div>
+      <div class="stat"><b>2 / 2</b><span>Incumbents running / open seats</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="search" id="searchbar">
+    <input type="search" id="q" placeholder="Search a candidate or riding — e.g. Wat, Yao, Steveston" autocomplete="off">
+    <select id="f">
+      <option value="">All ridings</option>
+      <option>Richmond-Bridgeport</option>
+      <option>Richmond Centre</option>
+      <option>Richmond-Queensborough</option>
+      <option>Richmond-Steveston</option>
+    </select>
+    <span id="searchcount" class="searchhint">Showing all 14 candidates: 2 · 4 · 3 · 5 across the four ridings</span>
+  </div>
+
+<section id="ridings">
+
+  <h2><span class="n">01</span> — The four ridings on the ballot</h2>
+  <p class="sub">British Columbia's 93 MLAs are elected one per riding by first past the post. Richmond's four ridings have two Conservative incumbents seeking re-election (Teresa Wat, Steve Kooner) and two open seats: Richmond Centre (incumbent Hon Chan is not on the 2026 ballot) and Richmond-Steveston (incumbent Kelly Greene is not seeking re-election). 2024 results are from Elections BC as reported on each riding's Wikipedia article; 2026 ballots are from the Elections BC final candidate list.</p>
+
+  <div class="callout">
+    <b>Ballot counts are final.</b> Nominations closed <b>October 3, 2026</b>. The <b>Elections BC final candidate list</b> is the source for every 2026 candidate name and party on this page — anything reported earlier in the campaign (including some party press releases that named candidates who ultimately did not file) has been corrected against that list.
+  </div>
+
+  <div class="tablescroll">
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th>Riding</th>
+        <th>2024 result (winner / runner-up / margin)</th>
+        <th>2026 seat status</th>
+        <th>2026 ballot (candidates, party)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-name="richmond-bridgeport wat li ridgebridgeport">
+        <td class="name"><b>Richmond-Bridgeport</b></td>
+        <td><b>Teresa Wat — Conservative</b>, 58.19% vs Linda Li (BC NDP) 34.77% — a <b>23.4-point</b> Conservative win.</td>
+        <td><b>Conservative incumbent re-seeking</b> — a 2024 rematch, with the same two candidates.</td>
+        <td><b>Linda Li</b> (BC NDP) · <b>Teresa Wat</b> (Conservative)</td>
+      </tr>
+      <tr data-name="richmond-centre chan yao centre">
+        <td class="name"><b>Richmond Centre</b></td>
+        <td><b>Hon Chan — Conservative</b>, 51.99% vs Henry Yao (BC NDP) 36.78% — a <b>15.2-point</b> gain; turnout 49.07%.</td>
+        <td><b>Open seat.</b> Chan is not on the 2026 ballot; the Conservative candidate is Sacha Peter. Four-way race.</td>
+        <td><b>Lawrence Chen</b> (CWP) · <b>Calvin Dang</b> (Green) · <b>Sacha Peter</b> (Conservative) · <b>Henry Yao</b> (BC NDP)</td>
+      </tr>
+      <tr data-name="richmond-queensborough kooner queensborough">
+        <td class="name"><b>Richmond-Queensborough</b></td>
+        <td><b>Steve Kooner — Conservative</b>, 50.91% vs Aman Singh (BC NDP) 44.13% — a <b>6.8-point</b> hold.</td>
+        <td><b>Conservative incumbent re-seeking.</b> A three-way race with new NDP and Green challengers.</td>
+        <td><b>Luc Burns</b> (Green) · <b>Dhar Grewal</b> (BC NDP) · <b>Steve Kooner</b> (Conservative)</td>
+      </tr>
+      <tr data-name="richmond-steveston greene kong zhang steveston">
+        <td class="name"><b>Richmond-Steveston</b></td>
+        <td><b>Kelly Greene — BC NDP</b>, 44.27% vs Michelle Mollineaux (Conservative) 42.20% — a <b>2.1-point</b> NDP hold.</td>
+        <td><b>Open seat.</b> Greene (BC NDP) confirmed she will not run again — the Conservative and NDP both field new candidates, plus three more. Five-way race.</td>
+        <td><b>Robert Evans</b> (Independent) · <b>Bruce Kong</b> (BC NDP) · <b>Barry Wosk</b> (CentreBC) · <b>Keenan Yang</b> (CWP) · <b>Gordon Zhang</b> (Conservative)</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="candidates">
+
+  <h2><span class="n">02</span> — All 14 candidates, side by side</h2>
+  <p class="sub">Every candidate on the final ballot in the same six fields. Rows are grouped by riding and ordered alphabetically by surname within each — never sorted by polling or any ranking, with no ordering meant to imply favour. Mugshots link to the candidate's official campaign headshot (the two candidates with no verifiable published photo appear without one rather than with a guessed image). Background cells quote only the candidate's published biography or sourced coverage; links under each name go to the candidate's verified campaign or profile page and their VoteMate ballot page. Sources: elections.bc.ca final candidate list, campaign websites, bcgreens.ca / conservativebc.ca / centrebc.ca / bcndp.ca candidate pages, and Wikipedia.</p>
+
+  <div class="callout">
+    <b>On the ballot itself</b>, each Richmond voter marks <b>one</b> candidate for <b>one</b> riding — the district you live in decides which row of this table is on your ballot. Party ballot names: <b>BC NDP</b> · <b>BC Conservative Party</b> · <b>Green Party of BC</b> · <b>CentreBC</b> · <b>CWP</b> (CanWest Party) · <b>Independent</b>.
+  </div>
+
+  <div class="tablescroll">
+  <table class="cmp" id="candtable">
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Party (ballot name)</th>
+        <th>Riding</th>
+        <th>Seat status</th>
+        <th>Background &amp; occupation</th>
+        <th>In their own words / platform</th>
+        <th>Verified links</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr data-name="linda li lindali ndp bridgeport">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/linda-li.jpg" alt="Linda Li" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Linda Li</b><span>BC NDP — Richmond-Bridgeport</span></span></span></td>
+        <td>BC NDP</td>
+        <td>Richmond-Bridgeport</td>
+        <td>Challenger — rematch of 2024, when she lost to Wat by 23.4 points.</td>
+        <td>Since 1996 a community pillar in Richmond — long involvement with the <b>Richmond Chinese Community Society</b> and the <b>Richmond Hospital Foundation</b>; managing broker at <b>Selmak Realty Ltd.</b>; mother of three (<b>campaign</b>).</td>
+        <td>Running under the NDP plan — housing, affordability, family doctors, Team Canada on tariffs (<b>NDP platform</b>).</td>
+        <td><a href="https://lindali.bcndp.ca/">Campaign site</a><a href="https://votemate.org/bc2026provincial/candidates/15014">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="teresa wat wat conservative mla bridgeport">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/teresa-wat.jpg" alt="Teresa Wat" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Teresa Wat</b><span>Conservative — Richmond-Bridgeport · Incumbent</span></span></span></td>
+        <td>BC Conservative Party</td>
+        <td>Richmond-Bridgeport</td>
+        <td><b>Incumbent</b> — elected 2024; seeking a second term.</td>
+        <td>MLA for a Richmond riding since 2013 and <b>Minister of International Trade, 2013–17</b>; former <b>news director at Omni TV</b> and <b>editor at Ming Pao Daily News</b> (<b>campaign</b> / Wikipedia).</td>
+        <td>Runs under the Conservative platform — "$1000 back in your pocket" income-tax cut, "Safe Streets" and "Keep Emergency Rooms Open" (<b>Conservative platform</b>).</td>
+        <td><a href="https://conservativebc.ca/candidate/teresa-wat/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/14746">VoteMate</a><a href="https://en.wikipedia.org/wiki/Teresa_Wat">Wikipedia</a></td>
+      </tr>
+
+      <tr data-name="lawrence chen lawrencechen cwp centre">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/lawrence-chen.jpg" alt="Lawrence Chen" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Lawrence Chen</b><span>CWP (CanWest) — Richmond Centre</span></span></span></td>
+        <td>CWP</td>
+        <td>Richmond Centre</td>
+        <td>Challenger.</td>
+        <td><b>MBA, University of Technology Sydney</b>; real-estate realtor with <b>Century 21</b>; CEO of a China–Canada joint-venture transport firm; certified <b>Hunter Safety Examiner/Instructor</b>; Olympic target-shooting athlete (<b>campaign</b>).</td>
+        <td>Runs for the CanWest Party, founded around Canadian unity themes; no platform commitments published (<b>person's campaign page</b>).</td>
+        <td><a href="http://www.canada2.net/2026.htm">Campaign page</a><a href="https://votemate.org/bc2026provincial/candidates/15011">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="calvin dang calvindang green centre">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/calvin-dang.jpg" alt="Calvin Dang" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Calvin Dang</b><span>Green — Richmond Centre</span></span></span></td>
+        <td>Green Party of BC</td>
+        <td>Richmond Centre</td>
+        <td>Challenger.</td>
+        <td>Long-time Richmond <b>business owner and entrepreneur</b>, and youth sports advocate; since 2014 has operated federally registered food-processing businesses in <b>fresh seafood and meat</b> (<b>campaign</b>).</td>
+        <td>Runs under the Green platform — affordable homes, free transit, community health centres, toxic-drug crisis response (<b>Green platform</b>).</td>
+        <td><a href="https://bcgreens.ca/candidates-2026/calvin-dang/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/15012">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="sacha peter sachapeter conservative centre">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/sacha-peter.jpg" alt="Sacha Peter" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Sacha Peter</b><span>Conservative — Richmond Centre</span></span></span></td>
+        <td>BC Conservative Party</td>
+        <td>Richmond Centre</td>
+        <td>Challenger — carries the Conservative banner after Chan left the caucus.</td>
+        <td><b>Chartered Professional Accountant</b> (corporate tax); born and raised in Richmond; <b>UBC BSc Physics</b>; writes the personal-finance blog <b>Divestor.com</b> since 2009; former <b>Cultus Lake Park Board</b> chair (<b>campaign</b>).</td>
+        <td>Conservative platform — tax cuts, safe streets, emergency rooms, SOGI repeal; "Standing up to Trump takes action, not press releases" (<b>Conservative platform</b>).</td>
+        <td><a href="https://conservativebc.ca/candidate/sacha-peter/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/14769">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="henry yao henryyao ndp centre">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/henry-yao.jpg" alt="Henry Yao" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Henry Yao</b><span>BC NDP — Richmond Centre</span></span></span></td>
+        <td>BC NDP</td>
+        <td>Richmond Centre</td>
+        <td>Challenger — former MLA for Richmond South Centre (2020–24); runner-up here in 2024 (36.8%).</td>
+        <td>Born in <b>Taiwan</b>, moved to Richmond young; <b>MLA for Richmond South Centre 2020–2024</b>; co-founded the <b>Dialogue Richmond Society</b>; active with the Richmond Chamber of Commerce and the Richmond Chinese Community Society (<b>campaign</b>).</td>
+        <td>"I'm running to keep building the community I've called home" — under the NDP plan: family doctors, housing, affordability (<b>campaign</b>).</td>
+        <td><a href="https://henryyao.bcndp.ca/">Campaign site</a><a href="https://votemate.org/bc2026provincial/candidates/15013">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="luc burns lucburns green queensborough">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/luc-burns.jpg" alt="Luc Burns" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Luc Burns</b><span>Green — Richmond-Queensborough</span></span></span></td>
+        <td>Green Party of BC</td>
+        <td>Richmond-Queensborough</td>
+        <td>Challenger.</td>
+        <td><b>Materials engineer</b>, union job steward and QA professional working in Richmond; <b>BASc Materials Engineering, UBC</b>; secretary of his strata council (<b>campaign</b>).</td>
+        <td>Green platform — non-market housing, free transit, community health centres, toxic-drug crisis action (<b>Green platform</b>).</td>
+        <td><a href="https://bcgreens.ca/candidates-2026/luc-burns/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/15015">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="dhar grewal dhargrewal ndp queensborough">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/dhar-grewal.png" alt="Dhar Grewal" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Dhar Grewal</b><span>BC NDP — Richmond-Queensborough</span></span></span></td>
+        <td>BC NDP</td>
+        <td>Richmond-Queensborough</td>
+        <td>Challenger — new NDP standard-bearer after the candidate named in early NDP releases did not file.</td>
+        <td>Born in <b>Campbell River</b>, a Richmond resident for ~30 years; <b>Senior Manager at Vancity</b>; coached local youth soccer and supported the ALS Society (<b>NDP release</b>).</td>
+        <td>NDP plan — housing, family doctors, affordability, Team Canada trade response (<b>NDP platform</b>).</td>
+        <td><a href="https://dhargrewal.bcndp.ca/">Campaign site</a><a href="https://votemate.org/bc2026provincial/candidates/15016">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="steve kooner kooner conservative queensborough mla">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/steve-kooner.jpg" alt="Steve Kooner" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Steve Kooner</b><span>Conservative — Richmond-Queensborough · Incumbent</span></span></span></td>
+        <td>BC Conservative Party</td>
+        <td>Richmond-Queensborough</td>
+        <td><b>Incumbent</b> — elected 2024; seeking a second term.</td>
+        <td><b>Lawyer</b> and MLA for Richmond-Queensborough since 2024; served as <b>Shadow Attorney General</b>; briefly a candidate in the 2026 BC Conservative leadership race; <b>SFU BA</b>, <b>University of Calgary JD</b> (<b>Wikipedia</b> / campaign).</td>
+        <td>Conservative platform — tax cuts, safe streets, emergency rooms, DRIPA repeal, economic reconciliation (<b>Conservative platform</b>).</td>
+        <td><a href="https://conservativebc.ca/candidate/steve-kooner/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/14729">VoteMate</a><a href="https://en.wikipedia.org/wiki/Steve_Kooner">Wikipedia</a></td>
+      </tr>
+
+      <tr data-name="robert evans independent steveston">
+        <td class="name"><span class="nametext"><b>Robert Evans</b><span>Independent — Richmond-Steveston</span></span></td>
+        <td>Independent</td>
+        <td>Richmond-Steveston</td>
+        <td>Challenger.</td>
+        <td><span class="notstated">No published biography or photo found.</span> No campaign website, no candidate profile and no press coverage of a background was located as of Oct 8, 2026.</td>
+        <td><span class="notstated">No platform published.</span> Runs as an Independent; nothing further verifiable.</td>
+        <td><a href="https://votemate.org/bc2026provincial/candidates/15017">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="bruce kong brucekong ndp steveston">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/bruce-kong.png" alt="Bruce Kong" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Bruce Kong</b><span>BC NDP — Richmond-Steveston</span></span></span></td>
+        <td>BC NDP</td>
+        <td>Richmond-Steveston</td>
+        <td>Challenger — new NDP standard-bearer in the open seat vacated by Kelly Greene.</td>
+        <td><b>Richmond small-business owner</b> who runs his own <b>auto body shop</b> and is raising a family in the community (<b>campaign</b>).</td>
+        <td>NDP plan — housing, family doctors, affordability, Team Canada trade response (<b>NDP platform</b>).</td>
+        <td><a href="https://brucekong.bcndp.ca/">Campaign site</a><a href="https://votemate.org/bc2026provincial/candidates/15018">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="barry wosk centrebc steveston">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/barry-wosk.webp" alt="Barry Wosk" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Barry Wosk</b><span>CentreBC — Richmond-Steveston</span></span></span></td>
+        <td>CentreBC</td>
+        <td>Richmond-Steveston</td>
+        <td>Challenger.</td>
+        <td>Lifelong Richmond/Steveston resident; <b>UBC Bachelor of Commerce</b>; 30+ years running a Richmond-based small business; former <b>director of the Richmond Chamber of Commerce</b>; volunteers with the Steveston High School Alumni Association, <b>Big Brothers</b> and <b>RCM-SAR</b> (<b>campaign</b>).</td>
+        <td>CentreBC has published no detailed platform commitments yet; themes are affordability, safety and opportunity (<b>party policy page</b>).</td>
+        <td><a href="https://www.centrebc.ca/candidates/barry-wosk/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/14897">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="keenan yang cwp steveston">
+        <td class="name"><span class="nametext"><b>Keenan Yang</b><span>CWP (CanWest) — Richmond-Steveston</span></span></td>
+        <td>CWP</td>
+        <td>Richmond-Steveston</td>
+        <td>Challenger.</td>
+        <td>Came to Canada in <b>2013 as an international student</b> and now works as an <b>environmental scientist</b>; <b>Deputy Leader of the CanWest Party</b> (<b>LinkedIn</b>). No campaign photo or profile page located.</td>
+        <td><span class="notstated">No platform published.</span> Runs for the CanWest Party (<b>person's LinkedIn</b>).</td>
+        <td><a href="https://votemate.org/bc2026provincial/candidates/15019">VoteMate</a></td>
+      </tr>
+
+      <tr data-name="gordon zhang gordonzhang conservative steveston">
+        <td class="name"><span class="mugrow"><span class="mug"><img src="assets/mugs/gordon-zhang.jpg" alt="Gordon Zhang" loading="lazy" onerror="this.parentNode.classList.add('nophoto');this.remove()"></span><span class="nametext"><b>Gordon Zhang</b><span>Conservative — Richmond-Steveston</span></span></span></td>
+        <td>BC Conservative Party</td>
+        <td>Richmond-Steveston</td>
+        <td>Challenger — Conservative candidate in the open seat.</td>
+        <td>Community leader with deep Richmond roots; taught business at <b>Kwantlen Polytechnic University's Richmond campus 17+ years</b>; entrepreneur who helped set up a domestic <b>N95 respirator line that supplied the Canadian Olympic team</b> at the 2022 Tokyo Games (<b>campaign</b>).</td>
+        <td>Conservative platform — tax cuts, safe streets, emergency rooms (<b>Conservative platform</b>).</td>
+        <td><a href="https://conservativebc.ca/candidate/gordon-zhang/">Campaign profile</a><a href="https://votemate.org/bc2026provincial/candidates/14820">VoteMate</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+
+  <p class="sub" style="margin-top:14px;font-size:12.5px">Every cell is sourced to the candidate's own campaign site or profile, the Elections BC final candidate list, Wikipedia, or a linked public record (see footer). Where a candidate has published nothing on a subject, the cell says "not publicly stated" / "no platform published" rather than guessing. Mugshots are official campaign headshots; two candidates had no verifiable published photo as of Oct 8, 2026 and appear without one.</p>
+
+</section>
+
+<section id="parties">
+
+  <h2><span class="n">03</span> — Where the parties stand</h2>
+  <p class="sub">Party platform commitments quoted from the parties' own campaign pages (active September–October 2026), grouped by topic. Party leaders: <b>BC NDP</b> — Premier David Eby; <b>Conservative Party of BC</b> — Lorne Doerkson (interim); <b>Green Party of BC</b> — Emily Lowan; <b>CentreBC</b> — Elenore Sturko (interim); <b>OneBC</b> — Dallas Brodie (interim); <b>CWP</b> (CanWest) — Wei Ping Chen. Platforms were still being released as this guide was assembled — "coming soon" pages are marked rather than guessed. OneBC is shown for completeness but fields no Richmond candidate; CWP fields two (both listed in Section 02).</p>
+
+  <div class="callout">
+    <b>Two parties can win a Richmond seat; six are on the ballot.</b> In 2024 Richmond's four MLAs split 3 Conservative / 1 NDP. All of the parties below except OneBC have a Richmond candidate. Party platform wording is quoted — highlighted phrases are the parties' own.
+  </div>
+
+  <div class="tablescroll">
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th>Party</th>
+        <th>Cost of living</th>
+        <th>Housing</th>
+        <th>Health care</th>
+        <th>Public safety &amp; drugs</th>
+        <th>US tariffs &amp; trade</th>
+        <th>Education &amp; child care</th>
+        <th>Reconciliation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-name="bc ndp eby">
+        <td class="name"><b>BC NDP</b><span style="font-size:11px;color:var(--muted)">David Eby</span></td>
+        <td>"Not giving the rich tax breaks" — families under $100k already pay less than any other province (<b>claim</b>); child care "cut in half" (~$7,200/yr per child); ICBC rates cut $500 and frozen; renter's tax credit up to $400.</td>
+        <td>"Not giving control back to speculators" — average asking rents "down 12.0%" (Vancouver "down 19%"); "326,000 more homes" since 2017; zoning "paving the way for 300,000 more homes"; Speculation &amp; Vacancy Tax "20,000 empty units"; $1-billion Growing Communities Fund.</td>
+        <td>"One million more people attached to a family doctor" since 2018; "over 1,400 family doctors"; "more than 800 US doctors, nurses" hired; SFU Surrey medical school; "24 new and expanded hospitals"; 48 urgent primary care centres; free contraception/IVF.</td>
+        <td>"2,000+ mental-health beds" for involuntary care and more; 12 Repeat Violent Offending hubs (interactions "fell by nearly 50%"); BC Extortion Task Force "over 90 charges"; "860 new addiction treatment beds"; 35 Foundry centres.</td>
+        <td>"Standing with Team Canada" — US alcohol kept off shelves until a fair deal; exports to other markets "up 16%"; BuyBC expanded; Prosperity Agreement with PM Carney.</td>
+        <td>"250 major school capital projects"; "22% more teachers"; "64,000+ new child care spaces"; Feeding Futures feeds "over 265,000 students"; $10/day for 24,800 children.</td>
+        <td><span class="notstated">No dedicated 2026 reconciliation pillar published</span> — references First Nations primary-care centres and guardian programs.</td>
+      </tr>
+      <tr data-name="bc conservative doerkson">
+        <td class="name"><b>BC Conservative Party</b><span style="font-size:11px;color:var(--muted)">Lorne Doerkson (interim)</span></td>
+        <td>"Cut the provincial income tax to put $1000 back in your pocket — saving the average family $2000 a year"; pledge: no tax increases on British Columbians.</td>
+        <td><span class="notstated">No province-wide housing platform page found</span> — Sept 25 statement criticises the NDP's housing-tax plan; a Metro Vancouver plank returns housing and land-use functions to local and provincial governments.</td>
+        <td>"Keep Emergency Rooms Open" — continue healthcare spending while investing in more doctors and nurses; insurance: "low rates and justice for serious injuries."</td>
+        <td>"Safe Streets for BC" — "take back our streets from hard drugs and disorder."</td>
+        <td>"Remove the PST from Canadian alcohol for the duration" of the trade war; scrap PST on business-investment machinery/software for 3 years; "120 Day Permitting Act" for major projects; "double BC's LNG production by 2032."</td>
+        <td>"Safe Schools" — repeal SOGI while providing "a safe place for our kids"; <span class="notstated">no child-care commitment found.</span></td>
+        <td>"Repeal DRIPA," promote "economic reconciliation."</td>
+      </tr>
+      <tr data-name="bc greens lowan green">
+        <td class="name"><b>Green Party of BC</b><span style="font-size:11px;color:var(--muted)">Emily Lowan</span></td>
+        <td>"Make transit fast, frequent, and free"; raise social and disability assistance "above the poverty line"; minimum wage to a living wage.</td>
+        <td>"Build and protect 26,000 permanently affordable, non-market homes a year"; "pass vacancy control."</td>
+        <td>Community Health Centres "in every region"; nurse-to-patient ratios; "keep every public health dollar in public care"; cover mental-health care publicly.</td>
+        <td>Toxic-drugs policy with former chief coroner Lisa Lapointe — "effective harm reduction and real investment in voluntary care."</td>
+        <td><span class="notstated">No tariff-specific plank</span> — "Economic Vision" (Oct 8): wealthiest "pay their fair share," windfall tax on mega-corporations, end fossil-fuel subsidies.</td>
+        <td>Universal free child care "by 2031"; restart the $10-a-day plan; fair-share revenue for "properly funded public schools."</td>
+        <td>"Implement DRIPA through legislation"; Indigenous Languages Act; MMIWG2S taskforce; apology to the Cowichan and Gitxaała.</td>
+      </tr>
+      <tr data-name="centrebc sturko">
+        <td class="name"><b>CentreBC</b><span style="font-size:11px;color:var(--muted)">Elenore Sturko (interim)</span></td>
+        <td colspan="6"><span class="notstated">No specific platform commitments published yet.</span> Its policy page describes work "currently hard at work" across affordability, healthcare, economic growth, fiscal responsibility, environmental sustainability and Indigenous relations, and promises "a complete, thoughtful, and fully developed platform" in time for the election. Themes so far: affordability, safety, opportunity.</td>
+        <td><span class="notstated">Not detailed yet</span> — Indigenous relations listed among policy pillars in progress.</td>
+      </tr>
+      <tr data-name="onebc brodie">
+        <td class="name"><b>OneBC</b><span style="font-size:11px;color:var(--muted)">Dallas Brodie (interim)</span><span style="display:block;font-size:10.5px;color:var(--muted)">No Richmond candidate</span></td>
+        <td>"25% tax cuts for every bracket, a 2% PST reduction"; audit of "176,000+ regulations."</td>
+        <td>"Eliminate the Step Code" and "block rent control programs."</td>
+        <td>"Private healthcare alongside fully-funded public healthcare"; shift administration spending to frontline employees.</td>
+        <td>"Crack down on repeat and violent offenders" and "protect our ports from international criminal smuggling."</td>
+        <td><span class="notstated">No tariff-specific plank found</span> — export pipelines to foreign markets.</td>
+        <td>"Remove SOGI-123 from classrooms," restore standardized testing, institute a "Parental Bill of Rights."</td>
+        <td>"End DRIPA and UNDRIP"; halt transfers; restore Band oversight; reform the Indian Act.</td>
+      </tr>
+      <tr data-name="cwp canwest">
+        <td class="name"><b>CWP (CanWest Party)</b><span style="font-size:11px;color:var(--muted)">Wei Ping Chen</span></td>
+        <td colspan="7"><span class="notstated">No platform content found</span> on the party's site or in coverage; it fields its only two candidates in this election in Richmond (Chen, Richmond Centre; Yang, Richmond-Steveston).</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="sub" style="margin-top:14px;font-size:12.5px">Sources: <a href="https://www.bcndp.ca/action-for-you">NDP "Action for You"</a> (nine pillars) and the party's <a href="https://www.bcndp.ca/releases/david-eby-launches-election-plan-build-bc-strong-amid-trumps-attacks">launch release</a> · <a href="https://conservativebc.ca/plan">Conservative platform index</a> · <a href="https://bcgreens.ca/our-plan/">Green "Our Plan"</a> (full platform "coming soon") and policy briefs · <a href="https://www.centrebc.ca/our-policy/">CentreBC policy page</a> · <a href="https://1bc.ca/priorities">OneBC priorities</a> · <a href="http://canwestparty.ca/">CanWest Party</a>. Where a quote is used, it is the party's own wording from one of these pages.</p>
+
+</section>
+
+<section id="dates">
+  <h2><span class="n">04</span> — Key dates &amp; how to vote</h2>
+  <p class="sub">The writ was dropped September 22, 2026. British Columbia elects <b>93 MLAs</b>, one per riding, by first past the post — your ballot lists the candidates for <b>your</b> riding only, and you mark one. The rules below come from Elections BC's 2026-provincial-election pages.</p>
+  <table>
+    <tbody>
+      <tr><td class="num">Sep 22</td><td>Writ of election dropped — 93-riding snap election called</td></tr>
+      <tr><td class="num">Oct 3</td><td>Nomination deadline — final candidate lists published</td></tr>
+      <tr><td class="num">Oct 14</td><td>Provincial leaders' debate</td></tr>
+      <tr><td class="num">Oct 16 – 21</td><td><b>Advance voting</b> — 8 a.m.–8 p.m., at any advance voting place, no reason needed</td></tr>
+      <tr><td class="num" style="color:var(--accent)">Oct 18</td><td>Last day to request a vote-by-mail package online or by phone (1-800-661-8683)</td></tr>
+      <tr><td class="num" style="color:var(--accent)">Oct 24</td><td><b>Final voting day (Saturday)</b> — polls 8 a.m.–8 p.m. PT; completed mail ballots must be received by 8 p.m.</td></tr>
+      <tr><td class="num">Until Oct 24, 4 p.m.</td><td>Vote in person at any <b>district electoral office</b> (Mon–Fri 9–5, Sat 10–4; on advance days 8–8; closed Sep 30 and Oct 12)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:18px">
+    <b>Also on the ballot this fall:</b> a separate <b>municipal election</b> was held October 17, 2026, electing Richmond's mayor, council and school trustees — <a href="richmond-election.html">see the municipal candidate guide</a>. The provincial vote here is a different ballot, a different level of government, and a different set of candidates.
+  </div>
+  <div class="links" style="margin-top:16px">
+    <a href="https://elections.bc.ca/2026-provincial-election/">Elections BC — 2026 provincial election</a>
+    <a href="https://elections.bc.ca/2026-provincial-election/ways-to-vote/">Ways to vote</a>
+    <a href="https://elections.bc.ca/votebymail">Vote by mail</a>
+    <a href="https://elections.bc.ca/2026-provincial-election/candidate-list/">Final candidate list</a>
+  </div>
+</section>
+
+<section id="voting">
+  <h2><span class="n">05</span> — Where to vote: all four ridings</h2>
+  <p class="sub">Every voting place below is from the <b>official Elections BC lists published October 8, 2026</b> — the advance voting places PDF and final voting places PDF for the 2026 general election. On Final Voting Day your <b>Where to Vote card</b> names your designated place (shown on the card in the address order), but you may vote at <b>any</b> final voting place if more convenient; during advance voting you may vote at <b>any</b> advance place, on its date. All advance places are wheelchair accessible. Every address is a live Google Maps link, and the map below pins all 48 locations — blue = Final Voting Day, gold = also serves advance voting, purple = district electoral office (DEO), where you can vote from now until 4 p.m. on Oct 24.</p>
+
+  <div class="mapwrap">
+    <div id="votemap" class="maptiles"></div>
+    <div class="mapbar">
+      <button type="button" id="nearbtn">Find my nearest location</button>
+      <span id="nearstatus"></span>
+    </div>
+    <div class="maplegend">
+      <span class="gen"><i></i>Final Voting Day (Oct 24)</span>
+      <span class="adv"><i></i>Also advance voting (Oct 16–21)</span>
+      <span class="deo"><i></i>District electoral office (vote now)</span>
+    </div>
+    <div id="nearlist"></div>
+  </div>
+
+  <h3 style="font-size:15px;margin:22px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Richmond-Bridgeport</h3>
+  <table>
+    <thead><tr><th>Voting place</th><th>Address — opens Google Maps</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>District Electoral Office (RCB)</td><td><a href="https://www.google.com/maps/search/?api=1&query=Unit%20150%208400%20Alexandra%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">Unit 150, 8400 Alexandra Road</a></td><td>DEO — vote until Oct 24, 4 p.m.</td></tr>
+      <tr><td>J.N. Burnett Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=5011%20Granville%20Avenue%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">5011 Granville Avenue</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Peace Mennonite Church</td><td><a href="https://www.google.com/maps/search/?api=1&query=11571%20Daniels%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">11571 Daniels Road</a></td><td>Final Voting Day · advance Oct 17–21</td></tr>
+      <tr><td>Quilchena Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=3760%20Moresby%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">3760 Moresby Drive</a></td><td>Final Voting Day</td></tr>
+      <tr><td>R.C. Talmey Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9500%20Kilby%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9500 Kilby Drive</a></td><td>Final Voting Day</td></tr>
+      <tr><td>R.J. Tait Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=10071%20Finlayson%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">10071 Finlayson Drive</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Richmond Olympic Oval</td><td><a href="https://www.google.com/maps/search/?api=1&query=6111%20River%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">6111 River Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Richmond United Church</td><td><a href="https://www.google.com/maps/search/?api=1&query=8711%20Cambie%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8711 Cambie Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Spul'u'kwuks Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=5999%20Blanshard%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">5999 Blanshard Drive</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Thompson Community Centre</td><td><a href="https://www.google.com/maps/search/?api=1&query=5151%20Granville%20Avenue%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">5151 Granville Avenue</a></td><td>Final Voting Day · advance Oct 16–21</td></tr>
+      <tr><td>Tomsett Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9671%20Odlin%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9671 Odlin Road</a></td><td>Final Voting Day</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:15px;margin:26px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Richmond Centre</h3>
+  <table>
+    <thead><tr><th>Voting place</th><th>Address — opens Google Maps</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>District Electoral Office (RCC)</td><td><a href="https://www.google.com/maps/search/?api=1&query=Unit%20968%205300%20No.%203%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">Unit 968, 5300 No. 3 Road (Lansdowne Centre)</a></td><td>DEO — vote until Oct 24, 4 p.m.</td></tr>
+      <tr><td>A.R. MacNeill Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=6611%20No.%204%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">6611 No. 4 Road</a></td><td>Final Voting Day · advance Oct 16–21</td></tr>
+      <tr><td>General Currie Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=8220%20General%20Currie%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8220 General Currie Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Henry Anderson Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9460%20Alberta%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9460 Alberta Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Kwantlen Polytechnic University (Richmond)</td><td><a href="https://www.google.com/maps/search/?api=1&query=8771%20Lansdowne%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8771 Lansdowne Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Minoru Centre for Active Living</td><td><a href="https://www.google.com/maps/search/?api=1&query=7191%20Granville%20Avenue%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">7191 Granville Avenue</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Richmond Pentecostal Church</td><td><a href="https://www.google.com/maps/search/?api=1&query=9300%20Westminster%20Highway%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9300 Westminster Highway</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Richmond Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=7171%20Minoru%20Boulevard%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">7171 Minoru Boulevard</a></td><td>Final Voting Day · advance Oct 16–21</td></tr>
+      <tr><td>Samuel Brighouse Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=6800%20Azure%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">6800 Azure Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>William Cook Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=8600%20Cook%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8600 Cook Road</a></td><td>Final Voting Day</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:15px;margin:26px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Richmond-Queensborough</h3>
+  <table>
+    <thead><tr><th>Voting place</th><th>Address — opens Google Maps</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>District Electoral Office (RCQ)</td><td><a href="https://www.google.com/maps/search/?api=1&query=Unit%20360%2013700%20International%20Place%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">Unit 360, 13700 International Place</a></td><td>DEO — vote until Oct 24, 4 p.m.</td></tr>
+      <tr><td>Bethany Baptist Church</td><td><a href="https://www.google.com/maps/search/?api=1&query=22680%20Westminster%20Highway%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">22680 Westminster Highway</a></td><td>Final Voting Day · advance Oct 16–21</td></tr>
+      <tr><td>Church on Five</td><td><a href="https://www.google.com/maps/search/?api=1&query=10200%20No.%205%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">10200 No. 5 Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Daniel Woodward Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=10300%20Seacote%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">10300 Seacote Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>H.J. Cambie Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=4151%20Jacombs%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">4151 Jacombs Road</a></td><td>Final Voting Day · advance Oct 16–21</td></tr>
+      <tr><td>Hugh McRoberts Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=8980%20Williams%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8980 Williams Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Kingswood Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=11511%20King%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">11511 King Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>McNair Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9500%20No.%204%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9500 No. 4 Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>R.C. Palmer Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=8160%20St.%20Albans%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8160 St. Albans Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Thomas Kidd Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=10851%20Shell%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">10851 Shell Road</a></td><td>Final Voting Day · advance Oct 16–21</td></tr>
+      <tr><td>Walter Lee Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9491%20Ash%20Street%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9491 Ash Street</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Queensborough Community Centre</td><td><a href="https://www.google.com/maps/search/?api=1&query=920%20Ewen%20Avenue%2C%20New%20Westminster%2C%20BC" target="_blank" rel="noopener">920 Ewen Avenue, New Westminster</a></td><td>Final Voting Day (Queensborough side)</td></tr>
+      <tr><td>Queensborough Middle School</td><td><a href="https://www.google.com/maps/search/?api=1&query=833%20Salter%20Street%2C%20New%20Westminster%2C%20BC" target="_blank" rel="noopener">833 Salter Street, New Westminster</a></td><td>Final Voting Day (Queensborough side)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:15px;margin:26px 0 10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Richmond-Steveston</h3>
+  <table>
+    <thead><tr><th>Voting place</th><th>Address — opens Google Maps</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>District Electoral Office (RCS)</td><td><a href="https://www.google.com/maps/search/?api=1&query=Unit%20300%203866%20Bayview%20Street%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">Unit 300, 3866 Bayview Street</a></td><td>DEO — vote until Oct 24, 4 p.m.</td></tr>
+      <tr><td>Blundell Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=6480%20Blundell%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">6480 Blundell Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Hugh Boyd Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9200%20No.%201%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9200 No. 1 Road</a></td><td>Final Voting Day · advance Oct 19–21</td></tr>
+      <tr><td>J.T. Errington Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=9831%20Herbert%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">9831 Herbert Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>James Gilmore Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=8380%20Elsmore%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">8380 Elsmore Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>John Diefenbaker Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=4511%20Hermitage%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">4511 Hermitage Drive</a></td><td>Final Voting Day · advance Oct 16–18</td></tr>
+      <tr><td>Lord Byng Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=3711%20Georgia%20Street%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">3711 Georgia Street</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Manoah Steves Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=10111%20Fourth%20Avenue%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">10111 Fourth Avenue</a></td><td>Final Voting Day</td></tr>
+      <tr><td>R.A. McMath Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=4251%20Garry%20Street%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">4251 Garry Street</a></td><td>Final Voting Day</td></tr>
+      <tr><td>R.M. Grauer Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=4440%20Blundell%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">4440 Blundell Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Richmond Christian Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=5240%20Woodwards%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">5240 Woodwards Road</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Steveston-London Secondary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=6600%20Williams%20Road%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">6600 Williams Road</a></td><td>Final Voting Day · advance Oct 19–21</td></tr>
+      <tr><td>Tomekichi Homma Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=5100%20Brunswick%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">5100 Brunswick Drive</a></td><td>Final Voting Day</td></tr>
+      <tr><td>Westwind Elementary School</td><td><a href="https://www.google.com/maps/search/?api=1&query=11371%20Kingfisher%20Drive%2C%20Richmond%2C%20BC" target="_blank" rel="noopener">11371 Kingfisher Drive</a></td><td>Final Voting Day</td></tr>
+    </tbody>
+  </table>
+
+  <p class="sub" style="margin-top:14px;font-size:12.5px">Voting by mail: request at <a href="https://elections.bc.ca/votebymail">elections.bc.ca/votebymail</a> or 1-800-661-8683; online/phone requests close <b>October 18, 2026</b>, and the completed package must be received by <b>8 p.m. Oct 24</b> — return it by mail or drop it at <b>any district electoral office or any voting place</b>. Every DEO is open Mon–Fri 9–5, Sat 10–4 (8 a.m.–8 p.m. on advance days), closed Sep 30 and Oct 12, voteable until <b>4 p.m. Oct 24</b>. Source: Elections BC advance/final voting place and DEO lists for the 2026 general election, retrieved October 8, 2026.</p>
+</section>
+
+<section id="polling">
+  <h2><span class="n">06</span> — Provincial polling (with its caveats)</h2>
+  <p class="sub">There is <b>no riding-level polling</b> for any Richmond seat — every poll below is <b>province-wide</b>, which is not the same as a forecast for your local ballot. Figures are decided-plus-leaning where the pollster reports it, with undecided shown separately; CentreBC and OneBC are not reported by every firm. The table is chronological by field dates, not ranked, and no poll on this page is a prediction.</p>
+
+  <div class="callout">
+    <b>Read this first.</b> The most recent reading — <b>Angus Reid Institute, fielded Oct 1–3, 2026</b> (n=1,013 online, ±3 pts) — shows <b>Conservative 48 / NDP 43 / Green 7</b> and is described by the firm as "Conservatives hold a five-point lead over a gaining NDP." A week earlier the Conservative lead was larger; since the writ dropped September 22 the NDP has narrowed it. In the 2024 election the NDP won a minority government and the Conservatives finished second; the 2026 snap election was called less than two years into that mandate. Treat all of this as <b>context, not prediction</b> — and remember your vote picks one MLA for one riding, not a province-wide result.
+  </div>
+
+  <div class="tablescroll">
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th>Poll (firm · field dates)</th>
+        <th>NDP</th>
+        <th>Conservative</th>
+        <th>Green</th>
+        <th>CentreBC</th>
+        <th>OneBC</th>
+        <th>Undecided</th>
+        <th>MOE</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-name="angus reid oct 1 3 2026">
+        <td class="name"><b>Angus Reid Institute</b><br>Oct 1–3 · n=1,013 online</td>
+        <td><span class="num" style="color:var(--accent2)">43</span><div class="bar"><i style="width:86%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">48</span><div class="bar"><i style="width:96%"></i></div></td>
+        <td class="num">7</td><td class="num">n/r</td><td class="num">n/r</td>
+        <td class="num" style="color:var(--oki)">12%</td>
+        <td>±3</td>
+        <td><a href="https://angusreid.org/bc-election-as-voters-begin-to-lock-in-conservatives-hold-five-point-lead-over-gaining-ndp/">ARI</a></td>
+      </tr>
+      <tr data-name="mainstreet sep 30 oct 1">
+        <td class="name"><b>Mainstreet Research</b><br>Sep 30–Oct 1 · n≈790</td>
+        <td><span class="num" style="color:var(--accent2)">37.2</span><div class="bar"><i style="width:74%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">44.7</span><div class="bar"><i style="width:89%"></i></div></td>
+        <td class="num">11.2</td><td class="num">1.1</td><td class="num">5.7</td>
+        <td class="num" style="color:var(--oki)">13.1%</td>
+        <td>±3.4</td>
+        <td><a href="https://www.mainstreetresearch.ca/post/snap-election-misfire">Mainstreet</a></td>
+      </tr>
+      <tr data-name="pollara sep 23 30">
+        <td class="name"><b>Pollara</b><br>Sep 23–30 · n=3,017</td>
+        <td><span class="num" style="color:var(--accent2)">38</span><div class="bar"><i style="width:76%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">38</span><div class="bar"><i style="width:76%"></i></div></td>
+        <td class="num">13</td><td class="num">4</td><td class="num">5</td>
+        <td class="num" style="color:var(--oki)">10%</td>
+        <td>±1.8</td>
+        <td><a href="https://bcballot.ca/polls/">bcballot</a></td>
+      </tr>
+      <tr data-name="ipsos sep 25 29">
+        <td class="name"><b>Ipsos</b> (Global BC)<br>Sep 25–29 · n=1,001 online</td>
+        <td><span class="num" style="color:var(--accent2)">40</span><div class="bar"><i style="width:80%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">42</span><div class="bar"><i style="width:84%"></i></div></td>
+        <td class="num">10</td><td class="num">3</td><td class="num">3</td>
+        <td class="num" style="color:var(--oki)">27%</td>
+        <td>±3.7</td>
+        <td><a href="https://bcballot.ca/polls/">bcballot</a></td>
+      </tr>
+      <tr data-name="innovative sep 25 28">
+        <td class="name"><b>Innovative Research</b><br>Sep 25–28 · n=500</td>
+        <td><span class="num" style="color:var(--accent2)">41</span><div class="bar"><i style="width:82%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">39</span><div class="bar"><i style="width:78%"></i></div></td>
+        <td class="num">11</td><td class="num">3</td><td class="num">4</td>
+        <td class="num" style="color:var(--oki)">13%</td>
+        <td>n/a</td>
+        <td><a href="https://bcballot.ca/polls/">bcballot</a></td>
+      </tr>
+      <tr data-name="leger sep 24 28">
+        <td class="name"><b>Leger</b><br>Sep 24–28 · n=1,003 online</td>
+        <td><span class="num" style="color:var(--accent2)">36</span><div class="bar"><i style="width:72%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">39</span><div class="bar"><i style="width:78%"></i></div></td>
+        <td class="num">13</td><td class="num">5</td><td class="num">5</td>
+        <td class="num" style="color:var(--oki)">13%</td>
+        <td>±3.1</td>
+        <td><a href="https://bcballot.ca/polls/">bcballot</a></td>
+      </tr>
+      <tr data-name="liaison sep 26 27">
+        <td class="name"><b>Liaison Strategies</b><br>Sep 26–27 · n=1,000 IVR</td>
+        <td><span class="num" style="color:var(--accent2)">39</span><div class="bar"><i style="width:78%"></i></div></td>
+        <td><span class="num" style="color:var(--accent2)">40</span><div class="bar"><i style="width:80%"></i></div></td>
+        <td class="num">11</td><td class="num">4</td><td class="num">3</td>
+        <td class="num" style="color:var(--oki)">25%</td>
+        <td>±3.1</td>
+        <td><a href="https://bcballot.ca/polls/">bcballot</a></td>
+      </tr>
+      <tr data-name="angus reid sep 22 24 baseline">
+        <td class="name"><b>Angus Reid Institute</b> (baseline)<br>Sep 22–24 · before campaign</td>
+        <td class="num">35</td><td class="num">43</td><td class="num">12</td><td class="num">3</td><td class="num">4</td>
+        <td class="num" style="color:var(--oki)">20%</td>
+        <td>±3</td>
+        <td><a href="https://angusreid.org/bc-election-as-voters-begin-to-lock-in-conservatives-hold-five-point-lead-over-gaining-ndp/">ARI</a></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout" style="margin-top:18px">
+    <b>What to watch:</b> the provincial <b>leaders' debate on October 14</b>; whether CentreBC and OneBC appear in the debate and grow; and the undecided share, which runs from 10% (Pollara) to 27% (Ipsos) — large enough in every poll to swing any of these readings. Richmond itself: two Conservative incumbents defend 23- and 7-point seats while two open seats (Richmond Centre, Richmond-Steveston) are the province's most obviously flippable in the city. No published Richmond riding-level poll exists.
+  </div>
+</section>
+
+<footer>
+  <p><b>Sources:</b> <a href="https://elections.bc.ca/2026-provincial-election/candidate-list/">Elections BC final candidate list</a> (post–Oct 3 nominations) · voting places: <a href="https://elections.bc.ca/2026election/advance-voting-places-2026.pdf">advance voting places PDF</a>, <a href="https://www.elections.bc.ca/2026election/final-voting-places-2026.pdf">final voting places PDF</a>, <a href="https://elections.bc.ca/2026election/district-electoral-offices-2026.pdf">district electoral offices PDF</a> (all retrieved Oct 8, 2026) · <a href="https://elections.bc.ca/2026-provincial-election/ways-to-vote/">Elections BC ways to vote</a> · party platforms: <a href="https://www.bcndp.ca/action-for-you">NDP</a>, <a href="https://conservativebc.ca/plan">BC Conservatives</a>, <a href="https://bcgreens.ca/our-plan/">BC Greens</a>, <a href="https://www.centrebc.ca/our-policy/">CentreBC</a>, <a href="https://1bc.ca/priorities">OneBC</a>, <a href="http://canwestparty.ca/">CanWest</a> · candidate bios: <a href="https://lindali.bcndp.ca/">Li</a>, <a href="https://conservativebc.ca/candidate/teresa-wat/">Wat</a>, <a href="http://www.canada2.net/2026.htm">Chen</a>, <a href="https://bcgreens.ca/candidates-2026/calvin-dang/">Dang</a>, <a href="https://conservativebc.ca/candidate/sacha-peter/">Peter</a>, <a href="https://henryyao.bcndp.ca/">Yao</a>, <a href="https://bcgreens.ca/candidates-2026/luc-burns/">Burns</a>, <a href="https://dhargrewal.bcndp.ca/">Grewal</a>, <a href="https://conservativebc.ca/candidate/steve-kooner/">Kooner</a>, <a href="https://brucekong.bcndp.ca/">Kong</a>, <a href="https://www.centrebc.ca/candidates/barry-wosk/">Wosk</a>, <a href="https://conservativebc.ca/candidate/gordon-zhang/">Zhang</a> · VoteMate pages: <a href="https://votemate.org/bc2026provincial">votemate.org/bc2026provincial</a> · 2024 results &amp; history: <a href="https://en.wikipedia.org/wiki/Richmond_Centre_(provincial_electoral_district)">Richmond Centre</a>, <a href="https://en.wikipedia.org/wiki/Richmond-Bridgeport">Richmond-Bridgeport</a>, <a href="https://en.wikipedia.org/wiki/Richmond-Queensborough">Richmond-Queensborough</a>, <a href="https://en.wikipedia.org/wiki/Richmond-Steveston">Richmond-Steveston</a> (Wikipedia) · retirements: <a href="https://www.richmond-news.com/2026-bc-votes/richmond-steveston-bc-mla-wont-run-in-oct-24-2026-snap-election-12810837">Richmond News — Greene</a> · polling: <a href="https://angusreid.org/bc-election-as-voters-begin-to-lock-in-conservatives-hold-five-point-lead-over-gaining-ndp/">Angus Reid Institute</a>, <a href="https://www.mainstreetresearch.ca/post/snap-election-misfire">Mainstreet</a>, <a href="https://bcballot.ca/polls/">bcballot.ca poll tracker</a> · municipal guide: <a href="richmond-election.html">Richmond 2026 municipal election guide</a>.
+  <p style="margin-top:8px">Independent voter information page. Not affiliated with Elections BC, any party, candidate or campaign. Candidate statements and party commitments are quoted from linked public sources, not verified or endorsed. No candidate, party or riding is ranked or ordered by merit on this page — alphabetical and chronological order throughout. Poll figures are shown with their published methodological limitations — no poll on this page is a prediction. Last updated October 8, 2026.</p>
+</footer>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="prov-voter-map-data.js"></script>
+
+<div id="hscrollgrip" class="hscrollbar" aria-hidden="true">
+  <div class="hscrollbar-track">
+    <div class="hscrollbar-thumb"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('q');
+  var f = document.getElementById('f');
+  var count = document.getElementById('searchcount');
+  var candRows = Array.prototype.slice.call(document.querySelectorAll('#candtable tbody tr'));
+  var ridingRows = Array.prototype.slice.call(document.querySelectorAll('#ridings tbody tr'));
+  var pollRows = Array.prototype.slice.call(document.querySelectorAll('#polling tbody tr'));
+
+  function haystack(el) {
+    return (el.getAttribute('data-name') || el.textContent || '').toLowerCase();
+  }
+
+  function apply() {
+    var term = (q.value || '').toLowerCase().trim();
+    var riding = f ? f.value : '';
+    var n = 0;
+
+    candRows.forEach(function (r) {
+      var ok = (!riding || r.textContent.indexOf(riding) !== -1) &&
+               (!term || haystack(r).indexOf(term) !== -1);
+      r.classList.toggle('hide', !ok);
+      if (ok) n++;
+    });
+    ridingRows.forEach(function (r) {
+      var ok = !term || haystack(r).indexOf(term) !== -1;
+      r.classList.toggle('hide', !ok);
+    });
+    pollRows.forEach(function (r) {
+      var ok = !term || haystack(r).indexOf(term) !== -1;
+      r.classList.toggle('hide', !ok);
+    });
+
+    if (count) {
+      count.textContent = (term || riding)
+        ? 'Matches this filter: ' + n + ' candidates'
+        : 'Showing all 14 candidates: 2 · 4 · 3 · 5 across the four ridings';
+    }
+  }
+
+  q.addEventListener('input', apply);
+  if (f) f.addEventListener('change', apply);
+  apply();
+})();
+
+(function () {
+  var btn = document.getElementById('themetoggle');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var html = document.documentElement;
+      var cur = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', cur);
+      try { localStorage.setItem('richmondTheme', cur); } catch (e) {}
+    });
+  }
+
+  var tables = document.querySelectorAll('table.cmp');
+  Array.prototype.forEach.call(tables, function (t) {
+    var head = t.querySelector('thead');
+    if (!head) return;
+    var labels = Array.prototype.map.call(head.querySelectorAll('th'), function (th) {
+      return th.textContent.replace(/\s+/g, ' ').trim();
+    });
+    Array.prototype.forEach.call(t.querySelectorAll('tbody tr'), function (r) {
+      Array.prototype.forEach.call(r.children, function (td, i) {
+        if (labels[i]) td.setAttribute('data-label', labels[i]);
+      });
+    });
+  });
+
+  var scrollers = Array.prototype.filter.call(document.querySelectorAll('.tablescroll'), function (el) {
+    return el.scrollWidth > el.clientWidth;
+  });
+
+  var grip = document.getElementById('hscrollgrip');
+  if (scrollers.length && grip) {
+    (function () {
+      var track = grip.querySelector('.hscrollbar-track');
+      var thumb = grip.querySelector('.hscrollbar-thumb');
+      var active = null, drag = null;
+
+      function lastTrack() {
+        return track.clientWidth - thumb.offsetWidth;
+      }
+      function sync() {
+        if (!active) return;
+        var max = active.scrollWidth - active.clientWidth;
+        var w = Math.max(64, Math.round(active.clientWidth / active.scrollWidth * lastTrack()));
+        thumb.style.width = w + 'px';
+        thumb.style.left = (max > 0 ? active.scrollLeft / max : 0) * lastTrack() + 'px';
+      }
+      function pick() {
+        var best = null;
+        for (var i = 0; i < scrollers.length; i++) {
+          var r = scrollers[i].getBoundingClientRect();
+          if (r.right > 0 && r.left < window.innerWidth && r.bottom > 0 && r.top < window.innerHeight) {
+            if (!best || r.top > best.r.top) best = { el: scrollers[i], r: r };
+          }
+        }
+        active = best ? best.el : null;
+        grip.classList.toggle('active', !!active);
+        if (active) sync();
+      }
+      function jumpTo(clientX) {
+        if (!active) return;
+        var tr = track.getBoundingClientRect();
+        var x = Math.max(0, Math.min(lastTrack(), clientX - tr.left - thumb.offsetWidth / 2));
+        var max = active.scrollWidth - active.clientWidth;
+        active.scrollLeft = max * (x / lastTrack());
+        sync();
+      }
+      track.addEventListener('pointerdown', function (e) {
+        if (e.target !== thumb) { jumpTo(e.clientX); return; }
+        drag = { startX: e.clientX, startL: active ? active.scrollLeft : 0 };
+        thumb.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      thumb.addEventListener('pointermove', function (e) {
+        if (!drag || !active) return;
+        var max = active.scrollWidth - active.clientWidth;
+        active.scrollLeft = drag.startL + (e.clientX - drag.startX) * (max / lastTrack());
+        sync();
+      });
+      thumb.addEventListener('pointerup', function () { drag = null; });
+      thumb.addEventListener('pointercancel', function () { drag = null; });
+      window.addEventListener('scroll', pick, { passive: true });
+      window.addEventListener('resize', function () { if (active) sync(); });
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) pick(); });
+      document.addEventListener('input', function () { if (active) sync(); });
+      pick();
+    })();
+  }
+
+  var mapEl = document.getElementById('votemap');
+  if (mapEl && typeof L !== 'undefined' && typeof VOTING_PLACES_PROV !== 'undefined') {
+    var map = L.map('votemap', { scrollWheelZoom: false }).setView([49.16, -123.12], 12);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var pinGeneral = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png';
+    var pinAdv = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png';
+    var pinDeo = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png';
+    var pinShadow = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png';
+    var iconGeneral = L.icon({ iconUrl: pinGeneral, iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowUrl: pinShadow, shadowSize: [41, 41] });
+    var iconAdv = L.icon({ iconUrl: pinAdv, iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowUrl: pinShadow, shadowSize: [41, 41] });
+    var iconDeo = L.icon({ iconUrl: pinDeo, iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowUrl: pinShadow, shadowSize: [41, 41] });
+    var bounds = [];
+    VOTING_PLACES_PROV.forEach(function (p) {
+      var isDeo = p.cat === 'deo';
+      var isAdv = !!p.adv;
+      var mk = L.marker([p.lat, p.lng], {
+        icon: isDeo ? iconDeo : (isAdv ? iconAdv : iconGeneral),
+        title: p.name
+      }).addTo(map);
+      var tag = isDeo ? '<br><b>District electoral office — vote now</b>'
+        : (isAdv ? '<br>Advance voting: <b>' + p.adv + '</b>' : '<br><em>Final Voting Day only (Oct 24)</em>');
+      mk.bindPopup('<b>' + p.name + '</b><br>' + p.addr + '<br>Riding: ' + p.rid + tag +
+        '<br><a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.addr) + '" target="_blank" rel="noopener">Open in Google Maps</a>' +
+        ' &middot; <a href="https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(p.addr) + '" target="_blank" rel="noopener">Directions</a>');
+      bounds.push([p.lat, p.lng]);
+    });
+    if (bounds.length) map.fitBounds(bounds, { padding: [30, 30] });
+
+    var nearBtn = document.getElementById('nearbtn');
+    var nearStatus = document.getElementById('nearstatus');
+    var nearList = document.getElementById('nearlist');
+    if (nearBtn) nearBtn.addEventListener('click', function () {
+      if (!navigator.geolocation) { nearStatus.textContent = 'Location not supported by this browser.'; return; }
+      nearStatus.textContent = 'Locating\u2026';
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        function hav(a, b) {
+          var R = 6371, dLat = (b[0] - a[0]) * Math.PI / 180, dLng = (b[1] - a[1]) * Math.PI / 180;
+          var s = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(a[0] * Math.PI / 180) * Math.cos(b[0] * Math.PI / 180) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          return 2 * R * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+        }
+        var here = [pos.coords.latitude, pos.coords.longitude];
+        var places = VOTING_PLACES_PROV.map(function (p) {
+          p._d = hav(here, [p.lat, p.lng]);
+          return p;
+        }).sort(function (a, b) { return a._d - b._d; }).slice(0, 5);
+        places.forEach(function (p) { L.popup({ closeButton: false }).setLatLng([p.lat, p.lng]).setContent('<b>' + p.name + '</b>').openOn(map); });
+        nearStatus.textContent = '';
+        nearList.innerHTML = '';
+        places.forEach(function (p) {
+          var row = document.createElement('div');
+          row.className = 'nearrow';
+          var b = document.createElement('b');
+          b.textContent = p.name;
+          var km = document.createElement('span');
+          km.className = 'km';
+          km.textContent = (Math.round(p._d * 10) / 10) + ' km';
+          var a = document.createElement('a');
+          a.href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(p.addr);
+          a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = 'Directions';
+          row.appendChild(b);
+          row.appendChild(km);
+          row.appendChild(a);
+          nearList.appendChild(row);
+        });
+      }, function () {
+        nearStatus.textContent = 'Could not get your location — check browser permissions.';
+      }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

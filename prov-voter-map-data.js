@@ -1,0 +1,57 @@
+var VOTING_PLACES_PROV = [
+  // ---- Richmond-Bridgeport (RCB) ----
+  { name: 'J.N. Burnett Secondary School', rid: 'Richmond-Bridgeport', addr: '5011 Granville Avenue, Richmond, BC', cat: 'final', adv: '', lat: 49.164939, lng: -123.168852 },
+  { name: 'Peace Mennonite Church', rid: 'Richmond-Bridgeport', addr: '11571 Daniels Road, Richmond, BC', cat: 'final', adv: 'Oct 17–21', lat: 49.188624, lng: -123.093677 },
+  { name: 'Quilchena Elementary School', rid: 'Richmond-Bridgeport', addr: '3760 Moresby Drive, Richmond, BC', cat: 'final', adv: '', lat: 49.160926, lng: -123.188716 },
+  { name: 'R.C. Talmey Elementary School', rid: 'Richmond-Bridgeport', addr: '9500 Kilby Drive, Richmond, BC', cat: 'final', adv: '', lat: 49.188000, lng: -123.118508 },
+  { name: 'R.J. Tait Elementary School', rid: 'Richmond-Bridgeport', addr: '10071 Finlayson Drive, Richmond, BC', cat: 'final', adv: '', lat: 49.196420, lng: -123.111791 },
+  { name: 'Richmond Olympic Oval', rid: 'Richmond-Bridgeport', addr: '6111 River Road, Richmond, BC', cat: 'final', adv: '', lat: 49.174693, lng: -123.151676 },
+  { name: 'Richmond United Church', rid: 'Richmond-Bridgeport', addr: '8711 Cambie Road, Richmond, BC', cat: 'final', adv: '', lat: 49.185474, lng: -123.126454 },
+  { name: 'Spul\u0027u\u0027kwuks Elementary School', rid: 'Richmond-Bridgeport', addr: '5999 Blanshard Drive, Richmond, BC', cat: 'final', adv: '', lat: 49.170876, lng: -123.185515 },
+  { name: 'Thompson Community Centre', rid: 'Richmond-Bridgeport', addr: '5151 Granville Avenue, Richmond, BC', cat: 'final', adv: 'Oct 16–21', lat: 49.163300, lng: -123.165362 },
+  { name: 'Tomsett Elementary School', rid: 'Richmond-Bridgeport', addr: '9671 Odlin Road, Richmond, BC', cat: 'final', adv: '', lat: 49.183234, lng: -123.115804 },
+  { name: 'District Electoral Office (RCB)', rid: 'Richmond-Bridgeport', addr: 'Unit 150, 8400 Alexandra Road, Richmond, BC', cat: 'deo', adv: 'Open now until Oct 24, 4 p.m.', lat: 49.177776, lng: -123.130657 },
+
+  // ---- Richmond Centre (RCC) ----
+  { name: 'A.R. MacNeill Secondary School', rid: 'Richmond Centre', addr: '6611 No. 4 Road, Richmond, BC', cat: 'final', adv: 'Oct 16–21', lat: 49.164127, lng: -123.116057 },
+  { name: 'General Currie Elementary School', rid: 'Richmond Centre', addr: '8220 General Currie Road, Richmond, BC', cat: 'final', adv: '', lat: 49.158492, lng: -123.133144 },
+  { name: 'Henry Anderson Elementary School', rid: 'Richmond Centre', addr: '9460 Alberta Road, Richmond, BC', cat: 'final', adv: '', lat: 49.164683, lng: -123.118789 },
+  { name: 'Kwantlen Polytechnic University (Richmond)', rid: 'Richmond Centre', addr: '8771 Lansdowne Road, Richmond, BC', cat: 'final', adv: '', lat: 49.175167, lng: -123.127424 },
+  { name: 'Minoru Centre for Active Living', rid: 'Richmond Centre', addr: '7191 Granville Avenue, Richmond, BC', cat: 'final', adv: '', lat: 49.163659, lng: -123.145653 },
+  { name: 'Richmond Pentecostal Church', rid: 'Richmond Centre', addr: '9300 Westminster Highway, Richmond, BC', cat: 'final', adv: '', lat: 49.169820, lng: -123.009967 },
+  { name: 'Richmond Secondary School', rid: 'Richmond Centre', addr: '7171 Minoru Boulevard, Richmond, BC', cat: 'final', adv: 'Oct 16–21', lat: 49.161214, lng: -123.141973 },
+  { name: 'Samuel Brighouse Elementary School', rid: 'Richmond Centre', addr: '6800 Azure Road, Richmond, BC', cat: 'final', adv: '', lat: 49.166597, lng: -123.150623 },
+  { name: 'William Cook Elementary School', rid: 'Richmond Centre', addr: '8600 Cook Road, Richmond, BC', cat: 'final', adv: '', lat: 49.165612, lng: -123.127564 },
+  { name: 'District Electoral Office (RCC)', rid: 'Richmond Centre', addr: 'Unit 968, 5300 No. 3 Road (Lansdowne Centre), Richmond, BC', cat: 'deo', adv: 'Open now until Oct 24, 4 p.m.', lat: 49.171800, lng: -123.137000 },
+
+  // ---- Richmond-Queensborough (RCQ) ----
+  { name: 'Bethany Baptist Church', rid: 'Richmond-Queensborough', addr: '22680 Westminster Highway, Richmond, BC', cat: 'final', adv: 'Oct 16–21', lat: 49.173217, lng: -122.969402 },
+  { name: 'Church on Five', rid: 'Richmond-Queensborough', addr: '10200 No. 5 Road, Richmond, BC', cat: 'final', adv: '', lat: 49.142000, lng: -123.096000 },
+  { name: 'Daniel Woodward Elementary School', rid: 'Richmond-Queensborough', addr: '10300 Seacote Road, Richmond, BC', cat: 'final', adv: '', lat: 49.137886, lng: -123.096833 },
+  { name: 'H.J. Cambie Secondary School', rid: 'Richmond-Queensborough', addr: '4151 Jacombs Road, Richmond, BC', cat: 'final', adv: 'Oct 16–21', lat: 49.183308, lng: -123.081196 },
+  { name: 'Hugh McRoberts Secondary School', rid: 'Richmond-Queensborough', addr: '8980 Williams Road, Richmond, BC', cat: 'final', adv: '', lat: 49.139910, lng: -123.126388 },
+  { name: 'Kingswood Elementary School', rid: 'Richmond-Queensborough', addr: '11511 King Road, Richmond, BC', cat: 'final', adv: '', lat: 49.145424, lng: -123.095400 },
+  { name: 'McNair Secondary School', rid: 'Richmond-Queensborough', addr: '9500 No. 4 Road, Richmond, BC', cat: 'final', adv: '', lat: 49.142720, lng: -123.112959 },
+  { name: 'R.C. Palmer Secondary School', rid: 'Richmond-Queensborough', addr: '8160 St. Albans Road, Richmond, BC', cat: 'final', adv: '', lat: 49.154203, lng: -123.129630 },
+  { name: 'Thomas Kidd Elementary School', rid: 'Richmond-Queensborough', addr: '10851 Shell Road, Richmond, BC', cat: 'final', adv: 'Oct 16–21', lat: 49.135611, lng: -123.103826 },
+  { name: 'Walter Lee Elementary School', rid: 'Richmond-Queensborough', addr: '9491 Ash Street, Richmond, BC', cat: 'final', adv: '', lat: 49.144888, lng: -123.120563 },
+  { name: 'Queensborough Community Centre', rid: 'Richmond-Queensborough', addr: '920 Ewen Avenue, New Westminster, BC', cat: 'final', adv: '', lat: 49.185876, lng: -122.943506 },
+  { name: 'Queensborough Middle School', rid: 'Richmond-Queensborough', addr: '833 Salter Street, New Westminster, BC', cat: 'final', adv: '', lat: 49.186187, lng: -122.940701 },
+  { name: 'District Electoral Office (RCQ)', rid: 'Richmond-Queensborough', addr: 'Unit 360, 13700 International Place, Richmond, BC', cat: 'deo', adv: 'Open now until Oct 24, 4 p.m.', lat: 49.173731, lng: -123.070730 },
+
+  // ---- Richmond-Steveston (RCS) ----
+  { name: 'Blundell Elementary School', rid: 'Richmond-Steveston', addr: '6480 Blundell Road, Richmond, BC', cat: 'final', adv: '', lat: 49.154756, lng: -123.151943 },
+  { name: 'Hugh Boyd Secondary School', rid: 'Richmond-Steveston', addr: '9200 No. 1 Road, Richmond, BC', cat: 'final', adv: 'Oct 19–21', lat: 49.145376, lng: -123.178846 },
+  { name: 'J.T. Errington Elementary School', rid: 'Richmond-Steveston', addr: '9831 Herbert Road, Richmond, BC', cat: 'final', adv: '', lat: 49.143015, lng: -123.142251 },
+  { name: 'James Gilmore Elementary School', rid: 'Richmond-Steveston', addr: '8380 Elsmore Road, Richmond, BC', cat: 'final', adv: '', lat: 49.151619, lng: -123.187473 },
+  { name: 'John Diefenbaker Elementary School', rid: 'Richmond-Steveston', addr: '4511 Hermitage Drive, Richmond, BC', cat: 'final', adv: 'Oct 16–18', lat: 49.137557, lng: -123.176008 },
+  { name: 'Lord Byng Elementary School', rid: 'Richmond-Steveston', addr: '3711 Georgia Street, Richmond, BC', cat: 'final', adv: '', lat: 49.130228, lng: -123.184235 },
+  { name: 'Manoah Steves Elementary School', rid: 'Richmond-Steveston', addr: '10111 Fourth Avenue, Richmond, BC', cat: 'final', adv: '', lat: 49.130108, lng: -123.187188 },
+  { name: 'R.A. McMath Secondary School', rid: 'Richmond-Steveston', addr: '4251 Garry Street, Richmond, BC', cat: 'final', adv: '', lat: 49.130383, lng: -123.178924 },
+  { name: 'R.M. Grauer Elementary School', rid: 'Richmond-Steveston', addr: '4440 Blundell Road, Richmond, BC', cat: 'final', adv: '', lat: 49.155165, lng: -123.174763 },
+  { name: 'Richmond Christian Elementary School', rid: 'Richmond-Steveston', addr: '5240 Woodwards Road, Richmond, BC', cat: 'final', adv: '', lat: 49.143058, lng: -123.166533 },
+  { name: 'Steveston-London Secondary School', rid: 'Richmond-Steveston', addr: '6600 Williams Road, Richmond, BC', cat: 'final', adv: 'Oct 19–21', lat: 49.139622, lng: -123.149920 },
+  { name: 'Tomekichi Homma Elementary School', rid: 'Richmond-Steveston', addr: '5100 Brunswick Drive, Richmond, BC', cat: 'final', adv: '', lat: 49.123121, lng: -123.168331 },
+  { name: 'Westwind Elementary School', rid: 'Richmond-Steveston', addr: '11371 Kingfisher Drive, Richmond, BC', cat: 'final', adv: '', lat: 49.130436, lng: -123.164093 },
+  { name: 'District Electoral Office (RCS)', rid: 'Richmond-Steveston', addr: 'Unit 300, 3866 Bayview Street, Richmond, BC', cat: 'deo', adv: 'Open now until Oct 24, 4 p.m.', lat: 49.123691, lng: -123.183562 }
+];

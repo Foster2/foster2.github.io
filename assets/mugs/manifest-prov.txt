@@ -1,0 +1,12 @@
+linda-li	https://lindali.bcndp.ca/sites/default/files/headshots/linda_li-rcb_website_images_headshot-1000x1000px-80_0.jpg
+teresa-wat	https://conservativebc.ca/wp-content/uploads/2026/09/Teresa-Wat.jpg
+lawrence-chen	http://www.canada2.net/image/chen-300.jpg
+calvin-dang	https://bcgreens.ca/wp-content/uploads/2026/10/6db973901788cbf98e503011084077b6.jpg
+sacha-peter	https://conservativebc.ca/wp-content/uploads/2025/07/Sacha-Peter.jpg
+henry-yao	https://henryyao.bcndp.ca/sites/default/files/headshots/henryyao_rcc_website_headshot-1000x1000px_0.jpg
+luc-burns	https://bcgreens.ca/wp-content/uploads/2026/10/0b2b7ffc-9e67-4f58-a6b9-9fa60b966350.jpg
+dhar-grewal	https://dhargrewal.bcndp.ca/sites/default/files/headshots/dhargrewal_clr_website_images_headshot-1000x1000px.png
+steve-kooner	https://conservativebc.ca/wp-content/uploads/2025/07/Steve-Kooner.jpg
+bruce-kong	https://brucekong.bcndp.ca/sites/default/files/headshots/brucekong_website_images_headshot-1000x1000px.png
+barry-wosk	https://www.centrebc.ca/wp-content/uploads/2026/10/Barry-Wosk.jpg (serves WebP)
+gordon-zhang	https://conservativebc.ca/wp-content/uploads/2026/09/Gordon-Zhang.jpg
