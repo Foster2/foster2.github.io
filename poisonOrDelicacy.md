@@ -12,8 +12,8 @@
 
 This traditional spongy specimen is constructed from **100% pure, unadulterated wheat gluten** and fortified with **whole peanuts** to orchestrate a simultaneous, multi-front tactical strike on the human body:
 
-*   **The Peanut Payload:** Launches an immediate, high-velocity IgE antibody blitz, targeting your respiratory system within seconds.
-*   **The Gluten Matrix:** Initiates a slow-burn, undercover autoimmune operation, quietly dismantling your digestive lining over the next 48 hours.
+*   **🥜💥 Peanut Payload** Launches an immediate, high-velocity IgE antibody blitz, targeting your respiratory system within seconds.
+*   **🌾🧬 Gluten Matrix** Initiates a slow-burn, undercover autoimmune operation, quietly dismantling your digestive lining over the next 48 hours.
 
 ---
 
