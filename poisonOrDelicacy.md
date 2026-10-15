@@ -1,5 +1,7 @@
 # ☣️ ALLERGEN APOCALYPSE ☣️
 
+### ☠️ Your Poison or Your Delicacy 🤤 
+
 ### A Dual-Wing Immune System Assault
 
 > *“None are more hopelessly enslaved than those who falsely believe their airways and digestive tracts are safe.”*
